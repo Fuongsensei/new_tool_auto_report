@@ -1,1 +1,1 @@
-path_yaml : str = r"C:\Users\3601183\Desktop\y.yml"
+path_yaml : str = r"C:\Users\3601183\Documents\Python\new_tool_auto_report\y.yml"
