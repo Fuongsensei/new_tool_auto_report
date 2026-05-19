@@ -5,24 +5,24 @@
 #có thể chỉnh ngày tùy chọn ngày cố định trong vòng 1 tháng tức từ ngày đầu tháng đi làm tới tới ngày cuối của tháng hoàn toàn được
 profile:
   daily_report_config:
-    from_date: 2026-02-01 #x
+    from_date: 2026-02-01
 
-    to_date: 2026-05-06 #x
+    to_date: 2026-05-06
 
     #sáng thì để 6-0-0 đêm qua ngày  thì để  18-0-0
 
-    from_time: 0 #x
+    from_time: 0
 
-    from_minute: 0 #x
+    from_minute: 0
 
-    from_second: 0 #x
+    from_second: 0
 
     #sáng thì để 23-59-59 đêm qua ngày thì để 6-0-0
-    to_time: 23 #x
+    to_time: 23
 
-    to_minute: 59 #x
+    to_minute: 59
 
-    to_second: 59 #x
+    to_second: 59
 
     base_report_file: '\\AWASE1HCMICAP01\AppsData\GR Ver Report\'
 
@@ -30,19 +30,19 @@ profile:
 
     sap_verify:
       #Phương
-      3601183: 1 #x
+      3601183: 1
       #Hiếu
-      3212020: 1 #x
+      3212020: 0
       #Gia
-      3302117: #1 #x
+      3302117: 1
       #Nghĩa
-      3210272: #1 #x
+      3210272: 0
       #Khoa
-      3222451: #1 #x
+      3222451: 0
       #Tuấn
-      3294344: #1 #x
+      3294344: 0
       #Tấn Linh
-      3294333: #1 #
+      3294333: 0
     sap_keyin:
       #Ngân
       2495710: 0
