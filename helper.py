@@ -3,7 +3,6 @@ import ctypes
 
 
 class Helper:
-    def __init__(self) -> None:
-        pass
-    def show_error(title,message):
-        ctypes.windll.user32.MessageBoxW(0,message,title,0x10)
+    @staticmethod
+    def show_error(errno:int ,message:str):
+        ctypes.windll.user32.MessageBoxW(0,message,f"Mã lỗi : {errno}",0x10)

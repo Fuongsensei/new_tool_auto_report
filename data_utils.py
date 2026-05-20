@@ -6,32 +6,32 @@ import io
 import msoffcrypto
 import polars as pl
 from helper import Helper as hp
-
+from file_handler import FileHelper
 class DataIngestor:
     def __init__(self,paths_map:dict[str,str]):
         self.paths_map = paths_map
         
-    def release_data(self):
+    def ingest_data(self):
         try:
             if len(self.paths_map) < 2:
                 k,v = list(self.paths_map.items())[0]
                 return self.single_file_transfer(k,v)
-            return self.cocurent_file_transfer()
+            return self.concurent_file_transfer()
         
-        except IndexError:
-            hp.show_error("Lỗi index ", "Vui lòng kiểm tra phần SAP của file config vui lòng chọn ít nhất 1 SAP")
-            os._exit(0)
+        except IndexError as e :
+            hp.show_error(e.errno ,"Vui lòng kiểm tra phần SAP của file config vui lòng chọn ít nhất 1 SAP")
+
             
         
-    def single_file_transfer(self,p_src:str,p_dest:str):
-            shutil.copy(p_src,p_dest)
+    def load_single_file(self,p_src:str,p_dest:str):
+            FileHelper.file_transfer(p_src,p_dest)
             data:io.BytesIO = self.load_data_with_key(p_dest,"J@bil2022")
             data.seek(0)
             df:pl.DataFrame = pl.read_excel(data,engine="calamine")
             return df
     
     
-    def cocurent_file_transfer(self):
+    def load_multiple_files(self):
         data_list : list[pl.DataFrame]=[]
         
         with ThreadPoolExecutor(max_workers=5) as exe :
@@ -44,7 +44,7 @@ class DataIngestor:
 
     
     
-    def load_data_with_key(self,path:str, p:str) -> None:
+    def load_data_with_key(self,path:str, p:str) -> io.BytesIO:
         
                 with open(path, 'rb') as file:
                         office_file :msoffcrypto.OfficeFile = msoffcrypto.OfficeFile(file)
