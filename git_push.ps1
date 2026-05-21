@@ -4,5 +4,5 @@ Write-Host "Đang đẩy code lên github"
 
 git init
 git add .
-git commit -m "Chỉnh sửa lại data_ingestor một chút"
+git commit -m "Edit data_ingestor"
 git push origin main
