@@ -5,7 +5,7 @@ from helper import Helper
 
 
 T = TypeVar("T",bound=BaseModel)
-pYaml : str =  sv.path_yaml
+
 class DataProcessBase(Generic[T]):
     def __init__(self,config:T):
         self.config :T = config

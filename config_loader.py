@@ -18,7 +18,7 @@ class DailyConfig(BaseModel):
     to_time : int
     to_minute:int
     to_second:int
-    local_path:str = fr"C:\Users\{getpass.getuser()}\Documents"
+    local_path:str = fr"C:\Users\{getpass.getuser()}\Documents\Report"
     base_report_file:str
     sap_verify : dict[int,int|None]
     path_local_mapping :dict[str,str] ={}
@@ -52,7 +52,7 @@ class DailyConfig(BaseModel):
                     month_folder_path_network = os.path.join(self.base_report_file,f"{i} {self.from_date.year}")
                     month_folder_path_local   = os.path.join(self.local_path,f"{i} {self.from_date.year}")
                     
-                    mapping[os.path.join(month_folder_path_network,f"{temp}")] = os.path.join(month_folder_path_local,f"{temp}")
+                    mapping[os.path.join(month_folder_path_network,f"{temp}")] = os.path.join(month_folder_path_local,temp)
             
         return mapping
         
@@ -67,6 +67,3 @@ def create_profile()->Profile:
         pro5 :Profile = Profile(**data['profile'])
         return pro5    
 
-pro5 :Profile = create_profile()
-daily : DailyConfig = DailyConfig(**pro5.daily_report_config)
-print(daily.from_date)
