@@ -15,4 +15,7 @@ if __name__ == "__main__":
     pro5 : Profile = create_profile()
     daily_config :DailyConfig = DailyConfig(**pro5.daily_report_config)
     data_ingest : DataIngestor = DataIngestor(daily_config.path_local_mapping)
-    print(data_ingest.local_csv_paths)
+    df_raw : pl.DataFrame = data_ingest.ingest_data()
+    df_qty = df_raw.select(pl.col("Qty"))
+    pritn(df.qty)
+    

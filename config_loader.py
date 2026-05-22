@@ -27,7 +27,7 @@ class DailyConfig(BaseModel):
     @model_validator(mode='after')
     def _initialize_filed(self):
         self._interpolate_months = self._get_short_months()
-        self.sap_list = self._create_sap_list()
+        self.sap_list =[899584, 2978308, 3233925, 4188677, 3294343, 3294344, 714632, 2378250, 3212044, 2304147, 3389335, 2423192, 1440924, 3210271, 3210272, 3601183, 3307814, 3322285, 3000750, 3322289, 3222451, 3294389, 3349561, 1282368, 2930496, 2495170, 2569287, 3242956, 2237774, 1485264, 2253393, 3210195, 3225301, 3337942, 3225303, 1088091, 2253539, 1264229, 3302117, 2229993, 3212020, 3294333]
         self.path_local_mapping = self._create_path_mapping()
         return self
         
