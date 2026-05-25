@@ -2,9 +2,10 @@
 import getpass
 import datetime as dt 
 from pydantic import BaseModel,model_validator
-from static_varibles import yaml_path
+from static_varibles import yaml_path,yaml_path_home
 import yaml
 import os
+from helper import Helper
 
 class Profile(BaseModel):
     daily_report_config:dict = {}
@@ -19,21 +20,45 @@ class DailyConfig(BaseModel):
     to_minute:int
     to_second:int
     local_path:str = fr"C:\Users\{getpass.getuser()}\Documents\Report"
-    base_report_file:str
+    base_report_file:str 
     sap_verify : dict[int,int|None]
     path_local_mapping :dict[str,str] ={}
     sap_list :list[int] =[]
     _interpolate_months:list[str] = []
+    numbers_of_files : int = None
+    
+    
     @model_validator(mode='after')
+    
     def _initialize_filed(self):
-        self._interpolate_months = self._get_short_months()
-        self.sap_list =[899584, 2978308, 3233925, 4188677, 3294343, 3294344, 714632, 2378250, 3212044, 2304147, 3389335, 2423192, 1440924, 3210271, 3210272, 3601183, 3307814, 3322285, 3000750, 3322289, 3222451, 3294389, 3349561, 1282368, 2930496, 2495170, 2569287, 3242956, 2237774, 1485264, 2253393, 3210195, 3225301, 3337942, 3225303, 1088091, 2253539, 1264229, 3302117, 2229993, 3212020, 3294333]
+        self._interpolate_months = self._get_short_months_and_year()
+        self.sap_list = [899584, 2978308, 3233925, 4188677, 3294343, 3294344, 714632, 2378250, 3212044, 2304147, 3389335, 2423192, 1440924, 3210271, 3210272, 3601183, 3307814, 3322285, 3000750, 3322289, 3222451, 3294389, 3349561, 1282368, 2930496, 2495170, 2569287, 3242956, 2237774, 1485264, 2253393, 3210195, 3225301, 3337942, 3225303, 1088091, 2253539, 1264229, 3302117, 2229993, 3212020, 3294333]
         self.path_local_mapping = self._create_path_mapping()
+        self.numbers_of_files  = len(self.path_local_mapping)
         return self
         
-    def _get_short_months(self)->list[str] :
-        return [dt.date(1,i,1).strftime("%b") for i in  range(self.from_date.month,self.to_date.month+1)]
-    
+    def _get_short_months_and_year(self)->list[str] :
+        from_year,from_month = (self.from_date.year,self.from_date.month)
+        to_year,to_month     = (self.to_date.year,self.to_date.month)
+        
+        if from_year != to_year:
+            if to_year < from_year:
+                Helper.show_error(None,"Năm trước không được lớn hơn năm sau !")
+            else:
+                to_month+=((to_year-from_year)*12)
+
+                temp : list[str] = []
+                for y in range(from_year,to_year+1):
+                    for m in range(from_month,to_month+1):
+                        if m %12 == 0:
+                           temp.append(f"{dt.date(1,12,1).strftime("%b")} {y}") 
+                           from_month=m+1
+                           break
+                        temp.append(f"{dt.date(1,m%12,1).strftime("%b")} {y}")
+            return temp
+        else:
+            return [f"{dt.date(1,i,1).strftime("%b")} {from_year}" for i in range(from_month,to_month+1)]
+                
     
     def _create_sap_list(self)-> list[int] :
         t:list[int] = []
@@ -41,18 +66,18 @@ class DailyConfig(BaseModel):
             if v:
                 t.append(k)
         return t            
-        return self
     
     def _create_path_mapping(self)->dict[str,str]:
+        
         mapping : dict[str,str] = {}
+        if getpass.getuser() == "fuongsensei":
+            self.base_report_file = r"E:\AWASE1HCMICAP01\AppsData\GR Ver Report"
+        base_network : str = self.base_report_file
+        base_local   : str = self.local_path
         for s in self.sap_list:
-                temp : str = f"GR Verification {s}.xlsx"
-                for i in self._interpolate_months:
-                    
-                    month_folder_path_network = os.path.join(self.base_report_file,f"{i} {self.from_date.year}")
-                    month_folder_path_local   = os.path.join(self.local_path,f"{i} {self.from_date.year}")
-                    
-                    mapping[os.path.join(month_folder_path_network,f"{temp}")] = os.path.join(month_folder_path_local,temp)
+            temp: str = f"GR Verification {s}.xlsx"
+            for month_and_year_folder in self._interpolate_months:
+                mapping[os.path.join(os.path.join(base_network,month_and_year_folder),temp)] = os.path.join(os.path.join(base_local,month_and_year_folder),temp)
             
         return mapping
         
@@ -60,7 +85,7 @@ class DailyConfig(BaseModel):
 
         
 def create_profile()->Profile:
-    with open(yaml_path,mode='r',encoding='utf-8') as f :
+    with open(yaml_path_home,mode='r',encoding='utf-8') as f :
         data = yaml.safe_load(f)
     
     

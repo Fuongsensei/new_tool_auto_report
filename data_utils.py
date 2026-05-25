@@ -4,6 +4,7 @@ import os
 import getpass
 import io
 import msoffcrypto
+import threading 
 import polars as pl
 from helper import Helper as hp
 from file_handler import FileHelper
@@ -12,11 +13,14 @@ class DataIngestor:
     def __init__(self,paths_map:dict[str,str]):
         self.paths_map : dict[str,str] = paths_map
         self.paths_folder_locals : set[str] = set([os.path.dirname(v) for k,v in paths_map.items()])
-
+        self.file_error:list[str] =[]
+        self.count_thread :set[int] = set()
 
                 
     def ingest_data(self):
+
         if not self.paths_map:
+            
             hp.show_error(None, "Vui lòng chọn ít nhất 1 SAP")
             return
         if len(self.paths_map) == 1 :
@@ -29,25 +33,37 @@ class DataIngestor:
         return data
         
     def load_single_file(self,src_p:str,dest_p:str) -> pl.DataFrame:
+
             if os.path.exists(src_p):
+                self.count_thread.add(threading.get_ident())
                 FileHelper.create_folder(dest_p)
                 FileHelper.file_transfer(src_p,dest_p)
                 data:io.BytesIO = self._load_data_with_key(dest_p,"J@bil2022")
                 data.seek(0)
                 df:pl.DataFrame = pl.read_excel(data,infer_schema_length=0,has_header=False)
                 df = df.slice(1)
-                df = df.with_columns(pl.all().cast(pl.Utf8))
                 df = df.select(df.columns[:14])
-                return df
-    
-    
+                df.columns  = [
+                                "GRN", "MPN", "DC", "LOT (1T)", "Qty", 
+                                "User/Time", "MPN SAP", "DC SAP", "LOT SAP (1T)", 
+                                "MPN Verify", "DC Verify", "LOT Verify", 
+                                "Stk Placement", "Qty Ver"]
+                
+                
+                if df is not None and not df.is_empty():
+                   return df
+                else:
+                    self.file_error.append(src_p)
+
+     
     def load_multiple_files(self) -> list[pl.DataFrame]:
         data_list : list[pl.DataFrame]=[]
 
-        with ThreadPoolExecutor(max_workers=5) as exe :
+        with ThreadPoolExecutor(max_workers=os.cpu_count()) as exe :
                 futures = [exe.submit(self.load_single_file,src,dest) for src,dest in self.paths_map.items()]
                 for f in as_completed(futures):
-                        data_list.append(f.result())
+                        if f.result() is not None:
+                           data_list.append(f.result())
 
         return pl.concat(data_list,rechunk=True,strict=True,parallel=True)
 

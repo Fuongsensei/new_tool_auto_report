@@ -5,9 +5,9 @@
 #có thể chỉnh ngày tùy chọn ngày cố định trong vòng 1 tháng tức từ ngày đầu tháng đi làm tới tới ngày cuối của tháng hoàn toàn được
 profile:
   daily_report_config:
-    from_date: 2026-05-01
+    from_date: 2025-01-01
 
-    to_date: 2026-05-21
+    to_date: 2026-05-23
 
     #sáng thì để 6-0-0 đêm qua ngày  thì để  18-0-0
 
@@ -32,17 +32,17 @@ profile:
       #Phương
       3601183: 1
       #Hiếu
-      3212020: 1
+      3212020: 0
       #Gia
-      3302117: 1
+      3302117: 0
       #Nghĩa
-      3210272: 1
+      3210272: 0
       #Khoa
-      3222451: 1
+      3222451: 0
       #Tuấn
-      3294344: 1
+      3294344: 0
       #Tấn Linh
-      3294333: 1
+      3294333: 0
     sap_keyin:
       #Ngân
       2495710: 0
