@@ -36,6 +36,7 @@ class DataIngestor:
 
             if os.path.exists(src_p):
                 self.count_thread.add(threading.get_ident())
+                print(threading.active_count())
                 FileHelper.create_folder(dest_p)
                 FileHelper.file_transfer(src_p,dest_p)
                 data:io.BytesIO = self._load_data_with_key(dest_p,"J@bil2022")
@@ -59,7 +60,7 @@ class DataIngestor:
     def load_multiple_files(self) -> list[pl.DataFrame]:
         data_list : list[pl.DataFrame]=[]
 
-        with ThreadPoolExecutor(max_workers=os.cpu_count()) as exe :
+        with ThreadPoolExecutor(max_workers=10) as exe :
                 futures = [exe.submit(self.load_single_file,src,dest) for src,dest in self.paths_map.items()]
                 for f in as_completed(futures):
                         if f.result() is not None:

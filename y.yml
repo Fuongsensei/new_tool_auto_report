@@ -5,9 +5,9 @@
 #có thể chỉnh ngày tùy chọn ngày cố định trong vòng 1 tháng tức từ ngày đầu tháng đi làm tới tới ngày cuối của tháng hoàn toàn được
 profile:
   daily_report_config:
-    from_date: 2025-01-01
+    from_date: 2026-05-01
 
-    to_date: 2026-05-23
+    to_date: 2026-05-25
 
     #sáng thì để 6-0-0 đêm qua ngày  thì để  18-0-0
 
