@@ -14,7 +14,6 @@ class DataIngestor:
         self.paths_map : dict[str,str] = paths_map
         self.paths_folder_locals : set[str] = set([os.path.dirname(v) for k,v in paths_map.items()])
         self.file_error:list[str] =[]
-        self.count_thread :set[int] = set()
 
                 
     def ingest_data(self):
@@ -25,7 +24,10 @@ class DataIngestor:
             return
         if len(self.paths_map) == 1 :
             s,d = list(self.paths_map.items())[0]
-            return self.load_single_file(s,d)
+            
+            data_single : pl.DataFrame = self.load_single_file(s,d)
+            FileHelper.remove_folder(d)
+            return data_single
         
         data : pl.DataFrame = self.load_multiple_files()
         for i in self.paths_folder_locals:
@@ -35,8 +37,6 @@ class DataIngestor:
     def load_single_file(self,src_p:str,dest_p:str) -> pl.DataFrame:
 
             if os.path.exists(src_p):
-                self.count_thread.add(threading.get_ident())
-                print(threading.active_count())
                 FileHelper.create_folder(dest_p)
                 FileHelper.file_transfer(src_p,dest_p)
                 data:io.BytesIO = self._load_data_with_key(dest_p,"J@bil2022")
@@ -51,12 +51,13 @@ class DataIngestor:
                                 "Stk Placement", "Qty Ver"]
                 
                 
+            
                 if df is not None and not df.is_empty():
-                   return df
+                    return df
                 else:
                     self.file_error.append(src_p)
 
-     
+    
     def load_multiple_files(self) -> list[pl.DataFrame]:
         data_list : list[pl.DataFrame]=[]
 
@@ -64,7 +65,7 @@ class DataIngestor:
                 futures = [exe.submit(self.load_single_file,src,dest) for src,dest in self.paths_map.items()]
                 for f in as_completed(futures):
                         if f.result() is not None:
-                           data_list.append(f.result())
+                            data_list.append(f.result())
 
         return pl.concat(data_list,rechunk=True,strict=True,parallel=True)
 

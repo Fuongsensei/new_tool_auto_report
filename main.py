@@ -1,11 +1,11 @@
+from __future__ import annotations
 import xlwings 
-
 import time
 import yaml
 import datetime
 from data_utils import DataIngestor
 from data_processor import DataProcessBase
-#import excel_manager as excelM
+from excel_manager import WorkBookManager ,_WorkSheetsManager
 import polars as pl
 from config_loader import DailyConfig,create_profile,Profile
 from data_processor import DataProcessDailyReport
@@ -15,9 +15,15 @@ from data_processor import DataProcessDailyReport
 if __name__ == "__main__":
     pro5 : Profile = create_profile()
     daily_config :DailyConfig = DailyConfig(**pro5.daily_report_config)
-    data_process_daily : DataProcessDailyReport[DailyConfig] = DataProcessDailyReport(daily_config)
+    data_process_daily : DataProcessBase[DailyConfig] = DataProcessDailyReport(daily_config)
     data_ingest : DataIngestor = DataIngestor(data_process_daily.config.path_local_mapping)
     
-    data_process_daily.Process(data_ingest.ingest_data())
+    
+    df : pl.DataFram = data_process_daily.Process(data_ingest.ingest_data())
+    ex: WorkBookManager = WorkBookManager(r"C:\Users\3601183\Desktop\scan.xlsx",True)
+    ws  = ex.get_sheet("Sheet1")
+    ws.write((df,"A1"))
+    
+    
     
     
