@@ -20,9 +20,9 @@ if __name__ == "__main__":
     
     
     df : pl.DataFram = data_process_daily.Process(data_ingest.ingest_data())
-    ex: WorkBookManager = WorkBookManager(r"C:\Users\3601183\Desktop\scan.xlsx",True)
-    ws  = ex.get_sheet("Sheet1")
-    ws.write((df,"A1"))
+    ex: WorkBookManager = WorkBookManager(r"C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV) (1) (1).xlsm",True)
+    ws  = ex.get_sheet("Verify data")
+    ws.write((df,"A2"))
     
     
     

@@ -6,6 +6,7 @@ from static_varibles import yaml_path,yaml_path_home
 import yaml
 import os
 from helper import Helper
+import sys 
 
 class Profile(BaseModel):
     daily_report_config:dict = {}
@@ -25,7 +26,6 @@ class DailyConfig(BaseModel):
     path_local_mapping :dict[str,str] ={}
     sap_list :list[int] =[]
     _interpolate_months:list[str] = []
-    numbers_of_files : int = None
     
     
     @model_validator(mode='after')
@@ -34,7 +34,6 @@ class DailyConfig(BaseModel):
         self._interpolate_months = self._get_short_months_and_year()
         self.sap_list = self._create_sap_list()
         self.path_local_mapping = self._create_path_mapping()
-        self.numbers_of_files  = len(self.path_local_mapping)
         return self
         
     def _get_short_months_and_year(self)->list[str] :
@@ -60,11 +59,18 @@ class DailyConfig(BaseModel):
             return [f"{dt.date(1,i,1).strftime("%b")} {from_year}" for i in range(from_month,to_month+1)]
                 
     
-    def _create_sap_list(self)-> list[int] :
+    def _create_sap_list(self)-> list[int]|None :
         t:list[int] = []
+        
         for k,v in self.sap_verify.items():
             if v:
                 t.append(k)
+        if  not len(t):
+            print(len(t))
+            Helper.show_error(None,"Phải chọn ít nhất 1 SAP")
+            sys.exit(1)
+            
+            
         return t            
     
     def _create_path_mapping(self)->dict[str,str]:

@@ -5,9 +5,9 @@
 #có thể chỉnh ngày tùy chọn ngày cố định trong vòng 1 tháng tức từ ngày đầu tháng đi làm tới tới ngày cuối của tháng hoàn toàn được
 profile:
   daily_report_config:
-    from_date: 2026-06-01
+    from_date: 2026-06-02
 
-    to_date: 2026-06-01
+    to_date: 2026-06-02
 
     #sáng thì để 6-0-0 đêm qua ngày  thì để  18-0-0
 
@@ -25,16 +25,17 @@ profile:
     to_second: 59
 
     base_report_file: '\\AWASE1HCMICAP01\AppsData\GR Ver Report\'
-
+    
+    report_daily_file : "C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV) (1) (1).xlsm"
     # Chọn sap nào thì sửa thành 1, không chọn thì để số 0
 
     sap_verify:
       #Phương
-      3601183: 1
+      3601183: 0
       #Hiếu
       3212020: 0
       #Gia
-      3302117: 1
+      3302117: 0
       #Nghĩa
       3210272: 0
       #Khoa
@@ -44,7 +45,7 @@ profile:
       #Tấn Linh
       3294333: 0
       #Linh
-      3225303: 1
+      3225303: 0
     sap_keyin:
       #Ngân
       2495710: 0

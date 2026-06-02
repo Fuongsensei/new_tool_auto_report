@@ -9,6 +9,7 @@ import polars as pl
 from helper import Helper as hp
 from file_handler import FileHelper
 from xlsx2csv import Xlsx2csv
+from helper import Helper
 class DataIngestor:
     def __init__(self,paths_map:dict[str,str]):
         self.paths_map : dict[str,str] = paths_map
@@ -17,11 +18,6 @@ class DataIngestor:
 
                 
     def ingest_data(self):
-
-        if not self.paths_map:
-            
-            hp.show_error(None, "Vui lòng chọn ít nhất 1 SAP")
-            return
         if len(self.paths_map) == 1 :
             s,d = list(self.paths_map.items())[0]
             
@@ -59,16 +55,17 @@ class DataIngestor:
 
     
     def load_multiple_files(self) -> list[pl.DataFrame]:
-        data_list : list[pl.DataFrame]=[]
-
-        with ThreadPoolExecutor(max_workers=10) as exe :
-                futures = [exe.submit(self.load_single_file,src,dest) for src,dest in self.paths_map.items()]
-                for f in as_completed(futures):
-                        if f.result() is not None:
-                            data_list.append(f.result())
-
-        return pl.concat(data_list,rechunk=True,strict=True,parallel=True)
-
+            data_list : list[pl.DataFrame]=[]
+            try:
+                with ThreadPoolExecutor(max_workers=10) as exe :
+                        futures = [exe.submit(self.load_single_file,src,dest) for src,        dest in self.paths_map.items()]
+                        for f in as_completed(futures):
+                                if f.result() is not None:
+                                    data_list.append(f.result())
+        
+                return pl.concat(data_list,rechunk=True,strict=True,parallel=True)
+            except Exception as e:
+                Helper.show_error(None,f"{e}")
     
 
     

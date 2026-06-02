@@ -9,7 +9,7 @@ class _WorkSheetsManager:
          
       def write(self,place:tuple[any,str]) -> None:
          data,rng = place
-         self.sheet.range("1:100000").delete()
+         #self.sheet.range("1:100000").delete()
          if isinstance(data,pl.DataFrame):
             self.sheet.range(rng).value = data.to_numpy()
          else :
