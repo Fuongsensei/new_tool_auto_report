@@ -1,15 +1,13 @@
-import shutil
 from concurrent.futures import ThreadPoolExecutor,as_completed
 import os 
-import getpass
 import io
 import msoffcrypto
 import threading 
 import polars as pl
 from helper import Helper as hp
 from file_handler import FileHelper
-from xlsx2csv import Xlsx2csv
 from helper import Helper
+import sys
 class DataIngestor:
     def __init__(self,paths_map:dict[str,str]):
         self.paths_map : dict[str,str] = paths_map
@@ -22,6 +20,10 @@ class DataIngestor:
             s,d = list(self.paths_map.items())[0]
             
             data_single : pl.DataFrame = self.load_single_file(s,d)
+            if not data_single:
+               Helper.show_error(None,"Load single data failed ! \nCó thể đường dẫn nguồn không tồn tại ! ")
+               sys.exit(0)
+               
             FileHelper.remove_folder(d)
             return data_single
         
@@ -30,8 +32,8 @@ class DataIngestor:
             FileHelper.remove_folder(i)
         return data
         
-    def load_single_file(self,src_p:str,dest_p:str) -> pl.DataFrame:
-
+    def load_single_file(self,src_p:str,dest_p:str) -> pl.DataFrame | None:
+        try:
             if os.path.exists(src_p):
                 FileHelper.create_folder(dest_p)
                 FileHelper.file_transfer(src_p,dest_p)
@@ -51,18 +53,27 @@ class DataIngestor:
                 if df is not None and not df.is_empty():
                     return df
                 else:
-                    self.file_error.append(src_p)
+                    sys.exit(1)
+            else:
+                return None
+                    
+        except Exception as e:
+            Helper.show_error(e)
+            sys.exit(1)
+            
 
     
     def load_multiple_files(self) -> list[pl.DataFrame]:
             data_list : list[pl.DataFrame]=[]
             try:
                 with ThreadPoolExecutor(max_workers=10) as exe :
-                        futures = [exe.submit(self.load_single_file,src,dest) for src,        dest in self.paths_map.items()]
+                        futures = [exe.submit(self.load_single_file,src,dest) for src,dest in self.paths_map.items()]
                         for f in as_completed(futures):
                                 if f.result() is not None:
                                     data_list.append(f.result())
-        
+                if not len(data_list):
+                    Helper.show_error(None,"Vui lòng kiểm tra lại sự tồn tại của file nguồn hoặc file đích")
+                    sys.exit(1)
                 return pl.concat(data_list,rechunk=True,strict=True,parallel=True)
             except Exception as e:
                 Helper.show_error(None,f"{e}")
@@ -71,7 +82,7 @@ class DataIngestor:
     
     
     def _load_data_with_key(self,path:str, p:str) -> io.BytesIO:
-        
+            
                 with open(path, 'rb') as file:
                         
                         office_file :msoffcrypto.OfficeFile = msoffcrypto.OfficeFile(file)

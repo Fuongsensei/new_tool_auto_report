@@ -101,6 +101,6 @@ def create_profile()->Profile:
             return pro5   
     
     except KeyError as erkey:
-        Helper.show_error(None,)
+        Helper.show_error(None,type(erkey).__name__)
     except Exception as e:
-        Helper.show_error(e)
+        Helper.show_error(type(e).__name__)

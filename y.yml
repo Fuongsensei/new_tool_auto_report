@@ -3,7 +3,7 @@
 #ca ngày thì để trên dưới cùng 1 ngày hôm nay , ca đêm nếu qua ngày thì -1 ngày
 
 #có thể chỉnh ngày tùy chọn ngày cố định trong vòng 1 tháng tức từ ngày đầu tháng đi làm tới tới ngày cuối của tháng hoàn toàn được
-proile:
+profile:
   daily_report_config:
     from_date: 2026-06-03
 
@@ -29,9 +29,9 @@ proile:
 
     sap_verify:
       #Phương
-      3601183: 1
+      3601183: 0
       #Hiếu
-      3212020: 0
+      3212020: 1
       #Gia
       3302117: 1
       #Nghĩa
