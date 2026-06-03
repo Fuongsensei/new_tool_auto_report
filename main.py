@@ -9,8 +9,9 @@ from excel_manager import WorkBookManager ,_WorkSheetsManager
 import polars as pl
 from config_loader import DailyConfig,create_profile,Profile
 from data_processor import DataProcessDailyReport
-
-
+import sys
+from helper import Helper
+sys.excepthook = Helper.show_traceback_exception
         
 if __name__ == "__main__":
     pro5 : Profile = create_profile()

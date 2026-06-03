@@ -4,5 +4,5 @@ Write-Host "Đang đẩy code lên github"
 
 git init
 git add .
-git commit -m "Add thêm try-catch"
+git commit -m "Add thêm try-catch 10%"
 git push origin main

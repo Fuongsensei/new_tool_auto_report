@@ -21,7 +21,7 @@ class DailyConfig(BaseModel):
     to_minute:int
     to_second:int
     local_path:str = fr"C:\Users\{getpass.getuser()}\Documents\Report"
-    base_report_file:str 
+    base_report_file: str =  r"\\AWASE1HCMICAP01\AppsData\GR Ver Report"
     sap_verify : dict[int,int|None]
     path_local_mapping :dict[str,str] ={}
     sap_list :list[int] =[]
@@ -92,10 +92,15 @@ class DailyConfig(BaseModel):
         
 def create_profile()->Profile:
     path = yaml_path if not getpass.getuser() == "fuongsensei" else yaml_path_home
-    with open(path,mode='r',encoding='utf-8') as f :
-        data = yaml.safe_load(f)
-    
+    try:
+        with open(path,mode='r',encoding='utf-8') as f :
+            data = yaml.safe_load(f)
         
-        pro5 :Profile = Profile(**data['profile'])
-        return pro5    
-
+            
+            pro5 :Profile = Profile(**data['profile'])
+            return pro5   
+    
+    except KeyError as erkey:
+        Helper.show_error(None,)
+    except Exception as e:
+        Helper.show_error(e)
