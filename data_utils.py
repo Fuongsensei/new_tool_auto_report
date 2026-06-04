@@ -15,15 +15,15 @@ class DataIngestor:
         self.file_error:list[str] =[]
 
                 
-    def ingest_data(self):
+    def ingest_data(self) -> pl.DataFrame:
         if len(self.paths_map) == 1 :
             s,d = list(self.paths_map.items())[0]
             
             data_single : pl.DataFrame = self.load_single_file(s,d)
             if not data_single:
-               Helper.show_error(None,"Load single data failed ! \nCó thể đường dẫn nguồn không tồn tại ! ")
-               sys.exit(0)
-               
+                Helper.show_error(None,"Load single data failed ! \nCó thể đường dẫn nguồn không tồn tại ! ")
+                sys.exit(0)
+                
             FileHelper.remove_folder(d)
             return data_single
         

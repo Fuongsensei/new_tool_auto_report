@@ -10,9 +10,9 @@ class Helper:
         @staticmethod
         def show_error(errno:int|None ,message:str):
                 if errno!=None:
-                        ctypes.windll.user32.MessageBoxW(0,message.upper(),f"Mã lỗi : {errno}",0x10)
+                        ctypes.windll.user32.MessageBoxW(0,f"{message}".upper(),f"Mã lỗi : {errno}",0x10)
                 else:
-                        ctypes.windll.user32.MessageBoxW(0,message.upper(),f"Mã lỗi : Không xác định !",0x10)
+                        ctypes.windll.user32.MessageBoxW(0,f"{message}".upper(),f"Mã lỗi : Không xác định !",0x10)
                         
         def show_traceback_exception(except_type:any,value:str,tb:any):
                 ctypes.windll.user32.MessageBoxW(0,"".join(traceback.format_exception(except_type,value,tb)),"Exception",0x10)
