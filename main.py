@@ -21,9 +21,9 @@ if __name__ == "__main__":
     
     
     df : pl.DataFram = data_process_daily.Process(data_ingest.ingest_data())
-    wb: WorkBookManager = WorkBookManager(r"C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV) (1) (1).xlsm",True)
-    ws = wb.get_sheet("Sheet4")
-    wb.refresh()
+    wb: WorkBookManager = WorkBookManager(r"C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV).xlsm",True)
+    ws = wb.get_sheet("Verify data")
+    ws.delete_data(ws.get_data_range("h:N"))
     
     
     

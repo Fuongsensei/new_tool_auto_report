@@ -6,7 +6,6 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "altgraph==0.17.5",
-    
     "annotated-doc==0.0.4",
     "annotated-types==0.7.0",
     "anyio==4.12.1",
@@ -64,6 +63,5 @@ dependencies = [
     "uv==0.10.6",
     "watchdog==6.0.0",
     "wcwidth==0.2.14",
-    "xlwings==0.33.19",
     "zstandard==0.25.0",
 ]
