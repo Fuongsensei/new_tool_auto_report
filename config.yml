@@ -1,0 +1,56 @@
+### Không tự ý sửa bất kì thông tin nào trừ những thứ được đánh dấu #x , còn lại không nên sửa tránh sai sót trong quá trình thực thi ###
+
+#ca ngày thì để trên dưới cùng 1 ngày hôm nay , ca đêm nếu qua ngày thì -1 ngày
+
+#có thể chỉnh ngày tùy chọn ngày cố định trong vòng 1 tháng tức từ ngày đầu tháng đi làm tới tới ngày cuối của tháng hoàn toàn được
+profile:
+  daily_report_config:
+    from_date: 2026-04-01
+
+    to_date: 2026-04-30
+
+    #sáng thì để 6-0-0 đêm qua ngày  thì để  18-0-0
+
+    from_hour: 0
+
+    from_minute: 0
+
+    from_second: 0
+
+    #sáng thì để 23-59-59 đêm qua ngày thì để 6-0-0
+    to_hour: 23
+
+    to_minute: 59
+
+    to_second: 59
+
+    report_daily_path: 'C:\Users\fuongsensei\Downloads\Report Scan Verify Shiftly (RCV).xlsm'
+    # Chọn sap nào thì sửa thành 1, không chọn thì để số 0
+
+    sap_rcv:
+      3601183: {NAME: "NGUYỄN KHẮC MINH PHƯƠNG", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN80", LOC: "TBS", STATUS: "ON DUTY", FLAG: 1}
+    
+      3302117: {NAME: "HÀ TRƯƠNG HOÀNG GIA", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN80", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      2978308: {NAME: "TRƯƠNG NGỌC MAI DUNG", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN80", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      1080662: {NAME: "LÊ THỊ THÚY HÀ", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN80", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      3210272: {NAME: "BÙI CHÍ NGHĨA", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN81", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      3222451: {NAME: "KIÊN THÁI VỸ THẾ KHOA", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN81", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      3225301: {NAME: "LÊ THỊ HIẾU", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN81", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      3294344: {NAME: "LÊ ANH TUẤN", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN68", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      691461: {NAME: "HÀ THỊ THANH VÂN", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN68", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      3307871: {NAME: "TRẦN THU THẢO", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN69", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      3294333: {NAME: "VÕ HỒ TẤN LINH", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN69", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      3212020: {NAME: "VÕ LÊ HOÀNG HIẾU", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN70", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+    
+      2495170: {NAME: "NGUYỄN THỊ KIM NGÂN", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN70", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
+

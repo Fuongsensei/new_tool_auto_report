@@ -28,53 +28,71 @@ class _WorkSheetsManager:
                return True
             if isinstance(rng,tuple):
                s_p,e_p = rng
-               Helper.show_error(None,f"[{s_p}]  [{e_p}]")
                self.sheet.range(f"{s_p}:{e_p}").clear_contents()
-               
+            else:
+                Helper.show_error(None,"Sai kiểu dữ liệu truyền vào !")
          except Exception as e :
             Helper.show_error(None,e)
             return False
                
                
-      def get_data_range(self,rng:str,header:bool = True)-> tuple[str,str] :
+      def get_data_range(self,rng:str,get_only_endpoint:bool = False)-> tuple[str,str] | str:
+         
+         """ Vui lòng truyền str dưới dạng 'start : end' không cần thêm bất kì số hàng nào\n
+         Đúng : 'A:N'\n
+         Sai  :    'A1:N1'\n
+         Nếu chỉ muốn trả về điểm cuối cùng chứa dữ liệu hãy truyền get_only_endpoint = True\n"""
          try:
-               point : list[str] = re.findall("[a-zA-z]",rng)
+               point : list[str] = rng.split(":")
                if len(point) > 2:
                   Helper.show_error(None,"Vui lòng truyền đúng định dạng 'start:end' ")
                else:
                      start_p  , end_p = point
-                     if header:
-                        start_p+="2"
                      last_row: int = (self.sheet.range(f"A{self.sheet.cells.last_cell.row}").end("up").row)
-
-                     return (start_p,f"{end_p}{last_row}")
+                     end_p+=str(last_row)
+                     if get_only_endpoint:
+                        return end_p
+                     return (start_p,end_p)
          except Exception as e:
             Helper.show_error(None,e)
             
             
             
-      def delete_row(self, rng_row: tuple[int, int]) -> None:
+      def delete_row(self, rng_row: tuple[int, int]|tuple[str,str]) -> None:
             try:
                from_row, to_row = rng_row
                t= to_row-from_row
                self.sheet.range(f"{from_row}:{to_row}").delete()
-            
+               return 
             except Exception as e:
-                  Helper.show_error(e)
-
+                  try:
+                     result = ":".join(rng_row)
+                     point_row : list[int] = re.findall(r"\d+",result)
+                     if len(point_row) > 2:
+                        Helper.show_error(None,"Vui lòng truyền theo dạng ' start : end ' ")
+                        return
+                     from_row,to_row = point_row
+                     self.sheet.range(f"{from_row}:{to_row}").delete()
+                  except Exception as e:
+                        Helper.show_error(None,e)
       
 class WorkBookManager:
-   def __init__(self,path:str,on_screen:bool):
+   def __init__(self,path:str,on_screen:bool = True):
       self.wb : xw.Book = xw.Book(path,update_links=False,visible=on_screen)
 
 
    def get_sheet(self,sheet_name:str) -> _WorkSheetsManager:
-      return  _WorkSheetsManager(sheet_name,self.wb) 
-   
+      
+      try:
+          return  _WorkSheetsManager(sheet_name,self.wb) 
+      except Exception as e:
+          Helper.show_error(None,"Excel đang bận hoặc tên sheet không đúng !")
+          
    def refresh(self) -> None:
-      self.wb.api.RefreshAll()
-
-
+      try:
+          self.wb.api.RefreshAll()
+      except Exception as e:
+          Helper.show_error(None,e)
 
 
 

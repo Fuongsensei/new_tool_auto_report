@@ -20,7 +20,7 @@ class DataIngestor:
             s,d = list(self.paths_map.items())[0]
             
             data_single : pl.DataFrame = self.load_single_file(s,d)
-            if not data_single:
+            if  data_single is None:
                 Helper.show_error(None,"Load single data failed ! \nCó thể đường dẫn nguồn không tồn tại ! ")
                 sys.exit(0)
                 

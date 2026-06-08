@@ -1,30 +1,12 @@
-from __future__ import annotations
-import xlwings 
-import time
-import yaml
-import datetime
-from data_utils import DataIngestor
-from data_processor import DataProcessBase
-from excel_manager import WorkBookManager ,_WorkSheetsManager
-import polars as pl
-from config_loader import DailyConfig,create_profile,Profile
-from data_processor import DataProcessDailyReport
 import sys
-from helper import Helper
-sys.excepthook = Helper.show_traceback_exception
-        
+from PyQt6.QtWidgets import QApplication
+from ui.app_layout import MainWindow
+
+def main():
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
+
 if __name__ == "__main__":
-    pro5 : Profile = create_profile()
-    daily_config :DailyConfig = DailyConfig(**pro5.daily_report_config)
-    data_process_daily : DataProcessBase[DailyConfig] = DataProcessDailyReport(daily_config)
-    data_ingest : DataIngestor = DataIngestor(data_process_daily.config.path_local_mapping)
-    
-    
-    df : pl.DataFram = data_process_daily.Process(data_ingest.ingest_data())
-    wb: WorkBookManager = WorkBookManager(r"C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV).xlsm",True)
-    ws = wb.get_sheet("Verify data")
-    ws.delete_data(ws.get_data_range("h:N"))
-    
-    
-    
-    
+    main()

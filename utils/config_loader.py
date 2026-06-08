@@ -7,8 +7,9 @@ import yaml
 import os
 from helper import Helper
 import sys 
+from typing import Dict, Union
 
-class Profile(BaseModel):
+class  Profile(BaseModel):
     daily_report_config:dict = {}
 
 class DailyConfig(BaseModel):
@@ -21,8 +22,9 @@ class DailyConfig(BaseModel):
     to_minute:int
     to_second:int
     local_path:str = fr"C:\Users\{getpass.getuser()}\Documents\Report"
+    report_daily_path : str
     base_report_file: str =  r"\\AWASE1HCMICAP01\AppsData\GR Ver Report"
-    sap_verify : dict[int,int|None]
+    sap_rcv : dict[int, dict[str, str | int]]
     path_local_mapping :dict[str,str] ={}
     sap_list :list[int] =[]
     _interpolate_months:list[str] = []
@@ -62,8 +64,8 @@ class DailyConfig(BaseModel):
     def _create_sap_list(self)-> list[int]|None :
         t:list[int] = []
         
-        for k,v in self.sap_verify.items():
-            if v:
+        for k,v in self.sap_rcv.items():
+            if v['FLAG']:
                 t.append(k)
         if  not len(t):
             print(len(t))

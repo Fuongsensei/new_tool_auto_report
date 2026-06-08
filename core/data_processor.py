@@ -15,15 +15,16 @@ class DataProcessBase(Generic[T],ABC):
 
 
     @abstractmethod
-    def Process(self,data:pl.DataFrame):
+    def Process(self,data_raw:pl.DataFrame):
         pass
 
 class DataProcessDailyReport(DataProcessBase[DailyConfig]):
-        def Process(self, data: pl.DataFrame):
+        def Process(self, data_raw: pl.DataFrame):
+            """Nhận một raw dataFrame và trả về dataFrame sau khi đã xử lý"""
             try:
                 
-                lf : pl.LazyFrame = data.lazy()
-                cols = data.columns
+                lf : pl.LazyFrame = data_raw.lazy()
+                cols = data_raw.columns
                 boolean_cols : list[str] = [cols[i] for i in [9,10,11,13]]
                 cf = self.config
                 perdicate_filter_date : pl.Expr = pl.col(cols[5]).str.split("|").list.get(1).str.    to_datetime(format="%m/%d/%Y %I:%M:%S %p").is_between(
