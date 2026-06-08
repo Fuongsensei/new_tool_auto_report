@@ -2,10 +2,10 @@
 import getpass
 import datetime as dt 
 from pydantic import BaseModel,model_validator
-from static_varibles import yaml_path,yaml_path_home
+from utils.static_variables import yaml_path,yaml_path_home
 import yaml
 import os
-from helper import Helper
+from utils.helper import Helper
 import sys 
 from typing import Dict, Union
 

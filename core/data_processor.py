@@ -2,11 +2,11 @@ import polars as pl
 from typing  import Generic,TypeVar 
 from abc import ABC,abstractmethod
 from pydantic import BaseModel,model_validator,field_validator,PrivateAttr
-from helper import Helper
+from utils.helper import Helper
 import time
 
 from datetime import date,datetime
-from config_loader import DailyConfig
+from utils.config_loader import DailyConfig
 T = TypeVar("T",bound=BaseModel)
 
 class DataProcessBase(Generic[T],ABC):

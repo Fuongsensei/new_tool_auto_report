@@ -4,9 +4,8 @@ import io
 import msoffcrypto
 import threading 
 import polars as pl
-from helper import Helper as hp
-from file_handler import FileHelper
-from helper import Helper
+from utils.file_handler import FileHelper
+from utils.helper import Helper
 import sys
 class DataIngestor:
     def __init__(self,paths_map:dict[str,str]):
