@@ -20,5 +20,7 @@ if __name__ == "__main__":
    nzl.ProcessingSAP()   
    time.sleep(3)
    mb51.ProcessingSAP()
+   print(mb51.session.Id)
+   print(nzl.session.Id)
 
    

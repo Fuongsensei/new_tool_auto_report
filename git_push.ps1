@@ -4,5 +4,5 @@ Write-Host "Đang đẩy code lên github"
 
 git init
 git add .
-git commit -m "Add code in sap_connector.py and excel_manager.py 20%"
+git commit -m "Add code in sap_connector.py 44%"
 git push origin main
