@@ -75,11 +75,18 @@ class _WorkSheetsManager:
                      self.sheet.range(f"{from_row}:{to_row}").delete()
                   except Exception as e:
                         Helper.show_error(None,e)
-      
+
+      def range_copy(self,rng:str):
+          try:
+            self.sheet.range(rng).copy()
+          except Exception as e :
+              Helper.show_error(None,e)
+
+
 class WorkBookManager:
    def __init__(self,path:str,on_screen:bool = True):
       self.wb : xw.Book = xw.Book(path,update_links=False,visible=on_screen)
-
+      
 
    def get_sheet(self,sheet_name:str) -> _WorkSheetsManager:
       
@@ -93,7 +100,8 @@ class WorkBookManager:
           self.wb.api.RefreshAll()
       except Exception as e:
           Helper.show_error(None,e)
-
+   def close(self)->None:
+       self.wb.close()
 
 
 
