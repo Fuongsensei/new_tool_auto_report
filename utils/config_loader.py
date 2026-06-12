@@ -10,9 +10,15 @@ import sys
 from typing import Dict, Union
 
 class  Profile(BaseModel):
-    daily_report_config:dict = {}
+    daily_report_config:dict 
+
 
 class DailyConfig(BaseModel):
+      verify_config :dict
+      grn_10_numbers_config:dict 
+      grn_16_numbers_config:dict
+
+class VerifyConfig(BaseModel):
     from_date : dt.datetime
     from_hour: int
     from_minute:int
@@ -90,8 +96,60 @@ class DailyConfig(BaseModel):
         return mapping
         
 
+class GRN10Config(BaseModel):
+      sheet_name:str
+      posting_date_start:str | None = None
+      posting_date_end:str | None = None
+      entered_date_start:str | None = None
+      entered_date_end  :str | None = None
 
-        
+      from_date:dt.date
+      to_date : dt.date
+      file_name:str
+      file_path:str
+      number_format_string:str
+      number_format_date  :str
+      columns_string_format:list[str]
+      columns_date_format  :list[str]
+      drop_columns : list[int]
+      year:int | None = None
+      tcode :str = "z_invmvmts"
+      @model_validator(mode="after")
+
+      def _initialize_field(self):
+           self.year = self.from_date.year
+           self.posting_date_start = self.from_date.strftime("%m/%d/%Y")
+           self.posting_date_end  = self.to_date.strftime("%m/%d/%Y")
+           self.entered_date_start = (self.from_date - dt.timedelta(3)).strftime("%m/%d/%Y")
+           self.entered_date_end  = self.posting_date_end
+           self.file_name = f"EXPORT_GRN10_{self.from_date}"
+           self.file_path = rf"C:\Temp\{self.file_name}.xlsx"
+           return self
+
+
+
+class GRN16Config(BaseModel):
+           sheet_name : str
+           from_date : dt.date
+           to_date : dt.date
+           entered_date_start:str | None = None
+           entered_date_end  :str | None = None
+           file_name :str
+           file_path:str
+           number_format_string:str
+           number_format_date:str
+           columns_string_format:list[str]
+           columns_date_format : list[str]
+           drop_columns : list[int]
+           
+           @model_validator(mode='after')
+           def _initialize_field(self):
+                self.entered_date_start = (self.from_date - dt.timedelta(3)).strftime("%m/%d/%Y")
+                self.entered_date_end = self.to_date.strftime("%m/%d/%Y")
+                self.file_name =  f"EXPORT_GRN16_{self.from_date}"
+                self.file_path = rf"C:\Temp\{self.file_name}.xlsx"
+                return self
+
 def create_profile()->Profile:
     path = yaml_path if not getpass.getuser() == "fuongsensei" else yaml_path_home
     try:
@@ -106,3 +164,6 @@ def create_profile()->Profile:
         Helper.show_error(None,type(erkey).__name__)
     except Exception as e:
         Helper.show_error(type(e).__name__)
+
+
+      

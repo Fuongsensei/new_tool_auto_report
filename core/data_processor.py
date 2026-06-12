@@ -6,8 +6,8 @@ from utils.helper import Helper
 import time
 
 from datetime import date,datetime
-from utils.config_loader import DailyConfig
-T = TypeVar("T",bound=BaseModel)
+from utils.config_loader import VerifyConfig
+T = TypeVar("T")
 
 class DataProcessBase(Generic[T],ABC):
     def __init__(self,config:T):
@@ -18,7 +18,7 @@ class DataProcessBase(Generic[T],ABC):
     def Process(self,data_raw:pl.DataFrame):
         pass
 
-class DataProcessDailyReport(DataProcessBase[DailyConfig]):
+class DataProcessDailyReport(DataProcessBase[VerifyConfig]):
         def Process(self, data_raw: pl.DataFrame):
             """Nhận một raw dataFrame và trả về dataFrame sau khi đã xử lý"""
             try:
@@ -30,6 +30,7 @@ class DataProcessDailyReport(DataProcessBase[DailyConfig]):
                 perdicate_filter_date : pl.Expr = pl.col(cols[5]).str.split("|").list.get(1).str.    to_datetime(format="%m/%d/%Y %I:%M:%S %p").is_between(
                         cf.from_date.replace(hour=cf.from_hour,minute=cf.from_minute,second=cf.    from_second),cf.to_date.replace(hour=cf.to_hour,minute=cf.to_minute,    second=cf.to_second)
                     )
+                
                 perdicate_filter_boolean_cols : pl.Expr = pl.all_horizontal(pl.col(boolean_cols)    ==True)
                 
                 return lf.filter(perdicate_filter_date & perdicate_filter_boolean_cols).collect().    unique(subset=cols[0],keep="first").sort(cols[0],descending=False)
