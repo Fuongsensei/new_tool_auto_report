@@ -1,47 +1,37 @@
 
 import getpass
 import datetime as dt 
-from pydantic import BaseModel,model_validator
+from pydantic import BaseModel,model_validator,PrivateAttr
 from utils.static_variables import yaml_path,yaml_path_home
 import yaml
 import os
 from utils.helper import Helper
 import sys 
-from typing import Dict, Union
+from polars import DataFrame
 
-class  Profile(BaseModel):
-    daily_report_config:dict 
-
-
-class DailyConfig(BaseModel):
-      verify_config :dict
-      grn_10_numbers_config:dict 
-      grn_16_numbers_config:dict
-
-class VerifyConfig(BaseModel):
-    from_date : dt.datetime
-    from_hour: int
-    from_minute:int
-    from_second:int
-    to_date : dt.datetime
-    to_hour : int
-    to_minute:int
-    to_second:int
+class VerifyConfig(BaseModel): 
+    sheet_name:str
+    from_date : dt.date
+    to_date : dt.date
+    from_time:dt.time
+    to_time:dt.time
     local_path:str = fr"C:\Users\{getpass.getuser()}\Documents\Report"
     report_daily_path : str
     base_report_file: str =  r"\\AWASE1HCMICAP01\AppsData\GR Ver Report"
     sap_rcv : dict[int, dict[str, str | int]]
     path_local_mapping :dict[str,str] ={}
-    sap_list :list[int] =[]
+    verify_list :list[int] =[]
+    _keyin_list  : DataFrame | None = PrivateAttr(default=None)
     _interpolate_months:list[str] = []
-    
+    run_sap : bool
     
     @model_validator(mode='after')
     
     def _initialize_filed(self):
         self._interpolate_months = self._get_short_months_and_year()
-        self.sap_list = self._create_sap_list()
+        self.verify_list = self._create_verify_list()
         self.path_local_mapping = self._create_path_mapping()
+        self._keyin_list = DataFrame(self._create_keyin_list()).drop("FLAG")
         return self
         
     def _get_short_months_and_year(self)->list[str] :
@@ -67,19 +57,30 @@ class VerifyConfig(BaseModel):
             return [f"{dt.date(1,i,1).strftime("%b")} {from_year}" for i in range(from_month,to_month+1)]
                 
     
-    def _create_sap_list(self)-> list[int]|None :
+    def _create_verify_list(self)-> list[int]|None :
         t:list[int] = []
         
         for k,v in self.sap_rcv.items():
-            if v['FLAG']:
-                t.append(k)
+            if v['FLAG'] == 1 or v['FLAG'] == 3:
+                t.append(k) 
         if  not len(t):
             print(len(t))
             Helper.show_error(None,"Phải chọn ít nhất 1 SAP")
             sys.exit(1)
-            
-            
-        return t            
+        return t   
+    
+     
+    def _create_keyin_list(self) -> list[dict]:
+        t:list[dict] = []
+        
+        for k,v in self.sap_rcv.items():
+            if v['FLAG'] == 2 or v["FLAG"] == 3:
+                new_dict : dict = {"WD":k,**v,"SLOC":"06RI"} if v['LOC'] == "TBS" else {"WD":k,**v,"SLOC":"03RI"}
+                t.append(new_dict)
+        if not len(t):
+                Helper.show_error(None,"Không thể khởi tạo bảng user keyin !")
+                sys.exit(1)
+        return t
     
     def _create_path_mapping(self)->dict[str,str]:
         
@@ -88,7 +89,7 @@ class VerifyConfig(BaseModel):
             self.base_report_file = r"E:\AWASE1HCMICAP01\AppsData\GR Ver Report"
         base_network : str = self.base_report_file
         base_local   : str = self.local_path
-        for s in self.sap_list:
+        for s in self.verify_list:
             temp: str = f"GR Verification {s}.xlsx"
             for month_and_year_folder in self._interpolate_months:
                 mapping[os.path.join(os.path.join(base_network,month_and_year_folder),temp)] = os.path.join(os.path.join(base_local,month_and_year_folder),temp)
@@ -102,7 +103,6 @@ class GRN10Config(BaseModel):
       posting_date_end:str | None = None
       entered_date_start:str | None = None
       entered_date_end  :str | None = None
-
       from_date:dt.date
       to_date : dt.date
       file_name:str
@@ -150,6 +150,19 @@ class GRN16Config(BaseModel):
                 self.file_path = rf"C:\Temp\{self.file_name}.xlsx"
                 return self
 
+
+
+class DailyConfig(BaseModel):
+      verify_config :VerifyConfig
+      grn_10_numbers_config:GRN10Config
+      grn_16_numbers_config:GRN16Config
+      
+      
+class  Profile(BaseModel):
+    daily_report_config:DailyConfig
+
+
+
 def create_profile()->Profile:
     path = yaml_path if not getpass.getuser() == "fuongsensei" else yaml_path_home
     try:
@@ -164,6 +177,5 @@ def create_profile()->Profile:
         Helper.show_error(None,type(erkey).__name__)
     except Exception as e:
         Helper.show_error(type(e).__name__)
-
 
       

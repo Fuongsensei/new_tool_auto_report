@@ -2,7 +2,7 @@ import xlwings as xw
 from utils.helper import Helper
 from polars import DataFrame
 import re
-class _WorkSheetsManager:
+class WorkSheetsManager:
       def __init__(self,sheet_name :str,wb:xw.Book):
          self.wb : xw.Book = wb
          self.sheet : xw.Sheet = self.wb.sheets[sheet_name]
@@ -88,10 +88,10 @@ class WorkBookManager:
       self.wb : xw.Book = xw.Book(path,update_links=False,visible=on_screen)
       
 
-   def get_sheet(self,sheet_name:str) -> _WorkSheetsManager:
+   def get_sheet(self,sheet_name:str) -> WorkSheetsManager:
       
       try:
-          return  _WorkSheetsManager(sheet_name,self.wb) 
+          return  WorkSheetsManager(sheet_name,self.wb) 
       except Exception as e:
           Helper.show_error(None,"Excel đang bận hoặc tên sheet không đúng !")
           

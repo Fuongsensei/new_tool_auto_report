@@ -6,7 +6,7 @@ from typing import TypeVar,Generic
 from  utils.helper import Helper
 from pydantic import BaseModel
 from utils.config_loader import GRN10Config,GRN16Config
-from utils.excel_manager import WorkBookManager,_WorkSheetsManager
+from utils.excel_manager import WorkBookManager,WorkSheetsManager
 import time
 
 from datetime import timedelta
@@ -34,7 +34,7 @@ class GRNConFig(ABC):
 
 
 class GRNProcessor(Generic[T],ABC):
-        def __init__(self,context:T,write_helper:_WorkSheetsManager,session:any):
+        def __init__(self,context:T,write_helper:WorkSheetsManager,session:any):
            self.context: T = context
            self.writer = write_helper
            self.session = session
