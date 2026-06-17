@@ -1,86 +1,183 @@
-
 profile:
   daily_report_config:
     verify_config:
-        sheet_name : "Verify data"
-        from_date: 2026-06-12
-        from_time: "00:00:00"
-        to_date: 2026-06-12
-        to_time : "23:59:59"
-    
-        report_daily_path: 'C:\Users\fuongsensei\Downloads\Report Scan Verify Shiftly (RCV).xlsm'
-        run_sap : False
-        
-        sap_rcv:
-                 3601183: {WD: 3601183, NAME: "NGUYỄN KHẮC MINH PHƯƠNG", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN80", LOC: "TBS", STATUS: "ON DUTY", FLAG: 1}
-               
-                 3302117: {WD: 3302117, NAME: "HÀ TRƯƠNG HOÀNG GIA", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN80", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 2978308: {WD: 2978308, NAME: "TRƯƠNG NGỌC MAI DUNG", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN80", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 1080662: {WD: 1080662, NAME: "LÊ THỊ THÚY HÀ", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN80", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 3210272: {WD: 3210272, NAME: "BÙI CHÍ NGHĨA", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN81", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 3222451: {WD: 3222451, NAME: "KIÊN THÁI VỸ THẾ KHOA", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN81", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 3225301: {WD: 3225301, NAME: "LÊ THỊ HIẾU", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN81", LOC: "TMS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 3294344: {WD: 3294344, NAME: "LÊ ANH TUẤN", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN68", LOC: "TMS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 691461: {WD: 691461, NAME: "HÀ THỊ THANH VÂN", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN68", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 3307871: {WD: 3307871, NAME: "TRẦN THU THẢO", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN69", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 3294333: {WD: 3294333, NAME: "VÕ HỒ TẤN LINH", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN69", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 3212020: {WD: 3212020, NAME: "VÕ LÊ HOÀNG HIẾU", GENDER: "MALE", ROLE: "VERIFY", SHIFT: "VN70", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-               
-                 2495170: {WD: 2495170, NAME: "NGUYỄN THỊ KIM NGÂN", GENDER: "FEMALE", ROLE: "DATA ENTRY", SHIFT: "VN70", LOC: "TBS", STATUS: "ON DUTY", FLAG: 0}
-    
+      sheet_name: "Verify data"
+      from_date: 2026-06-17
+      from_time: "00:00:00"
+      to_date: 2026-06-17
+      to_time: "19:00:00"
+      report_daily_path: C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV).xlsm
+      run_sap: False
+      sap_rcv:
+        3601183:
+          WD: 3601183
+          NAME: NGUYỄN KHẮC MINH PHƯƠNG
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN80
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 1
+        3302117:
+          WD: 3302117
+          NAME: HÀ TRƯƠNG HOÀNG GIA
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN80
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 1
+        2978308:
+          WD: 2978308
+          NAME: TRƯƠNG NGỌC MAI DUNG
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN02
+          LOC: TMS
+          STATUS: ON DUTY
+          FLAG: 0
+        1080662:
+          WD: 1080662
+          NAME: LÊ THỊ THÚY HÀ
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN80
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 2
+        3210272:
+          WD: 3210272
+          NAME: BÙI CHÍ NGHĨA
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN81
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3222451:
+          WD: 3222451
+          NAME: KIÊN THÁI VỸ THẾ KHOA
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN81
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3225301:
+          WD: 3225301
+          NAME: LÊ THỊ HIẾU
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN81
+          LOC: TMS
+          STATUS: ON DUTY
+          FLAG: 0
+        3294344:
+          WD: 3294344
+          NAME: LÊ ANH TUẤN
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN68
+          LOC: TMS
+          STATUS: ON DUTY
+          FLAG: 0
+        691461:
+          WD: 691461
+          NAME: HÀ THỊ THANH VÂN
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN68
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3307871:
+          WD: 3307871
+          NAME: TRẦN THU THẢO
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN69
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3294333:
+          WD: 3294333
+          NAME: VÕ HỒ TẤN LINH
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN69
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3212020:
+          WD: 3212020
+          NAME: VÕ LÊ HOÀNG HIẾU
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN70
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        2495170:
+          WD: 2495170
+          NAME: NGUYỄN THỊ KIM NGÂN
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN70
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 2
+        3307814:
+          WD: 3307814
+          NAME: NGUYỄN THỊ KIỀU NƯƠNG
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN70
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 2
     grn_10_numbers_config:
-        sheet_name: "GRN (10 so)"
-        from_date : 2026-06-12
-        to_date   : 2026-06-12
-        file_name : ""
-        file_path : ""
-        number_format_string : "@"
-        number_format_date   : "dd/mm/yyyy"
-        columns_string_format : 
-                              - "A"
-                              - "H"
-                              - "I"
-                              - "L"
-                              - "M"
-                              - "O"
-                              - "J"
-        columns_date_format : 
-                              - "B"
-                              - "C"
-        drop_columns:
-                              - 97
-                              - 93
-    grn_16_numbers_config : 
-        sheet_name : "Label (16 So)"
-        from_date : 2026-06-12
-        to_date   : 2026-06-12
-        file_name : ""
-        file_path : ""
-        number_format_string : "@"
-        number_format_date   : "dd/mm/yyyy"
-        columns_string_format : 
-                              - "C"
-                              - "F"
-                              - "J"
-                              - "H"
-                              - "G"
-                              - "M"
-                              - "O"
-                              - "R"
-        columns_date_format : 
-                              - "U"
-                              - "V"
-                              - "W"
-        drop_columns : 
-                              - 22
-        
+      sheet_name: "GRN (10 so)"
+      from_date: 2026-06-17
+      to_date: 2026-06-17
+      file_name: ""
+      file_path: ""
+      number_format_string: "@"
+      number_format_date: "dd/mm/yyyy"
+      columns_string_format:
+        - "A"
+        - "H"
+        - "I"
+        - "L"
+        - "M"
+        - "O"
+        - "J"
+      columns_date_format:
+        - "B"
+        - "C"
+      drop_columns:
+        - 97
+        - 93
+    grn_16_numbers_config:
+      sheet_name: "Label (16 So)"
+      from_date: 2026-06-17
+      to_date: 2026-06-17
+      file_name: ""
+      file_path: ""
+      number_format_string: "@"
+      number_format_date: "dd/mm/yyyy"
+      columns_string_format:
+        - "C"
+        - "F"
+        - "J"
+        - "H"
+        - "G"
+        - "M"
+        - "O"
+        - "R"
+      columns_date_format:
+        - "U"
+        - "V"
+        - "W"
+      drop_columns:
+        - 22
+...

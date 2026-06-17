@@ -2,6 +2,7 @@ from __future__ import annotations
 from utils.data_utils import DataIngestor
 from utils.excel_manager import WorkBookManager ,WorkSheetsManager
 from polars import DataFrame
+import polars as pl
 from core.data_processor import DataProcessBase,DataProcessDailyReport
 from utils.config_loader import Profile , create_profile,DailyConfig,VerifyConfig,GRN10Config,GRN16Config
 import time
@@ -13,10 +14,32 @@ sys.excepthook = Helper.show_traceback_exception
         
 if __name__ == "__main__":
    pro5 : Profile = create_profile()
+   sap  : SapConnector  = SapConnector()
+   session = sap.session
    verify_config:VerifyConfig = pro5.daily_report_config.verify_config
+   grn10_config :GRN10Config = pro5.daily_report_config.grn_10_numbers_config
+   grn16_config : GRN16Config =  pro5.daily_report_config.grn_16_numbers_config
    wb : WorkBookManager = WorkBookManager(verify_config.report_daily_path)
-   ws : WorkSheetsManager = wb.get_sheet("User")
-   ws.write((verify_config._key,"A4"))
+   ws_user : WorkSheetsManager = wb.get_sheet("User")
+   ws_veify: WorkSheetsManager = wb.get_sheet(verify_config.sheet_name)
+   ws_grn_10_number : WorkSheetsManager = wb.get_sheet(grn10_config.sheet_name)
+   ws_grn_16_number : WorkSheetsManager = wb.get_sheet(grn16_config.sheet_name)
+   grn10_process :GRN10Processor = GRN10Processor(grn10_config,ws_grn_10_number,session)
+   grn16_process :GRN16Processor = GRN16Processor(grn16_config,ws_grn_16_number,session)
    
+   ws_user.write((verify_config._keyin_list ,"A4"))
+   ws_user.range_copy(f"A3:{ws_user.get_data_range("A2:A100",True)}")
+   grn10_process.process()
+   data_grn_10 : WorkSheetsManager = WorkBookManager(grn10_config.file_path).get_sheet("Data")
+   data_grn_10.range_copy(f"A2:{data_grn_10.get_data_range("A:A",True)}")   
+   grn16_process.process()
+   data_grn_16 :WorkSheetsManager = WorkBookManager(grn16_config.file_path).get_sheet("Data")
+   data_ingest  : DataIngestor = DataIngestor(None,True)
+   df_raw= data_ingest.load_data_raw_file(grn10_config.file_path)
+   print(df_raw)
+   
+   df_raw = df_raw.drop([df_raw.columns[93],df_raw.columns[97]])
+   df_raw = df_raw.with_columns(pl.lit("=VLOOKUP(CN:CN,'Vendor Subcontrac'!A:B,2,0)").alias("Network"))
+   ws_grn_10_number.write((df_raw,"A2"))
 
    

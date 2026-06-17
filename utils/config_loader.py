@@ -141,6 +141,7 @@ class GRN16Config(BaseModel):
            columns_string_format:list[str]
            columns_date_format : list[str]
            drop_columns : list[int]
+           tcode:str = "zlgrns1"
            
            @model_validator(mode='after')
            def _initialize_field(self):

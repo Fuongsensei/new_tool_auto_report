@@ -77,11 +77,13 @@ class WorkSheetsManager:
                         Helper.show_error(None,e)
 
       def range_copy(self,rng:str):
-          try:
+         try:
             self.sheet.range(rng).copy()
-          except Exception as e :
-              Helper.show_error(None,e)
-
+         except Exception as e :
+               Helper.show_error(None,e)
+               
+      def close_workbook(self):
+         self.wb.close()
 
 class WorkBookManager:
    def __init__(self,path:str,on_screen:bool = True):

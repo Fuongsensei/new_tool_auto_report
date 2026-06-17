@@ -45,7 +45,6 @@ class GRNProcessor(Generic[T],ABC):
 
 class GRN10Processor(GRNProcessor[GRN10Config]):
         def process(self):
-           self.writer.range_copy(f"A3:{self.writer.get_data_range("A:A",True)}")
            self.session.StartTransaction(self.context.tcode.upper())
            self.session.findById("wnd[0]/usr/ctxtSO_WERKS-LOW").Text = "VN01"
            self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-LOW").Text = f"{self.context.posting_date_start}"

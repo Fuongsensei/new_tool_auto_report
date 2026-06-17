@@ -6,7 +6,7 @@ from utils.helper import Helper
 import time
 
 from datetime import date,datetime
-from utils.config_loader import VerifyConfig
+from utils.config_loader import VerifyConfig,GRN10Config,GRN16Config
 T = TypeVar("T")
 
 class DataProcessBase(Generic[T],ABC):
@@ -37,10 +37,12 @@ class DataProcessDailyReport(DataProcessBase[VerifyConfig]):
             
             except Exception as e :
                 Helper.show_error(None,e)
-        
-        
 
 
+# class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
+#         def Process(self, data_raw: pl.DataFrame):
+            
+        
 
 
 

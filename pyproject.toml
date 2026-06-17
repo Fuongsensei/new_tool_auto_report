@@ -46,7 +46,6 @@ dependencies = [
     "pynput==1.8.1",
     "pyperclip==1.11.0",
     "pypiwin32==223",
-    "pyqt6>=6.11.0",
     "python-dateutil==2.9.0.post0",
     "pytz==2025.2",
     "pywin32==311",
