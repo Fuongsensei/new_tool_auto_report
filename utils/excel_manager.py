@@ -1,5 +1,6 @@
 import xlwings as xw
 from utils.helper import Helper
+from typing import Any
 from polars import DataFrame
 import re
 class WorkSheetsManager:
@@ -7,7 +8,7 @@ class WorkSheetsManager:
          self.wb : xw.Book = wb
          self.sheet : xw.Sheet = self.wb.sheets[sheet_name]
          
-      def write(self,place:tuple[any,str]) -> None:
+      def write(self,place:tuple[DataFrame | Any ,str]) -> None:
          """Tham số  dùng để truyền data và vị trí vào bằng 1 tuple dưới dạng (data , vùng cần ghi)"""
          data,rng = place
          try:   

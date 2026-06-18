@@ -7,22 +7,23 @@ import time
 
 from datetime import date,datetime
 from utils.config_loader import VerifyConfig,GRN10Config,GRN16Config
-T = TypeVar("T")
+T = TypeVar("T",bound=BaseModel)
 
 class DataProcessBase(Generic[T],ABC):
-    def __init__(self,config:T):
+    def __init__(self,config:T,data_frame_raw:pl.DataFrame):
         self.config :T = config
+        self.data : pl.DataFrame = data_frame_raw
 
 
     @abstractmethod
     def Process(self,data_raw:pl.DataFrame):
         pass
 
-class DataProcessDailyReport(DataProcessBase[VerifyConfig]):
-        def Process(self, data_raw: pl.DataFrame):
+class DataProcessVerify(DataProcessBase[VerifyConfig]):
+        def Process(self):
             """Nhận một raw dataFrame và trả về dataFrame sau khi đã xử lý"""
             try:
-                
+                data_raw : pl.DataFrame = self.data
                 lf : pl.LazyFrame = data_raw.lazy()
                 cols = data_raw.columns
                 boolean_cols : list[str] = [cols[i] for i in [9,10,11,13]]
@@ -39,9 +40,15 @@ class DataProcessDailyReport(DataProcessBase[VerifyConfig]):
                 Helper.show_error(None,e)
 
 
-# class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
-#         def Process(self, data_raw: pl.DataFrame):
-            
+class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
+        def Process(self):
+            drop_col : list[str]  = [self.data.columns[i] for i in self.config.drop_columns]
+            self.data = self.data.drop(drop_col)
+            self.data = self.data.with_columns(pl.lit("=VLOOKUP(@CN:CN,'Vendor Subcontrac'!A:B,2,0)").alias("Network"))
+            self.data = self.data.filter(pl.col(2) == pl.col(2).max().item())
+            return self.data
+
+class DataProessGrn16Number(DataProcessBase[GRN16Config]):
         
 
 
