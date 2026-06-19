@@ -1,13 +1,14 @@
 profile:
   daily_report_config:
+    run_sap: True
+    delete_old_day: False
     verify_config:
       sheet_name: "Verify data"
-      from_date: 2026-06-18
+      from_date: 2026-06-19
       from_time: "07:00:00"
-      to_date: 2026-06-18
+      to_date: 2026-06-19
       to_time: "19:00:00"
       report_daily_path: C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV).xlsm
-      run_sap: False
       sap_rcv:
         3601183:
           WD: 3601183
@@ -137,8 +138,8 @@ profile:
           FLAG: 2
     grn_10_numbers_config:
       sheet_name: "GRN (10 so)"
-      from_date: 2026-06-18
-      to_date: 2026-06-18
+      from_date: 2026-06-19
+      to_date: 2026-06-19
       file_name: ""
       file_path: ""
       number_format_string: "@"
@@ -159,8 +160,8 @@ profile:
         - 93
     grn_16_numbers_config:
       sheet_name: "Label (16 So)"
-      from_date: 2026-06-18
-      to_date: 2026-06-18
+      from_date: 2026-06-19
+      to_date: 2026-06-19
       file_name: ""
       file_path: ""
       number_format_string: "@"

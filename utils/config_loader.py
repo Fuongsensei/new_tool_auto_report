@@ -23,7 +23,7 @@ class VerifyConfig(BaseModel):
     verify_list :list[int] =[]
     _keyin_list  : DataFrame | None = PrivateAttr(default=None)
     _interpolate_months:list[str] = []
-    run_sap : bool
+
     
     @model_validator(mode='after')
     
@@ -154,10 +154,11 @@ class GRN16Config(BaseModel):
 
 
 class DailyConfig(BaseModel):
-      verify_config :VerifyConfig
-      grn_10_numbers_config:GRN10Config
-      grn_16_numbers_config:GRN16Config
-      
+        verify_config :VerifyConfig
+        grn_10_numbers_config:GRN10Config
+        grn_16_numbers_config:GRN16Config
+        run_sap : bool
+        delete_old_day :bool
       
 class  Profile(BaseModel):
     daily_report_config:DailyConfig

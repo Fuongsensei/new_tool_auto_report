@@ -52,7 +52,7 @@ class WorkSheetsManager:
                      last_row: int = (self.sheet.range(f"A{self.sheet.cells.last_cell.row}").end("up").row)
                      end_p+=str(last_row)
                      if get_only_endpoint:
-                        return end_p
+                        return last_row
                      return (start_p,end_p)
          except Exception as e:
             Helper.show_error(None,e)
