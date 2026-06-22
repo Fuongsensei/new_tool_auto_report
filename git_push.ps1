@@ -4,5 +4,5 @@ Write-Host "Đang đẩy code lên github"
 
 git init
 git add .
-git commit -m "Add code init machine run  and edit config_loader"
+git commit -m "Add code to state.py and class processStep"
 git push origin main

@@ -6,7 +6,9 @@ import time
 
 class RunSapStep:
         def __init__(self, config:ConfigComponent,sap:SapProcessComponent,writer_cls:type[WorkBookManager] = WorkBookManager):
+            
                 self.writer_cls = writer_cls
+                
                 self.session = sap.session
 
                 self.grn10_processor = sap.sap_grn10
@@ -17,7 +19,7 @@ class RunSapStep:
 
                 self.path_report : str = self.config.daily_report_config.verify_config.report_daily_path
                 
-                self.writer_daily_report =  self.writer_cls(self.path_report)
+                self.writer_daily_report =  self.writer_cls(self.path_report,False)
                 
                 self.writer_sheet_user = self.writer_daily_report.get_sheet("User")
                 
@@ -69,10 +71,26 @@ class RunSapStep:
             self.writer_grn16_data.close()
             
 
-
-config :ConfigComponent = ConfigComponent()
-sap : SapProcessComponent = SapProcessComponent(config)
-
-run_sap_step : RunSapStep = RunSapStep(config,sap,WorkBookManager) 
-
-run_sap_step.run()
+class ProcessDataStep:
+        def __init__(self,core:CoreComponent,uls:UtilsComponent,config:ConfigComponent) -> None:
+            
+            self.core = core
+            
+            self.uls  = uls
+            
+            self.config = config
+            
+            self.verify_data_process = None 
+            
+            self.grn10_data_process  = None
+            
+            self.grn16_data_process  = None
+            
+            
+            
+        def run(self)->None:
+            self.verify_data_process = self.core.data_process_verify.Process(self.uls.verify_data_ingestor.ingest_data())
+            
+            self.grn10_data_process  = self.core.data_process_grn10.Process(self.uls.grn10_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_10_numbers_config.file_path))
+            
+            self.grn16_data_process  = self.core.data_process_grn16.Process(self.uls.grn16_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_16_numbers_config.file_path))
