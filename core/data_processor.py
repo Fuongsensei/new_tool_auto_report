@@ -10,11 +10,10 @@ from utils.config_loader import VerifyConfig,GRN10Config,GRN16Config
 T = TypeVar("T",bound=BaseModel)
 
 class DataProcessBase(Generic[T],ABC):
-    def __init__(self,config:T,data_frame_raw:pl.DataFrame):
+    def __init__(self,config:T):
         
         self.config :T = config
-        
-        self.data : pl.DataFrame = data_frame_raw
+
 
 
     @abstractmethod
@@ -22,10 +21,9 @@ class DataProcessBase(Generic[T],ABC):
         pass
 
 class DataProcessVerify(DataProcessBase[VerifyConfig]):
-        def Process(self):
+        def Process(self,data_raw:pl.DataFrame):
             """Nhận một raw dataFrame và trả về dataFrame sau khi đã xử lý"""
             try:
-                data_raw : pl.DataFrame = self.data
                 
                 lf : pl.LazyFrame = data_raw.lazy()
                 
@@ -41,7 +39,7 @@ class DataProcessVerify(DataProcessBase[VerifyConfig]):
                 
                 perdicate_filter_boolean_cols : pl.Expr = pl.all_horizontal(pl.col(boolean_cols)    ==True)
                 
-                return lf.filter(perdicate_filter_date & perdicate_filter_boolean_cols).collect().    unique(subset=cols[0],keep="first").sort(cols[0],descending=False)
+                return lf.filter(perdicate_filter_date & perdicate_filter_boolean_cols).collect().unique(subset=cols[0],keep="first").sort(cols[0],descending=False)
             
             except Exception as e :
                 
@@ -49,32 +47,36 @@ class DataProcessVerify(DataProcessBase[VerifyConfig]):
 
 
 class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
-        def Process(self, out_for_grn_16:pl.DataFrame,delete_old_day:bool):
+        def Process(self,data_raw:pl.DataFrame, out_for_grn_16:pl.DataFrame,delete_old_day:bool):
             
-            drop_col : list[str]  = [self.data.columns[i] for i in self.config.drop_columns]
+            drop_col : list[str]  = [data_raw.columns[i] for i in self.config.drop_columns]
+            lz_df : pl.LazyFrame = data_raw.lazy()
             
-            self.data = self.data.drop(drop_col)
+            lz_df = (lz_df.drop(drop_col).with_columns(pl.lit("=VLOOKUP(@CN:CN,'Vendor Subcontrac'!A:B,2,0)").alias("Network")))
             
-            self.data = self.data.with_columns(pl.lit("=VLOOKUP(@CN:CN,'Vendor Subcontrac'!A:B,2,0)").alias("Network"))
             
-            if not delete_old_day:return self.data
+            if not delete_old_day:return lz_df.collect()
             
-            self.data = self.data.filter(pl.col(self.data.columns[2]) == pl.col(self.data.columns[2]).max().item())
+            lz_df = lz_df.filter(pl.col(lz_df.columns[2]) == pl.col(lz_df.columns[2]).max())
             
-            out_for_grn_16 = self.data.select(pl.col(self.data.columns[0]))
+            out_for_grn_16 = lz_df.select(pl.col(lz_df.columns[0])).collect()
             
-            return self.data
+            return lz_df.collect()
 
-class DataProessGrn16Number(DataProcessBase[GRN16Config]):
-            def Process(self,grn_data:pl.DataFrame,delete_old_day:bool):
-                drop_col : list[str] = [self.data.columns[i] for i in self.config.drop_columns]
+class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
+            def Process(self,data_raw:pl.DataFrame ,grn_data:pl.DataFrame,delete_old_day:bool):
                 
-                check_na_col = self.data.columns[5]
+                drop_col : list[str] = [data_raw.columns[i] for i in self.config.drop_columns]
                 
-                self.data = self.data.drop(drop_col)
-                if not delete_old_day: return self.data
+                check_na_col = data_raw.columns[5]
                 
-                self.data = self.data.filter(pl.col(check_na_col).str.slice(0,1).is_in(grn_data))
+                lz_df : pl.LazyFrame = data_raw.lazy()
+                
+                lz_df = lz_df.drop(drop_col)
+                
+                if not delete_old_day: return lz_df.collect()  
+                
+                return lz_df.filter(pl.col(check_na_col).str.slice(0,10).is_in(grn_data)).collect()
                 
         
 

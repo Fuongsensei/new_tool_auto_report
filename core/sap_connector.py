@@ -27,14 +27,11 @@ class SapConnector():
             self.session = self.engine.Children(0).Children(0)
             
 
-class GRNConFig(ABC):
-        def __init__(self):
-            pass
 
 
 
 class GRNProcessor(Generic[T],ABC):
-        def __init__(self,context:T,write_helper:WorkSheetsManager,session:any):
+        def __init__(self,context:T,session:any):
             self.context: T = context
 
             self.session = session
