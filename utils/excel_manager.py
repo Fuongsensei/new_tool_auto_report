@@ -243,8 +243,8 @@ class WorkBookManager:
    def close(self)->None:
 
          self.wb.close()
-
-         self.app.quit()
+         if self.app.books.count < 1:
+            self.app.quit()
          
    def create_empty_book(self) ->tuple[xw.App,xw.Book]:
       

@@ -1,8 +1,8 @@
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
-Write-Host "Đang đẩy code lên github"
+Write-Host "Pushsing..."
 
 git init
 git add .
-git commit -m "done app.run "
+git commit -m "edit flow and add ipc into pipeline"
 git push origin main

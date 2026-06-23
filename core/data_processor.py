@@ -17,11 +17,11 @@ class DataProcessBase(Generic[T],ABC):
 
 
     @abstractmethod
-    def Process(self,data_raw:pl.DataFrame):
+    def Process(self,data_raw:pl.DataFrame) -> pl.DataFrame:
         pass
 
 class DataProcessVerify(DataProcessBase[VerifyConfig]):
-        def Process(self,data_raw:pl.DataFrame):
+        def Process(self,data_raw:pl.DataFrame) -> pl.DataFrame:
             """Nhận một raw dataFrame và trả về dataFrame sau khi đã xử lý"""
             try:
                 
@@ -47,7 +47,7 @@ class DataProcessVerify(DataProcessBase[VerifyConfig]):
 
 
 class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
-        def Process(self,data_raw:pl.DataFrame, out_for_grn_16:pl.DataFrame,delete_old_day:bool):
+        def Process(self,data_raw:pl.DataFrame, out_for_grn_16:pl.DataFrame,delete_old_day:bool) -> tuple[pl.DataFrame,pl.DataFrame]:
             
             drop_col : list[str]  = [data_raw.columns[i] for i in self.config.drop_columns]
             lz_df : pl.LazyFrame = data_raw.lazy()
@@ -61,13 +61,13 @@ class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
             
             out_for_grn_16 = lz_df.select(pl.col(lz_df.columns[0])).collect()
             
-            return lz_df.collect()
+            return lz_df.collect(),out_for_grn_16
 
 class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
-            def Process(self,data_raw:pl.DataFrame ,grn_data:pl.DataFrame,delete_old_day:bool):
+            def Process(self,data_raw:pl.DataFrame ,grn_data:pl.DataFrame,delete_old_day:bool)-> pl.DataFrame:
                 
                 drop_col : list[str] = [data_raw.columns[i] for i in self.config.drop_columns]
-                
+                grn_data = grn_data.to_series(0)
                 check_na_col = data_raw.columns[5]
                 
                 lz_df : pl.LazyFrame = data_raw.lazy()

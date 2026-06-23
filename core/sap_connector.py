@@ -46,8 +46,12 @@ class GRN10Processor(GRNProcessor[GRN10Config]):
             self.session.StartTransaction(self.context.tcode.upper())
             
             self.session.findById("wnd[0]/usr/ctxtSO_WERKS-LOW").Text = "VN01"
-            
+            print(self.context.posting_date_start)
+            print(self.context.from_date)
             self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-LOW").Text = f"{self.context.posting_date_start}"
+            
+            print(self.context.to_date)
+            print(self.context.posting_date_end)
             
             self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-HIGH").Text = f"{self.context.posting_date_end}"
             

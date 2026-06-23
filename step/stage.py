@@ -71,6 +71,8 @@ class RunSapStep:
             
             self.writer_daily_report.close()
             
+
+            
 class ProcessDataStep:
         def __init__(self,core:CoreComponent,uls:UtilsComponent,config:ConfigComponent) -> None:
             
@@ -88,6 +90,7 @@ class ProcessDataStep:
             
             self.grn16_data_process  = None
             
+            self.out_grn16 = None
             
             
         def run(self)->None:
@@ -95,46 +98,53 @@ class ProcessDataStep:
             self.verify_data_process = self.core.data_process_verify.Process(self.uls.verify_data_ingestor.ingest_data())
             
             if self.flag_run_sap:
-                    self.grn10_data_process  = self.core.data_process_grn10.Process(self.uls.grn10_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_10_numbers_config.file_path))
-            
-                    self.grn16_data_process  = self.core.data_process_grn16.Process(self.uls.grn16_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_16_numbers_config.file_path))
+                    
+                    self.grn10_data_process  = self.core.data_process_grn10.Process(self.uls.grn10_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_10_numbers_config.file_path),self.out_grn16,self.config.daily_report_config.delete_old_day)
+                    
+                    self.out_grn16 = self.grn10_data_process[1]
+                    
+                    self.grn16_data_process  = self.core.data_process_grn16.Process(self.uls.grn16_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_16_numbers_config.file_path),self.out_grn16,self.config.daily_report_config.delete_old_day)
             
             
 class WriteExcelStep:
     def __init__(self,process_step:ProcessDataStep,writer_cls:type[WorkBookManager] = WorkBookManager,config:ConfigComponent=ConfigComponent):
         
         
-           self.flag_run_sap = config.daily_report_config.run_sap
-           
-           
-           self.data_processed = process_step.run()
-           
-           self.writer_cls = writer_cls 
-           
-           self.veriy_data_processed = process_step.verify_data_process
-           
-          
-           self.config_verify = config.daily_report_config.verify_config
-           
-
-           
-           self.writer_daily_report =  self.writer_cls(self.config_verify.report_daily_path,False)
-
-           self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config_verify.sheet_name)   
-           
-           if self.flag_run_sap:  
-              
+            self.flag_run_sap = config.daily_report_config.run_sap
+            
+            self.process_step = process_step
+            
+            self.writer_cls = writer_cls 
+            
+            self.veriy_data_processed = None
+            
+            self.config_verify = config.daily_report_config.verify_config
+            
+            self.config_grn10  = None
+            
+            self.config_grn16  = None
+            
+            self.writer_sheet_grn_10  = None
+            
+            self.writer_sheet_grn_16  = None
+            
+            
+            
+            
+            
+            if self.flag_run_sap:  
+        
                     self.config_grn10  = config.daily_report_config.grn_10_numbers_config
                     
                     self.config_grn16  = config.daily_report_config.grn_16_numbers_config
                     
-                    self.grn10_data_processed = process_step.grn10_data_process
+
                     
-                    self.grn16_data_processed = process_step.grn16_data_process
-                     
-                    self.writer_sheet_grn_10  = self.writer_daily_report.get_sheet(self.config_grn10.sheet_name)   
+                    self.grn10_data_processed = None
+                    
+                    self.grn16_data_processed = None
+                    
         
-                    self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config_grn16.sheet_name)
         
                     
     def write(self)->None:
@@ -145,14 +155,14 @@ class WriteExcelStep:
             
             if self.flag_run_sap:
                 
-                     self.writer_sheet_grn_10.delete_to_last_row(2)
-      
-                     self.writer_sheet_grn_16.delete_to_last_row(2)
-                  
-      
-                     self.writer_sheet_grn_10.write((self.grn10_data_processed,"A2"))
-      
-                     self.writer_sheet_grn_16.write((self.grn16_data_processed,"A2"))
+                    self.writer_sheet_grn_10.delete_to_last_row(2)
+    
+                    self.writer_sheet_grn_16.delete_to_last_row(2)
+                
+    
+                    self.writer_sheet_grn_10.write((self.grn10_data_processed,"A2"))
+    
+                    self.writer_sheet_grn_16.write((self.grn16_data_processed,"A2"))
             
             
             self.writer_daily_report.close()
@@ -161,9 +171,26 @@ class WriteExcelStep:
     def reopen_excel(self)-> None:
         
         self.writer_cls(self.config_verify.report_daily_path,True)
-    
+        
     
     def run(self)-> None:
+        
+        self.writer_daily_report =  self.writer_cls(self.config_verify.report_daily_path,False)
+        
+        self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config_verify.sheet_name)  
+        
+        self.writer_sheet_grn_10  = self.writer_daily_report.get_sheet(self.config_grn10.sheet_name)   
+                    
+        self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config_grn16.sheet_name)
+        
+        self.process_step.run()
+        
+        self.veriy_data_processed = self.process_step.verify_data_process 
+        
+        self.grn10_data_processed = self.process_step.grn10_data_process[0]
+        
+        self.grn16_data_processed = self.process_step.grn16_data_process
+        
         self.write()
         
         self.reopen_excel()
@@ -171,26 +198,26 @@ class WriteExcelStep:
             
 
 class CombaineStepMachine:
-      def  __init__(self,combaine_component_machine:type[CombaineComponent]=CombaineComponent):
-          
-           self.component : CombaineComponent = combaine_component_machine()
-           
-           self.component.combaine()
-           
-           self.run_sap = None
-           
-           self.process_data = None
-           
-           self.writer_excel = None
-           
-      def combaine(self)-> None:
-          if self.component.config.daily_report_config.run_sap:
+    def  __init__(self,combaine_component_machine:type[CombaineComponent]=CombaineComponent):
+        
+        self.component : CombaineComponent = combaine_component_machine()
+        
+        self.component.combaine()
+        
+        self.run_sap = None
+        
+        self.process_data = None
+        
+        self.writer_excel = None
+
+    def combaine(self)-> None:
+        if self.component.config.daily_report_config.run_sap:
                 self.run_sap = RunSapStep(self.component.config,self.component.sap,WorkBookManager)
-          
-          self.process_data = ProcessDataStep(self.component.core,self.component.uls,self.component.config)
-          
-          self.writer_excel = WriteExcelStep(self.process_data,WorkBookManager,self.component.config)          
-          
-          
-          
-           
+        
+        self.process_data = ProcessDataStep(self.component.core,self.component.uls,self.component.config)
+        
+        self.writer_excel = WriteExcelStep(self.process_data,WorkBookManager,self.component.config)          
+        
+
+        
+    
