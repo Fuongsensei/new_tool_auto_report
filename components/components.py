@@ -28,6 +28,8 @@ class ConfigComponent:
 class SapProcessComponent:
     def __init__(self,config:ConfigComponent):         
             
+            if not  config.daily_report_config.run_sap: return 
+            
             self.sap : SapConnector = SapConnector()         
             
             self.session = self.sap.session         
@@ -57,3 +59,28 @@ class CoreComponent:
         self.data_process_grn10 : DataProcessBase = DataProcessGrn10Number(config_component.grn10_config)         
         
         self.data_process_grn16 : DataProcessBase  = DataProcessGrn16Number(config_component.grn16_config)
+        
+        
+class CombaineComponent:
+    def __init__(self):
+        
+         self.config = None
+         
+         self.sap = None
+         
+         self.uls = None
+         
+         self.core = None
+         
+         
+    def combaine(self)-> None:
+        
+       self.config = ConfigComponent()
+       
+       if self.config.daily_report_config.run_sap:
+           
+            self.sap = SapProcessComponent(self.config)
+            
+       self.uls    = UtilsComponent(self.config)
+       
+       self.core   = CoreComponent(self.config)

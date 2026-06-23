@@ -24,7 +24,7 @@ class VerifyConfig(BaseModel):
         
         local_path:str = fr"C:\Users\{getpass.getuser()}\Documents\Report"
         
-        report_daily_path : str
+        report_daily_path : str = "" if getpass.getuser() == "3601183" else r"C:\Users\fuongsensei\Downloads\Report Scan Verify Shiftly (RCV).xlsm"
         
         base_report_file: str =  r"\\AWASE1HCMICAP01\AppsData\GR Ver Report"
         

@@ -37,13 +37,13 @@ class WorkSheetsManager:
 
                self.sheet.range(rng).value = data.to_numpy()
 
-               self.wb.save()
+               self.wb.save_workbook()
 
             else :
 
                   self.sheet.range(rng).value = data
 
-                  self.wb.save()
+                  self.wb.save_workbook()
 
          except Exception as e:
 
@@ -135,7 +135,7 @@ class WorkSheetsManager:
       def delete_to_last_row(self,start_index:int)->None:
             try:
                
-               last_row : int = self.sheet.cells.last_cell.end('up').row
+               last_row : int =  self.sheet.range("A" + str(self.sheet.cells.last_cell.row)).end("up").row
                
                if start_index >= last_row : return
                
@@ -188,15 +188,16 @@ class WorkBookManager:
    def __init__(self,path:str,on_screen:bool = True):
       
          self.path :str = path
-         
+          
          if not os.path.exists(path):
             
-            self.app,self.wb = self.create_empty_book()
+            raise Exception ("Đường dẫn không tồn tại !")
             
          else:
             self.app : xw.App|None = None
    
             self.wb  : xw.Book|None = None
+            self.sheets  = None
    
             for app in xw.apps:
    
@@ -207,19 +208,23 @@ class WorkBookManager:
                      self.app = app
    
                      self.wb  = wb
+                     
+                     self.sheets = wb.sheets
    
             if  not self.app or not self.wb:
    
                   self.app = xw.App(visible=on_screen,add_book=False)
    
                   self.wb  = self.app.books.open(path)
+                  
+                  self.sheets = self.wb.sheets
 
 
    def get_sheet(self,sheet_name:str) -> WorkSheetsManager:
 
       try:
 
-            return  WorkSheetsManager(sheet_name,self.wb)
+            return  WorkSheetsManager(sheet_name,self)
 
       except Exception as e:
 
@@ -250,4 +255,7 @@ class WorkBookManager:
          wb.save(self.path)
          
          return app,wb
+      
+   def save_workbook(self)->None:
+       self.wb.save()
       
