@@ -31,11 +31,12 @@ if __name__ == "__main__":
                 print("Dang cho lenh....")
                 event_control.waiting_request_event()
                 command : str = event_control.read_memo().split(":")[1]
-                 
+                
                 app : DailyReportExportMachine = DailyReportExportMachine    (CombaineStepMachine,CombaineComponent)
                 
                 if command == "run_app":
                     app.run()
+                    event_control.set_respone_event()
                 else : print("Lenh khong hop le!")
                 os.system("cls")
         

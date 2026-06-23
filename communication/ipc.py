@@ -41,3 +41,7 @@ class CommunicationToCSharp:
         
     def waiting_request_event(self) -> None:
         win32event.WaitForSingleObject(self.req_event,win32event.INFINITE)
+    
+    
+    def set_respone_event(self)->None:
+        win32event.SetEvent(self.res_event)
