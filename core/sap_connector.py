@@ -8,7 +8,8 @@ from pydantic import BaseModel
 from utils.config_loader import GRN10Config,GRN16Config
 from utils.excel_manager import WorkBookManager,WorkSheetsManager
 import time
-
+import os
+from pywintypes import com_error
 from datetime import timedelta
 from datetime import date,datetime
 
@@ -22,9 +23,19 @@ class SapConnector():
             return cls._instance
         
         def __init__(self):
-            self.engine : any = win32com.client.GetObject("SAPGUI").GetScriptingEngine
-            
-            self.session = self.engine.Children(0).Children(0)
+            try:
+                self.sap_path:str = r"C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe"
+                
+                self.engine : any = win32com.client.GetObject("SAPGUI").    GetScriptingEngine
+                self.session = self.engine.Children(0).Children(0)
+            except com_error as e:
+                if e.hresult == -2147221020:
+                    os.startfile(self.sap_path)
+                    time.sleep(10)
+                    self.engine : any = win32com.client.GetObject("SAPGUI").  GetScriptingEngine
+                    self.connection = self.engine.OpenConnection("100", True)
+                    
+                    self.session = self.connection.Children(0)
             
 
 

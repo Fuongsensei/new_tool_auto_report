@@ -59,7 +59,7 @@ class WorkSheetsManager:
 
             self.wb.app.enable_events = True
             
-            self.wb.refresh()
+            
 
       def delete_data(self,rng:str|tuple[str,str]) -> bool:
 

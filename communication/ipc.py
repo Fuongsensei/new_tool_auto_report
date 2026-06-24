@@ -1,15 +1,15 @@
 import mmap
 import win32event
 import struct
-
+import win32con
 class CommunicationToCSharp:
     def __init__(self):         
         
         self.SRM_NAME : str   = r"Local\python_connect_to_CSharp"        
         
-        self.REQ_NAME : str   = r"Local\request_to_python"        
+        self.REQ_EVENT_NAME : str   = r"Local\request_to_python"        
         
-        self.RES_NAME : str   = r"Local\respone_to_Csharp"        
+        self.RES_EVENT_NAME : str   = r"Local\respone_to_Csharp"        
         
         self.MUTEX_NAME : str = r"Local\Mutex_connect"        
         
@@ -17,11 +17,11 @@ class CommunicationToCSharp:
         
         self.shared_memo : mmap.mmap = mmap.mmap(-1,self.BUF_SIZE,tagname=self.SRM_NAME)        
         
-        self.req_event :int = win32event.CreateEvent(None,0,0,self.REQ_NAME)        
+        self.req_event :int = win32event.OpenEvent(win32event.EVENT_ALL_ACCESS,False,self.REQ_EVENT_NAME)     
         
-        self.res_event :int = win32event.CreateEvent(None,0,0,self.RES_NAME)        
+        self.res_event :int = win32event.OpenEvent(win32event.EVENT_ALL_ACCESS,False,self.RES_EVENT_NAME)     
         
-        self.muxtext_locker : int = win32event.CreateMutex(None,0,self.MUTEX_NAME)      
+        self.muxtext_locker : int = win32event.OpenMutex(win32event.SYNCHRONIZE,False ,self.MUTEX_NAME)   
         
     def read_memo(self) -> str:
             

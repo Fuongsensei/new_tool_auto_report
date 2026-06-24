@@ -168,7 +168,9 @@ class WriteExcelStep:
             
     def reopen_excel(self)-> None:
         
-        self.writer_cls(self.config_verify.report_daily_path,True)
+        _ = self.writer_cls(self.config_verify.report_daily_path,True)
+        _.refresh()
+        _.save_workbook()
         
     
     def run(self)-> None:

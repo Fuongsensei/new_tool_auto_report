@@ -36,8 +36,13 @@ if __name__ == "__main__":
                 
                 if command == "run_app":
                     print("Dang chay....")
-                    app.run()
-                    event_control.set_respone_event()
+                    try:
+                        app.run()
+                    except Exception as e:
+                        print(e)
+                    finally:
+                        
+                        event_control.set_respone_event()
                 else : print("Lenh khong hop le!")
-                os.system("cls")
+                #os.system("cls")
         
