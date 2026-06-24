@@ -4,5 +4,5 @@ Write-Host "Pushsing..."
 
 git init
 git add .
-git commit -m "add try catch for sapConnector"
+git commit -m "add try catch for sapConnector 79%"
 git push origin main
