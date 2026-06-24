@@ -35,6 +35,7 @@ if __name__ == "__main__":
                 app : DailyReportExportMachine = DailyReportExportMachine    (CombaineStepMachine,CombaineComponent)
                 
                 if command == "run_app":
+                    print("Dang chay....")
                     app.run()
                     event_control.set_respone_event()
                 else : print("Lenh khong hop le!")

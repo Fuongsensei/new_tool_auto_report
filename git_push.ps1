@@ -4,5 +4,5 @@ Write-Host "Pushsing..."
 
 git init
 git add .
-git commit -m "edit flow and add ipc into pipeline"
+git commit -m "edit kernel object"
 git push origin main

@@ -58,6 +58,8 @@ class WorkSheetsManager:
             self.wb.app.calculation = 'automatic'
 
             self.wb.app.enable_events = True
+            
+            self.wb.refresh()
 
       def delete_data(self,rng:str|tuple[str,str]) -> bool:
 
@@ -215,7 +217,7 @@ class WorkBookManager:
    
                   self.app = xw.App(visible=on_screen,add_book=False)
    
-                  self.wb  = self.app.books.open(path)
+                  self.wb  = self.app.books.open(path,update_links=False)
                   
                   self.sheets = self.wb.sheets
 

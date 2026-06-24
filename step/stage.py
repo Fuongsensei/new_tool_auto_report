@@ -138,8 +138,6 @@ class WriteExcelStep:
                     
                     self.config_grn16  = config.daily_report_config.grn_16_numbers_config
                     
-
-                    
                     self.grn10_data_processed = None
                     
                     self.grn16_data_processed = None
@@ -175,22 +173,26 @@ class WriteExcelStep:
     
     def run(self)-> None:
         
-        self.writer_daily_report =  self.writer_cls(self.config_verify.report_daily_path,False)
-        
-        self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config_verify.sheet_name)  
-        
-        self.writer_sheet_grn_10  = self.writer_daily_report.get_sheet(self.config_grn10.sheet_name)   
-                    
-        self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config_grn16.sheet_name)
-        
         self.process_step.run()
         
         self.veriy_data_processed = self.process_step.verify_data_process 
+
+        self.writer_daily_report =  self.writer_cls(self.config_verify.report_daily_path,False)
+
+        self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config_verify.sheet_name)  
+
+
+        if self.flag_run_sap:
         
-        self.grn10_data_processed = self.process_step.grn10_data_process[0]
-        
-        self.grn16_data_processed = self.process_step.grn16_data_process
-        
+            self.writer_sheet_grn_10  = self.writer_daily_report.get_sheet(self.config_grn10.sheet_name)   
+                        
+            self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config_grn16.sheet_name)
+    
+            self.grn10_data_processed = self.process_step.grn10_data_process[0]
+            
+            self.grn16_data_processed = self.process_step.grn16_data_process
+            
+            
         self.write()
         
         self.reopen_excel()
