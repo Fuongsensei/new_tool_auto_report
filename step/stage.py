@@ -213,7 +213,7 @@ class CombaineStepMachine:
         self.process_data = None
         
         self.writer_excel = None
-
+9
     def combaine(self)-> None:
         if self.component.config.daily_report_config.run_sap:
                 self.run_sap = RunSapStep(self.component.config,self.component.sap,WorkBookManager)

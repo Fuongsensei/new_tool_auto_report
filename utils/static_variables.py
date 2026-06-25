@@ -1,4 +1,13 @@
+import os
+import sys
 
 
-yaml_path : str = r"C:\Users\3601183\Documents\Python\new_tool_auto_report\config.yml"
-yaml_path_home : str =  r"C:\Users\fuongsensei\Documents\Python\new_tool_auto_report\config.yml"
+def get_app_dir() -> str:
+    if getattr(sys, "frozen", False):
+        return os.path.dirname(sys.executable)
+
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+yaml_path: str = os.path.join(get_app_dir(), "Config", "config.yml")
+yaml_path_home: str = yaml_path

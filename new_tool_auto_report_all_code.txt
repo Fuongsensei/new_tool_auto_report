@@ -1,0 +1,2158 @@
+
+====================================================================================================
+FILE: .vs\new_tool_auto_report.slnx\v18\DocumentLayout.backup.json
+====================================================================================================
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_processor.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data_processor.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\config.yaml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:config.yaml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\file_handler.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:file_handler.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\excel_manager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:excel_manager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_utils.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data_utils.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\pyproject.toml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pyproject.toml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "excel_manager.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\excel_manager.py",
+              "RelativeDocumentMoniker": "excel_manager.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\excel_manager.py",
+              "RelativeToolTip": "excel_manager.py",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:38:20.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "config.yaml",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\config.yaml",
+              "RelativeDocumentMoniker": "config.yaml",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\config.yaml",
+              "RelativeToolTip": "config.yaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2026-04-04T11:37:35.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "data_processor.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_processor.py",
+              "RelativeDocumentMoniker": "data_processor.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_processor.py",
+              "RelativeToolTip": "data_processor.py",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAD4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:32:03.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "file_handler.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\file_handler.py",
+              "RelativeDocumentMoniker": "file_handler.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\file_handler.py",
+              "RelativeToolTip": "file_handler.py",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:31:58.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "data_utils.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_utils.py",
+              "RelativeDocumentMoniker": "data_utils.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_utils.py",
+              "RelativeToolTip": "data_utils.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:31:55.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "main.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\main.py",
+              "RelativeDocumentMoniker": "main.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\main.py",
+              "RelativeToolTip": "main.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:31:53.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "pyproject.toml",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\pyproject.toml",
+              "RelativeDocumentMoniker": "pyproject.toml",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\pyproject.toml",
+              "RelativeToolTip": "pyproject.toml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-04T11:31:51.772Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+====================================================================================================
+FILE: .vs\new_tool_auto_report.slnx\v18\DocumentLayout.json
+====================================================================================================
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_processor.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data_processor.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\config.yaml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:config.yaml||{06C066C6-04A2-4E5D-8202-439FD4234EF1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\file_handler.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:file_handler.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\excel_manager.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:excel_manager.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_utils.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:data_utils.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\pyproject.toml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pyproject.toml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "excel_manager.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\excel_manager.py",
+              "RelativeDocumentMoniker": "excel_manager.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\excel_manager.py",
+              "RelativeToolTip": "excel_manager.py",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:38:20.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "config.yaml",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\config.yaml",
+              "RelativeDocumentMoniker": "config.yaml",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\config.yaml",
+              "RelativeToolTip": "config.yaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2026-04-04T11:37:35.68Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "data_processor.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_processor.py",
+              "RelativeDocumentMoniker": "data_processor.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_processor.py",
+              "RelativeToolTip": "data_processor.py",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAD4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:32:03.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "file_handler.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\file_handler.py",
+              "RelativeDocumentMoniker": "file_handler.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\file_handler.py",
+              "RelativeToolTip": "file_handler.py",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACQAAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:31:58.302Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "data_utils.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_utils.py",
+              "RelativeDocumentMoniker": "data_utils.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\data_utils.py",
+              "RelativeToolTip": "data_utils.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:31:55.513Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "main.py",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\main.py",
+              "RelativeDocumentMoniker": "main.py",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\main.py",
+              "RelativeToolTip": "main.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-04-04T11:31:53.552Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "pyproject.toml",
+              "DocumentMoniker": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\pyproject.toml",
+              "RelativeDocumentMoniker": "pyproject.toml",
+              "ToolTip": "C:\\Users\\fuongsensei\\Documents\\Python\\new_tool_auto_report\\pyproject.toml",
+              "RelativeToolTip": "pyproject.toml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-04-04T11:31:51.772Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+====================================================================================================
+FILE: .vs\ProjectSettings.json
+====================================================================================================
+{
+  "CurrentProjectSetting": null
+}
+
+====================================================================================================
+FILE: .vs\PythonSettings.json
+====================================================================================================
+{
+  "SuppressConfigureTestFrameworkPrompt": "true"
+}
+
+====================================================================================================
+FILE: .vs\VSWorkspaceState.json
+====================================================================================================
+{
+  "ExpandedNodes": [
+    ""
+  ],
+  "SelectedNode": "\\data_processor.py",
+  "PreviewInSolutionExplorer": false
+}
+
+====================================================================================================
+FILE: communication\__init__.py
+====================================================================================================
+
+
+====================================================================================================
+FILE: communication\ipc.py
+====================================================================================================
+import mmap
+import win32event
+import struct
+import win32con
+class CommunicationToCSharp:
+    def __init__(self):         
+        
+        self.SRM_NAME : str   = r"Local\python_connect_to_CSharp"        
+        
+        self.REQ_EVENT_NAME : str   = r"Local\request_to_python"        
+        
+        self.RES_EVENT_NAME : str   = r"Local\respone_to_Csharp"        
+        
+        self.MUTEX_NAME : str = r"Local\Mutex_connect"        
+        
+        self.BUF_SIZE  : int = 4096        
+        
+        self.shared_memo : mmap.mmap = mmap.mmap(-1,self.BUF_SIZE,tagname=self.SRM_NAME)        
+        
+        self.req_event :int = win32event.OpenEvent(win32event.EVENT_ALL_ACCESS,False,self.REQ_EVENT_NAME)     
+        
+        self.res_event :int = win32event.OpenEvent(win32event.EVENT_ALL_ACCESS,False,self.RES_EVENT_NAME)     
+        
+        self.muxtext_locker : int = win32event.OpenMutex(win32event.SYNCHRONIZE,False ,self.MUTEX_NAME)   
+        
+    def read_memo(self) -> str:
+            
+            win32event.WaitForSingleObject(self.muxtext_locker,win32event.INFINITE)
+            
+            self.shared_memo.seek(0)
+            
+            length : int =  struct.unpack("<I",self.shared_memo.read(4))[0]
+            
+            self.shared_memo.seek(4)
+            
+            data : bytes  =  self.shared_memo.read(length)
+            
+            win32event.ReleaseMutex(self.muxtext_locker)
+            
+            return data.decode()      
+        
+    def waiting_request_event(self) -> None:
+        win32event.WaitForSingleObject(self.req_event,win32event.INFINITE)
+    
+    
+    def set_respone_event(self)->None:
+        win32event.SetEvent(self.res_event)
+
+====================================================================================================
+FILE: components\__init__.py
+====================================================================================================
+
+
+====================================================================================================
+FILE: components\components.py
+====================================================================================================
+from utils.data_utils import DataIngestor
+from utils.excel_manager import WorkBookManager 
+from core.data_processor import DataProcessBase,DataProcessVerify,DataProcessGrn10Number,DataProcessGrn16Number
+from utils.config_loader import DailyConfig,VerifyConfig,GRN10Config,GRN16Config,create_profile,Profile
+from getpass import getuser
+import sys
+from core.sap_connector import SapConnector ,GRN10Processor,GRN16Processor
+from utils.helper import Helper
+class ConfigComponent:
+    def __init__(self):           
+        
+        self.profile :Profile = create_profile()         
+        
+        self.daily_report_config :DailyConfig = self.profile.daily_report_config         
+        
+        self.verify_config:VerifyConfig = self.profile.daily_report_config.verify_config         
+        
+        self.grn10_config : GRN10Config = self.profile.daily_report_config.grn_10_numbers_config         
+        
+        self.grn16_config : GRN16Config = self.profile.daily_report_config.grn_16_numbers_config       
+
+
+
+
+    
+    
+    
+class SapProcessComponent:
+    def __init__(self,config:ConfigComponent):         
+            
+            if not  config.daily_report_config.run_sap: return 
+            
+            self.sap : SapConnector = SapConnector()         
+            
+            self.session = self.sap.session         
+            
+            self.sap_grn10 : GRN10Processor = GRN10Processor(config.grn10_config,self.session)         
+            
+            self.sap_grn16 : GRN16Processor = GRN16Processor(config.grn16_config,self.session)       
+
+
+
+class UtilsComponent:
+    def __init__(self,config_component:ConfigComponent):                  
+            
+            self.verify_data_ingestor :DataIngestor = DataIngestor(config_component.verify_config.path_local_mapping)            
+            
+            self.grn10_data_ingestor  :DataIngestor = DataIngestor(None,True)            
+            
+            self.grn16_data_ingestor  :DataIngestor = DataIngestor(None,True)
+            
+            
+            
+class CoreComponent:
+    def __init__(self,config_component:ConfigComponent):         
+
+        self.data_process_verify:DataProcessBase = DataProcessVerify(config_component.verify_config)         
+        
+        self.data_process_grn10 : DataProcessBase = DataProcessGrn10Number(config_component.grn10_config)         
+        
+        self.data_process_grn16 : DataProcessBase  = DataProcessGrn16Number(config_component.grn16_config)
+        
+        
+class CombaineComponent:
+    def __init__(self):
+        
+         self.config = None
+         
+         self.sap = None
+         
+         self.uls = None
+         
+         self.core = None
+         
+         
+    def combaine(self)-> None:
+        
+       self.config = ConfigComponent()
+       
+       if self.config.daily_report_config.run_sap:
+           
+            self.sap = SapProcessComponent(self.config)
+            
+       self.uls    = UtilsComponent(self.config)
+       
+       self.core   = CoreComponent(self.config)
+
+====================================================================================================
+FILE: config.yml
+====================================================================================================
+profile:
+  daily_report_config:
+    run_sap: True
+    delete_old_day: True
+    verify_config:
+      sheet_name: "Verify data"
+      from_date: 2026-06-25
+      from_time: "19:00:00"
+      to_date: 2026-06-26
+      to_time: "07:00:00"
+      report_daily_path: C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV).xlsm
+      sap_rcv:
+        3601183:
+          WD: 3601183
+          NAME: NGUYỄN KHẮC MINH PHƯƠNG
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN80
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 1
+        3302117:
+          WD: 3302117
+          NAME: HÀ TRƯƠNG HOÀNG GIA
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN80
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        2978308:
+          WD: 2978308
+          NAME: TRƯƠNG NGỌC MAI DUNG
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN80
+          LOC: TMS
+          STATUS: ON DUTY
+          FLAG: 0
+        1080662:
+          WD: 1080662
+          NAME: LÊ THỊ THÚY HÀ
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN80
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 2
+        3210272:
+          WD: 3210272
+          NAME: BÙI CHÍ NGHĨA
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN81
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3222451:
+          WD: 3222451
+          NAME: KIÊN THÁI VỸ THẾ KHOA
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN81
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3225301:
+          WD: 3225301
+          NAME: LÊ THỊ HIẾU
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN81
+          LOC: TMS
+          STATUS: ON DUTY
+          FLAG: 0
+        3294344:
+          WD: 3294344
+          NAME: LÊ ANH TUẤN
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN68
+          LOC: TMS
+          STATUS: ON DUTY
+          FLAG: 0
+        691461:
+          WD: 691461
+          NAME: HÀ THỊ THANH VÂN
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN68
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3307871:
+          WD: 3307871
+          NAME: TRẦN THU THẢO
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN69
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3294333:
+          WD: 3294333
+          NAME: VÕ HỒ TẤN LINH
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN69
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        3212020:
+          WD: 3212020
+          NAME: VÕ LÊ HOÀNG HIẾU
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN70
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+        2495170:
+          WD: 2495170
+          NAME: NGUYỄN THỊ KIM NGÂN
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN70
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 2
+        3307814:
+          WD: 3307814
+          NAME: NGUYỄN THỊ KIỀU NƯƠNG
+          GENDER: FEMALE
+          ROLE: DATA ENTRY
+          SHIFT: VN70
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
+    grn_10_numbers_config:
+      sheet_name: "GRN (10 so)"
+      from_date: 2026-06-25
+      to_date: 2026-06-26
+      file_name: ""
+      file_path: ""
+      number_format_string: "@"
+      number_format_date: "dd/mm/yyyy"
+      columns_string_format:
+      - "A"
+      - "H"
+      - "I"
+      - "L"
+      - "M"
+      - "O"
+      - "J"
+      columns_date_format:
+      - "B"
+      - "C"
+      drop_columns:
+      - 97
+      - 93
+    grn_16_numbers_config:
+      sheet_name: "Label (16 So)"
+      from_date: 2026-06-25
+      to_date: 2026-06-26
+      file_name: ""
+      file_path: ""
+      number_format_string: "@"
+      number_format_date: "dd/mm/yyyy"
+      columns_string_format:
+      - "C"
+      - "F"
+      - "J"
+      - "H"
+      - "G"
+      - "M"
+      - "O"
+      - "R"
+      columns_date_format:
+      - "U"
+      - "V"
+      - "W"
+      drop_columns:
+      - 22
+...
+
+
+====================================================================================================
+FILE: core\__init__.py
+====================================================================================================
+
+
+====================================================================================================
+FILE: core\data_processor.py
+====================================================================================================
+import polars as pl
+from typing  import Generic,TypeVar 
+from abc import ABC,abstractmethod
+from pydantic import BaseModel,model_validator,field_validator,PrivateAttr
+from utils.helper import Helper
+import time
+
+from datetime import date,datetime
+from utils.config_loader import VerifyConfig,GRN10Config,GRN16Config
+T = TypeVar("T",bound=BaseModel)
+
+class DataProcessBase(Generic[T],ABC):
+    def __init__(self,config:T):
+        
+        self.config :T = config
+
+
+
+    @abstractmethod
+    def Process(self,data_raw:pl.DataFrame) -> pl.DataFrame:
+        pass
+
+class DataProcessVerify(DataProcessBase[VerifyConfig]):
+        def Process(self,data_raw:pl.DataFrame) -> pl.DataFrame:
+            """Nhận một raw dataFrame và trả về dataFrame sau khi đã xử lý"""
+            try:
+                
+                lf : pl.LazyFrame = data_raw.lazy()
+                
+                cols = data_raw.columns
+                
+                boolean_cols : list[str] = [cols[i] for i in [9,10,11,13]]
+                
+                cf = self.config
+                
+                perdicate_filter_date : pl.Expr = pl.col(cols[5]).str.split("|").list.get(1).str.    to_datetime(format="%m/%d/%Y %I:%M:%S %p").is_between(
+                        datetime.combine(cf.from_date,cf.from_time) ,datetime.combine(cf.to_date,cf.to_time))
+                    
+                
+                perdicate_filter_boolean_cols : pl.Expr = pl.all_horizontal(pl.col(boolean_cols)    ==True)
+                
+                return lf.filter(perdicate_filter_date & perdicate_filter_boolean_cols).collect().unique(subset=cols[0],keep="first").sort(cols[0],descending=False)
+            
+            except Exception as e :
+                
+                Helper.show_error(None,e)
+
+
+class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
+        def Process(self,data_raw:pl.DataFrame, out_for_grn_16:pl.DataFrame,delete_old_day:bool) -> tuple[pl.DataFrame,pl.DataFrame]:
+            
+            drop_col : list[str]  = [data_raw.columns[i] for i in self.config.drop_columns]
+            lz_df : pl.LazyFrame = data_raw.lazy()
+            
+            lz_df = (lz_df.drop(drop_col).with_columns(pl.lit("=VLOOKUP(@CN:CN,'Vendor Subcontrac'!A:B,2,0)").alias("Network")))
+            
+            
+            if not delete_old_day:return lz_df.collect()
+            
+            lz_df = lz_df.filter(pl.col(lz_df.columns[2]) == pl.col(lz_df.columns[2]).max())
+            
+            out_for_grn_16 = lz_df.select(pl.col(lz_df.columns[0])).collect()
+            
+            return lz_df.collect(),out_for_grn_16
+
+class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
+            def Process(self,data_raw:pl.DataFrame ,grn_data:pl.DataFrame,delete_old_day:bool)-> pl.DataFrame:
+                
+                drop_col : list[str] = [data_raw.columns[i] for i in self.config.drop_columns]
+                grn_data = grn_data.to_series(0)
+                check_na_col = data_raw.columns[5]
+                
+                lz_df : pl.LazyFrame = data_raw.lazy()
+                
+                lz_df = lz_df.drop(drop_col)
+                
+                if not delete_old_day: return lz_df.collect()  
+                
+                return lz_df.filter(pl.col(check_na_col).str.slice(0,10).is_in(grn_data)).collect()
+                
+        
+
+
+
+====================================================================================================
+FILE: core\sap_connector.py
+====================================================================================================
+
+from __future__ import annotations
+import win32com.client
+from abc import ABC,abstractmethod
+from typing import TypeVar,Generic
+from  utils.helper import Helper
+from pydantic import BaseModel
+from utils.config_loader import GRN10Config,GRN16Config
+from utils.excel_manager import WorkBookManager,WorkSheetsManager
+import time
+import os
+from pywintypes import com_error
+from datetime import timedelta
+from datetime import date,datetime
+
+T = TypeVar('T',bound=BaseModel)
+class SapConnector():
+        _instance = None
+        def __new__(cls,*args,**kwargs):
+            if cls._instance is None:
+                cls._instance = super().__new__(cls)
+            
+            return cls._instance
+        
+        def __init__(self):
+            try:
+                self.sap_path:str = r"C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe"
+                
+                self.engine : any = win32com.client.GetObject("SAPGUI").GetScriptingEngine
+                
+                try:
+                    
+                   self.session = self.engine.Children(0).Children(0)
+                   
+                except com_error as e:
+                    
+                   if e.hresult == -2147352567:
+                       
+                        self.connection = self.engine.OpenConnection("100| Jabil SAP - Commercial - PRD [Production]", True)
+                    
+                        self.session = self.connection.Children(0)
+                        
+                        
+            except com_error as e:
+                
+                if e.hresult == -2147221020:
+                    
+                    os.startfile(self.sap_path)
+                    
+                    time.sleep(7)
+                    
+                    self.engine : any = win32com.client.GetObject("SAPGUI").  GetScriptingEngine
+                    
+                    self.connection = self.engine.OpenConnection("100| Jabil SAP - Commercial - PRD [Production]", True)
+                    
+                    self.session = self.connection.Children(0)
+            
+
+
+
+
+class GRNProcessor(Generic[T],ABC):
+        def __init__(self,context:T,session:any):
+            self.context: T = context
+
+            self.session = session
+        def process(self):
+            pass
+
+
+
+class GRN10Processor(GRNProcessor[GRN10Config]):
+        def process(self):
+        
+            self.session.StartTransaction(self.context.tcode.upper())
+            
+            self.session.findById("wnd[0]/usr/ctxtSO_WERKS-LOW").Text = "VN01"
+            print(self.context.posting_date_start)
+            print(self.context.from_date)
+            self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-LOW").Text = f"{self.context.posting_date_start}"
+            
+            print(self.context.to_date)
+            print(self.context.posting_date_end)
+            
+            self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-HIGH").Text = f"{self.context.posting_date_end}"
+            
+            self.session.findById("wnd[0]/usr/btn%_SO_MJAHR_%_APP_%-VALU_PUSH").press()
+            
+            self.session.findById("wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/txtRSCSEL_255-SLOW_I[1,0]").Text = self.context.year
+            
+            self.session.findById("wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/txtRSCSEL_255-SLOW_I[1,1]").Text = self.context.year
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[8]").press()
+            
+            self.session.findById("wnd[0]/usr/ctxtSO_CPUDT-LOW").Text = self.context.entered_date_start
+            
+            self.session.findById("wnd[0]/usr/ctxtSO_CPUDT-HIGH").Text = self.context.entered_date_end
+            
+            self.session.findById("wnd[0]/usr/ctxtSO_BWART-LOW").Text = "101"
+            
+            self.session.findById("wnd[0]/usr/ctxtSO_BWART-HIGH").Text = "102"
+            
+            self.session.findById("wnd[0]/usr/btn%_SO_UNAME_%_APP_%-VALU_PUSH").press()
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[24]").press()
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[8]").press()
+            
+            self.session.findById("wnd[0]/usr/ctxtP_LAY01").Text = "/QUANTITY"
+            
+            self.session.findById("wnd[0]/tbar[1]/btn[8]").press()
+            
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectedRows = "0"
+            
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").contextMenu()
+            
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectContextMenuItem("&XXL")
+            
+            self.session.findById("wnd[1]/usr/ssubSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME").Text = self.context.file_name
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[20]").press()
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[11]").press()
+
+class GRN16Processor(GRNProcessor[GRN16Config]):
+        def process(self):
+            
+            self.session.StartTransaction("ZLGRNS1")
+            
+            self.session.findById("wnd[0]/usr/ctxtS_WERKS-LOW").Text = "VN01"
+            
+            self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-LOW").Text = self.context.entered_date_start
+            
+            self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-HIGH").Text = self.context.entered_date_end
+            
+            self.session.findById("wnd[0]/usr/btn%_S_MBLNR_%_APP_%-VALU_PUSH").press()
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[16]").press()
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[24]").press()
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[8]").press()
+            
+            self.session.findById("wnd[0]/usr/ctxtP_LAYOUT").Text = "/CUONG1"
+            
+            self.session.findById("wnd[0]/tbar[1]/btn[8]").press()
+            
+            self.session.findById("wnd[0]/usr/cntlCNTNR/shellcont/shell").pressToolbarContextButton("&MB_EXPORT")
+            
+            self.session.findById("wnd[0]/usr/cntlCNTNR/shellcont/shell").selectContextMenuItem("&XXL")
+            
+            self.session.findById("wnd[1]/usr/ssubSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME").Text = self.context.file_name
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[20]").press()
+            
+            self.session.findById("wnd[1]/tbar[0]/btn[11]").press()
+
+
+====================================================================================================
+FILE: engine.py
+====================================================================================================
+import sys
+
+import os 
+
+import time 
+
+from step.stage import CombaineStepMachine,CombaineComponent
+
+from communication.ipc import CommunicationToCSharp
+
+class DailyReportExportMachine:
+    def __init__(self,combaine_step_machine_cls:type[CombaineStepMachine]=CombaineStepMachine,combaine_component_cls:type[CombaineComponent]=CombaineComponent):
+        
+        self.combaine_step_machine : CombaineStepMachine  = combaine_step_machine_cls(combaine_component_cls)
+        self.combaine_step_machine.combaine()
+        
+        
+    def run(self)->None:
+        
+        
+        if  self.combaine_step_machine.run_sap:
+            
+                self.combaine_step_machine.run_sap.run()
+        
+        self.combaine_step_machine.writer_excel.run()
+        
+        
+if __name__ == "__main__":
+        event_control:CommunicationToCSharp = CommunicationToCSharp()
+        while True:
+                print("Dang cho lenh....")
+                event_control.waiting_request_event()
+                command : str = event_control.read_memo().split(":")[1]
+                
+                app : DailyReportExportMachine = DailyReportExportMachine(CombaineStepMachine,CombaineComponent)
+                
+                if command == "run_app":
+                    print("Dang chay....")
+                    try:
+                        app.run()
+                        
+                    except Exception as e:
+                        
+                        print(e)
+                        
+                    finally:
+                        event_control.set_respone_event()
+                        
+                else : print("Lenh khong hop le!")
+                #os.system("cls")
+        
+
+
+====================================================================================================
+FILE: git_push.ps1
+====================================================================================================
+
+[Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+Write-Host "Pushsing..."
+
+git init
+git add .
+git commit -m "add try catch for sapConnector 79%"
+git push origin main
+
+====================================================================================================
+FILE: pyproject.toml
+====================================================================================================
+[project]
+name = "new-tool-auto-report"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "altgraph==0.17.5",
+    "annotated-doc==0.0.4",
+    "annotated-types==0.7.0",
+    "anyio==4.12.1",
+    "caugetch==0.0.1",
+    "cffi==2.0.0",
+    "clipboard==0.0.4",
+    "colorama==0.4.6",
+    "comtypes==1.4.14",
+    "cryptography==46.0.3",
+    "et-xmlfile==2.0.0",
+    "fastapi==0.128.0",
+    "fastexcel>=0.19.0",
+    "getpass4==0.0.14.1",
+    "idna==3.11",
+    "keyboard==0.13.5",
+    "markdown-it-py==4.0.0",
+    "mdurl==0.1.2",
+    "msoffcrypto-tool==5.4.2",
+    "nuitka==2.8.9",
+    "numpy==2.4.0",
+    "olefile==0.47",
+    "openpyxl==3.1.5",
+    "ordered-set==4.1.0",
+    "packaging==25.0",
+    "pandas==2.3.3",
+    "pefile==2024.8.26",
+    "polars==1.38.1",
+    "polars-runtime-32==1.38.1",
+    "prompt-toolkit==3.0.52",
+    "psutil==7.1.3",
+    "pycparser==2.23",
+    "pydantic==2.12.5",
+    "pydantic-core==2.41.5",
+    "pygame==2.6.1",
+    "pygments==2.19.2",
+    "pyinstaller==6.17.0",
+    "pyinstaller-hooks-contrib==2025.10",
+    "pynput==1.8.1",
+    "pyperclip==1.11.0",
+    "pypiwin32==223",
+    "python-dateutil==2.9.0.post0",
+    "pytz==2025.2",
+    "pywin32==311",
+    "pywin32-ctypes==0.2.3",
+    "pywinauto==0.6.9",
+    "pyyaml==6.0.3",
+    "questionary==2.1.1",
+    "rich==14.2.0",
+    "setuptools==80.9.0",
+    "six==1.17.0",
+    "starlette==0.50.0",
+    "typing-extensions==4.15.0",
+    "typing-inspection==0.4.2",
+    "tzdata==2025.3",
+    "uv==0.10.6",
+    "watchdog==6.0.0",
+    "wcwidth==0.2.14",
+    "xlwings>=0.36.2",
+    "zstandard==0.25.0",
+]
+
+
+====================================================================================================
+FILE: README.md
+====================================================================================================
+
+
+====================================================================================================
+FILE: step\stage.py
+====================================================================================================
+from components.components import CoreComponent,ConfigComponent,UtilsComponent,SapProcessComponent,CombaineComponent
+from utils.excel_manager import WorkBookManager ,WorkSheetsManager
+import time
+
+
+class RunSapStep:
+        def __init__(self, config:ConfigComponent,sap:SapProcessComponent,writer_cls:type[WorkBookManager] = WorkBookManager):
+            
+                if not sap : return None
+                self.writer_cls = writer_cls
+                
+                self.session = sap.session
+
+                self.grn10_processor = sap.sap_grn10
+
+                self.grn16_processor = sap.sap_grn16
+
+                self.config  = config 
+
+                self.path_report : str = self.config.daily_report_config.verify_config.report_daily_path
+                
+                self.writer_daily_report =  self.writer_cls(self.path_report,False)
+                
+                self.writer_sheet_user = self.writer_daily_report.get_sheet("User")
+                
+                self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config.daily_report_config.verify_config.sheet_name)
+                
+                
+                self.writer_sheet_grn_10  = self.writer_daily_report.get_sheet(self.config.daily_report_config.grn_10_numbers_config.sheet_name)
+                
+                
+                self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config.daily_report_config.grn_16_numbers_config.sheet_name)
+                
+
+            
+        
+            
+        def copy_user_sheet(self)-> None:
+            self.writer_sheet_user.copy_to_last_row("A:A",3)
+            
+                
+        def run(self)-> None:
+            
+            self.writer_sheet_user.delete_to_last_row(5)
+            
+            self.writer_sheet_user.write((self.config.daily_report_config.verify_config._keyin_list,"A4"))
+            
+            self.copy_user_sheet()
+            
+            self.grn10_processor.process()
+            
+            time.sleep(3)
+            
+            
+            self.writer_grn10_data = self.writer_cls(self.config.daily_report_config.grn_10_numbers_config.file_path).get_sheet("Data")
+            
+            self.writer_grn10_data.copy_to_last_row("A:A",2)
+            
+            self.grn16_processor.process()
+            
+            time.sleep(3)
+            
+            
+            self.writer_grn16_data = self.writer_cls(self.config.daily_report_config.grn_16_numbers_config.file_path).get_sheet("Data")
+            
+            
+            self.writer_grn10_data.close()
+            
+            
+            self.writer_grn16_data.close()
+            
+            self.writer_daily_report.close()
+            
+
+            
+class ProcessDataStep:
+        def __init__(self,core:CoreComponent,uls:UtilsComponent,config:ConfigComponent) -> None:
+            
+            self.flag_run_sap = config.daily_report_config.run_sap
+            
+            self.core = core
+            
+            self.uls  = uls
+            
+            self.config = config
+            
+            self.verify_data_process = None 
+            
+            self.grn10_data_process  = None
+            
+            self.grn16_data_process  = None
+            
+            self.out_grn16 = None
+            
+            
+        def run(self)->None:
+            
+            self.verify_data_process = self.core.data_process_verify.Process(self.uls.verify_data_ingestor.ingest_data())
+            
+            if self.flag_run_sap:
+                    
+                    self.grn10_data_process  = self.core.data_process_grn10.Process(self.uls.grn10_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_10_numbers_config.file_path),self.out_grn16,self.config.daily_report_config.delete_old_day)
+                    
+                    self.out_grn16 = self.grn10_data_process[1]
+                    
+                    self.grn16_data_process  = self.core.data_process_grn16.Process(self.uls.grn16_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_16_numbers_config.file_path),self.out_grn16,self.config.daily_report_config.delete_old_day)
+            
+            
+class WriteExcelStep:
+    def __init__(self,process_step:ProcessDataStep,writer_cls:type[WorkBookManager] = WorkBookManager,config:ConfigComponent=ConfigComponent):
+        
+        
+            self.flag_run_sap = config.daily_report_config.run_sap
+            
+            self.process_step = process_step
+            
+            self.writer_cls = writer_cls 
+            
+            self.veriy_data_processed = None
+            
+            self.config_verify = config.daily_report_config.verify_config
+            
+            self.config_grn10  = None
+            
+            self.config_grn16  = None
+            
+            self.writer_sheet_grn_10  = None
+            
+            self.writer_sheet_grn_16  = None
+            
+            
+            
+            
+            
+            if self.flag_run_sap:  
+        
+                    self.config_grn10  = config.daily_report_config.grn_10_numbers_config
+                    
+                    self.config_grn16  = config.daily_report_config.grn_16_numbers_config
+                    
+                    self.grn10_data_processed = None
+                    
+                    self.grn16_data_processed = None
+                    
+        
+        
+                    
+    def write(self)->None:
+            
+            self.writer_sheet_verify.delete_to_last_row(2)
+
+            self.writer_sheet_verify.write((self.veriy_data_processed,"A2"))
+            
+            if self.flag_run_sap:
+                
+                    self.writer_sheet_grn_10.delete_to_last_row(2)
+    
+                    self.writer_sheet_grn_16.delete_to_last_row(2)
+                
+    
+                    self.writer_sheet_grn_10.write((self.grn10_data_processed,"A2"))
+    
+                    self.writer_sheet_grn_16.write((self.grn16_data_processed,"A2"))
+            
+            
+            self.writer_daily_report.close()
+            
+            
+    def reopen_excel(self)-> None:
+        
+        _ = self.writer_cls(self.config_verify.report_daily_path,True)
+        _.refresh()
+        _.save_workbook()
+        
+    
+    def run(self)-> None:
+        
+        self.process_step.run()
+        
+        self.veriy_data_processed = self.process_step.verify_data_process 
+
+        self.writer_daily_report =  self.writer_cls(self.config_verify.report_daily_path,False)
+
+        self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config_verify.sheet_name)  
+
+
+        if self.flag_run_sap:
+        
+            self.writer_sheet_grn_10  = self.writer_daily_report.get_sheet(self.config_grn10.sheet_name)   
+                        
+            self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config_grn16.sheet_name)
+    
+            self.grn10_data_processed = self.process_step.grn10_data_process[0]
+            
+            self.grn16_data_processed = self.process_step.grn16_data_process
+            
+            
+        self.write()
+        
+        self.reopen_excel()
+
+            
+
+class CombaineStepMachine:
+    def  __init__(self,combaine_component_machine:type[CombaineComponent]=CombaineComponent):
+        
+        self.component : CombaineComponent = combaine_component_machine()
+        
+        self.component.combaine()
+        
+        self.run_sap = None
+        
+        self.process_data = None
+        
+        self.writer_excel = None
+
+    def combaine(self)-> None:
+        if self.component.config.daily_report_config.run_sap:
+                self.run_sap = RunSapStep(self.component.config,self.component.sap,WorkBookManager)
+        
+        self.process_data = ProcessDataStep(self.component.core,self.component.uls,self.component.config)
+        
+        self.writer_excel = WriteExcelStep(self.process_data,WorkBookManager,self.component.config)          
+        
+
+        
+    
+
+====================================================================================================
+FILE: test\__init__.py
+====================================================================================================
+
+
+====================================================================================================
+FILE: test\test.py
+====================================================================================================
+import os
+import getpass
+
+c : dict = {3601183: {'NAME': "NGUYỄN KHẮC MINH PHƯƠNG", 'GENDER': "MALE", 'ROLE': "VERIFY", 'SHIFT': "VN80",' LOC': "TBS", 'STATUS': "ON DUTY", 'FLAG': 0}}
+k,v = list(c.items())[0]
+print(k)
+print(v['FLAG'])
+
+====================================================================================================
+FILE: utils\__init__.py
+====================================================================================================
+
+
+====================================================================================================
+FILE: utils\config_loader.py
+====================================================================================================
+
+import getpass
+import datetime as dt 
+from pydantic import BaseModel,model_validator,PrivateAttr
+from utils.static_variables import yaml_path,yaml_path_home
+import yaml
+import os
+from utils.helper import Helper
+import sys 
+from utils.file_handler import FileHelper
+from polars import DataFrame
+
+class VerifyConfig(BaseModel): 
+        
+        sheet_name:str
+        
+        from_date : dt.date
+        
+        to_date : dt.date
+        
+        from_time:dt.time
+        
+        to_time:dt.time
+        
+        local_path:str = fr"C:\Users\{getpass.getuser()}\Documents\Report"
+        
+        report_daily_path : str = "" if getpass.getuser() == "3601183" else r"C:\Users\fuongsensei\Downloads\Report Scan Verify Shiftly (RCV).xlsm"
+        
+        base_report_file: str =  r"\\AWASE1HCMICAP01\AppsData\GR Ver Report"
+        
+        sap_rcv : dict[int, dict[str, str | int]]
+        
+        path_local_mapping :dict[str,str] ={}
+        
+        verify_list :list[int] =[]
+        
+        _keyin_list  : DataFrame | None = PrivateAttr(default=None)
+        
+        _interpolate_months:list[str] = []
+
+    
+        @model_validator(mode='after')
+        def _initialize_filed(self):
+            
+            self._interpolate_months = self._get_short_months_and_year()
+            
+            self.verify_list = self._create_verify_list()
+            
+            self.path_local_mapping = self._create_path_mapping()
+            
+            self._keyin_list = DataFrame(self._create_keyin_list()).drop("FLAG")
+            
+            return self
+            
+        def _get_short_months_and_year(self)->list[str] :
+            
+            from_year,from_month = (self.from_date.year,self.from_date.month)
+            
+            to_year,to_month     = (self.to_date.year,self.to_date.month)
+            
+            
+            if from_year != to_year:
+                
+                if to_year < from_year:
+                    
+                    Helper.show_error(None,"Năm trước không được lớn hơn năm sau !")
+                else:
+                    to_month+=((to_year-from_year)*12)
+    
+                    temp : list[str] = []
+                    
+                    for y in range(from_year,to_year+1):
+                        
+                        for m in range(from_month,to_month+1):
+                            
+                            if m %12 == 0:
+                                
+                                temp.append(f"{dt.date(1,12,1).strftime("%b")} {y}") 
+                                
+                                from_month=m+1
+                                
+                                break
+                            
+                            temp.append(f"{dt.date(1,m%12,1).strftime("%b")} {y}")
+                            
+                return temp
+            
+            else:
+                
+                return [f"{dt.date(1,i,1).strftime("%b")} {from_year}" for i in range(from_month,to_month+1)]
+                    
+        
+        def _create_verify_list(self)-> list[int]|None :
+            t:list[int] = []
+            
+            for k,v in self.sap_rcv.items():
+                
+                if v['FLAG'] == 1 or v['FLAG'] == 3:
+                    
+                    t.append(k) 
+                    
+            if  not len(t):
+                
+                print(len(t))
+                
+                Helper.show_error(None,"Phải chọn ít nhất 1 SAP")
+                
+                sys.exit(1)
+                
+            return t   
+        
+
+        def _create_keyin_list(self) -> list[dict]:
+            t:list[dict] = []
+            
+            for k,v in self.sap_rcv.items():
+                
+                if v['FLAG'] == 2 or v["FLAG"] == 3:
+                    
+                    new_dict : dict = {"WD":k,**v,"SLOC":"06RI"} if v['LOC'] == "TBS" else {"WD":k,**v,"SLOC":"03RI"}
+                    
+                    t.append(new_dict)
+                    
+            if not len(t):
+                
+                    Helper.show_error(None,"Không thể khởi tạo bảng user keyin !")
+                    
+                    sys.exit(1)
+                    
+            return t
+        
+        def _create_path_mapping(self)->dict[str,str]:
+            
+            mapping : dict[str,str] = {}
+            
+            if getpass.getuser() == "fuongsensei":
+                
+                self.base_report_file = r"E:\AWASE1HCMICAP01\AppsData\GR Ver Report"
+                
+            base_network : str = self.base_report_file
+            
+            base_local   : str = self.local_path
+            
+            for s in self.verify_list:
+                
+                temp: str = f"GR Verification {s}.xlsx"
+                
+                for month_and_year_folder in self._interpolate_months:
+                    
+                    mapping[os.path.join(os.path.join(base_network,month_and_year_folder),temp)] = os.path.join(os.path.join    (base_local,month_and_year_folder),temp)
+                
+            return mapping
+            
+    
+class GRN10Config(BaseModel):
+        
+        sheet_name:str
+        
+        posting_date_start:str | None = None
+        
+        posting_date_end:str | None = None
+        
+        entered_date_start:str | None = None
+        
+        entered_date_end  :str | None = None
+        
+        from_date:dt.date
+        
+        to_date : dt.date
+        
+        file_name:str
+        
+        file_path:str
+        
+        number_format_string:str
+        
+        number_format_date  :str
+        
+        columns_string_format:list[str]
+        
+        columns_date_format  :list[str]
+        
+        drop_columns : list[int]
+        
+        year:int | None = None
+        
+        tcode :str = "z_invmvmts"
+        
+        @model_validator(mode="after")
+        def _initialize_field(self):
+                
+                self.year = self.from_date.year
+                
+                self.posting_date_start = self.from_date.strftime("%m/%d/%Y")
+                
+                self.posting_date_end  = self.to_date.strftime("%m/%d/%Y")
+                
+                self.entered_date_start = (self.from_date - dt.timedelta(3)).strftime("%m/%d/%Y")
+                
+                self.entered_date_end  = self.posting_date_end
+                
+                self.file_name = f"EXPORT_GRN10_{self.from_date}"
+                
+                self.file_path = rf"C:\Temp\{self.file_name}.xlsx"
+                return self
+    
+    
+    
+class GRN16Config(BaseModel):
+            
+            sheet_name : str
+            
+            from_date : dt.date
+            
+            to_date : dt.date
+            
+            entered_date_start:str | None = None
+            
+            entered_date_end  :str | None = None
+            
+            file_name :str
+            
+            file_path:str
+            
+            number_format_string:str
+            
+            number_format_date:str
+            
+            columns_string_format:list[str]
+            
+            columns_date_format : list[str]
+            
+            drop_columns : list[int]
+            
+            tcode:str = "zlgrns1"
+
+            @model_validator(mode='after')
+            def _initialize_field(self):
+                    
+                    self.entered_date_start = (self.from_date - dt.timedelta(3)).strftime("%m/%d/%Y")
+                    
+                    self.entered_date_end = self.to_date.strftime("%m/%d/%Y")
+                    
+                    self.file_name =  f"EXPORT_GRN16_{self.from_date}"
+                    
+                    self.file_path = rf"C:\Temp\{self.file_name}.xlsx"
+
+                    
+                        
+                    
+                    return self
+
+
+
+class DailyConfig(BaseModel):
+        
+        verify_config :VerifyConfig
+        
+        grn_10_numbers_config:GRN10Config
+        
+        grn_16_numbers_config:GRN16Config
+        
+        run_sap : bool
+        
+        delete_old_day :bool
+    
+class  Profile(BaseModel):
+    
+    daily_report_config:DailyConfig
+
+
+
+def create_profile()->Profile:
+    
+    path = yaml_path if not getpass.getuser() == "fuongsensei" else yaml_path_home
+    try:
+        
+        with open(path,mode='r',encoding='utf-8') as f :
+            
+            data = yaml.safe_load(f)
+        
+            pro5 :Profile = Profile(**data['profile'])
+            
+            return pro5   
+    
+    except KeyError as erkey:
+        
+        Helper.show_error(None,type(erkey).__name__)
+        
+    except Exception as e:
+        
+        Helper.show_error(type(e).__name__)
+
+
+====================================================================================================
+FILE: utils\data_utils.py
+====================================================================================================
+from concurrent.futures import ThreadPoolExecutor,as_completed
+import os 
+import io
+import msoffcrypto
+import threading 
+import polars as pl
+from utils.file_handler import FileHelper
+from utils.helper import Helper
+import sys
+class DataIngestor:
+    def __init__(self,paths_map:dict[str,str]|None,raw_file=False):
+
+            self.raw_file = raw_file
+
+            if not self.raw_file:
+
+                self.paths_map : dict[str,str] = paths_map
+
+                self.paths_folder_locals : set[str] = set([os.path.dirname(v) for k,v in  paths_map.items()])
+
+                self.file_error:list[str] =[]
+
+
+    def load_data_raw_file(self,file_path:str):
+
+        if not self.raw_file:
+
+            Helper.show_error(None,"Chức năng không khả dụng")
+
+            sys.exit(1)
+
+        return pl.read_excel(file_path,engine="calamine")
+
+    
+    
+    
+    def ingest_data(self) -> pl.DataFrame:
+
+        if self.raw_file:
+
+            Helper.show_error(None,"Chức năng không khả dụng")
+
+            sys.exit(1)
+
+        if len(self.paths_map) == 1 :
+
+            s,d = list(self.paths_map.items())[0]
+
+            
+            data_single : pl.DataFrame = self.load_single_file(s,d)
+
+            if  data_single is None: 
+
+                Helper.show_error(None,"Load single data failed ! \nCó thể đường dẫn nguồn không tồn tại ! ")
+    
+                sys.exit(0)
+                
+            FileHelper.remove_folder(d)
+
+            return data_single
+
+        
+        data : pl.DataFrame = self.load_multiple_files()
+
+        for i in self.paths_folder_locals:
+
+            FileHelper.remove_folder(i)
+
+        return data
+
+        
+    def load_single_file(self,src_p:str,dest_p:str) -> pl.DataFrame | None:
+
+        if self.raw_file:
+
+            Helper.show_error(None,"Chức năng không khả dụng")
+
+            sys.exit(1)
+
+        try:
+
+            if os.path.exists(src_p):
+
+                FileHelper.create_folder(dest_p)
+
+                FileHelper.file_transfer(src_p,dest_p)
+
+                data:io.BytesIO = self._load_data_with_key(dest_p,"J@bil2022")
+
+                data.seek(0)
+
+                df:pl.DataFrame = pl.read_excel(data,infer_schema_length=0,has_header=False,engine="calamine")
+
+                df = df.slice(1)
+
+                df = df.select(df.columns[:14])
+
+                df.columns  = [
+                                "GRN", "MPN", "DC", "LOT (1T)", "Qty", 
+                                "User/Time", "MPN SAP", "DC SAP", "LOT SAP (1T)", 
+                                "MPN Verify", "DC Verify", "LOT Verify", 
+                                "Stk Placement", "Qty Ver"]
+
+                
+                
+            
+                if df is not None and not df.is_empty():
+
+                    return df
+                else:
+                    sys.exit(1)
+            else:
+
+                return None
+
+                    
+        except Exception as e:
+
+            Helper.show_error(e)
+
+            sys.exit(1)
+
+            
+
+    
+    def load_multiple_files(self) -> list[pl.DataFrame]:
+
+            if self.raw_file :
+
+                Helper.show_error(None,"Chức năng không khả dụng")
+
+                sys.exit(1)
+
+            data_list : list[pl.DataFrame]=[]
+
+            try:
+
+                with ThreadPoolExecutor(max_workers=10) as exe :
+
+                        futures = [exe.submit(self.load_single_file,src,dest) for src,dest in 
+                        self.paths_map.items()]
+                        
+                        for f in as_completed(futures):
+
+                                if f.result() is not None:
+
+                                    data_list.append(f.result())
+
+                if not len(data_list):
+
+                    Helper.show_error(None,"Vui lòng kiểm tra lại sự tồn tại của file nguồn hoặc file đích")
+
+                    sys.exit(1)
+                return pl.concat(data_list,rechunk=True,strict=True,parallel=True)
+
+            except Exception as e:
+
+                Helper.show_error(None,f"{e}")
+
+    
+
+    
+    
+    def _load_data_with_key(self,path:str, p:str) -> io.BytesIO:
+        
+                if self.raw_file:
+                    
+                    Helper.show_error(None,"Chức năng không khả dụng")
+                    
+                    sys.exit(1)
+                    
+                with open(path, 'rb') as file:
+                        
+                        office_file :msoffcrypto.OfficeFile = msoffcrypto.OfficeFile(file)
+                        
+                        if office_file.is_encrypted():
+                            
+                            office_file.load_key(p)
+                            
+                            decrypted : io.BytesIO = io.BytesIO()
+                            
+                            office_file.decrypt(decrypted)
+                            
+                            return decrypted
+                        
+                        else:
+                            
+                            file.seek(0)
+                            
+                            return io.BytesIO|(file.read())
+                        
+                        
+                        
+
+
+====================================================================================================
+FILE: utils\excel_manager.py
+====================================================================================================
+import xlwings as xw
+
+from utils.helper import Helper
+
+from typing import Any
+
+from polars import DataFrame
+
+import re
+
+import os 
+class WorkSheetsManager:
+
+      def __init__(self,sheet_name :str,wb:'WorkBookManager'):
+
+         self.wb : WorkBookManager = wb
+
+         self.sheet : xw.Sheet = self.wb.sheets[sheet_name]
+
+      def write(self,place:tuple[DataFrame | Any ,str]) -> None:
+
+         """Tham số dùng để truyền data và vị trí vào bằng 1 tuple dưới dạng (data, vùng cần ghi)"""
+
+         data,rng = place
+
+         try:
+
+            self.wb.app.screen_updating = False
+
+            self.wb.app.display_alerts = False
+
+            self.wb.app.calculation = 'manual'
+
+            self.wb.app.enable_events = False
+
+            if isinstance(data,DataFrame):
+
+               self.sheet.range(rng).value = data.to_numpy()
+
+               self.wb.save_workbook()
+
+            else :
+
+                  self.sheet.range(rng).value = data
+
+                  self.wb.save_workbook()
+
+         except Exception as e:
+
+               Helper.show_error(None,e)
+
+         finally :
+
+            self.wb.app.screen_updating = True
+
+            self.wb.app.display_alerts = True
+
+            self.wb.app.calculation = 'automatic'
+
+            self.wb.app.enable_events = True
+            
+            
+
+      def delete_data(self,rng:str|tuple[str,str]) -> bool:
+
+         """Vui lòng truyền str dưới dạng 'start:end' """
+
+         try:
+
+            if isinstance(rng,str):
+
+               self.sheet.range(rng).clear_contents()
+
+               return True
+
+            if isinstance(rng,tuple):
+
+               s_p,e_p = rng
+
+               self.sheet.range(f"{s_p}:{e_p}").clear_contents()
+
+            else:
+
+                  Helper.show_error(None,"Sai kiểu dữ liệu truyền vào !")
+
+         except Exception as e :
+
+            Helper.show_error(None,e)
+
+            return False
+
+      def get_data_range(self,rng:str,get_only_endpoint:bool = False)-> tuple[str,str] | str:
+
+         """ Vui lòng truyền str dưới dạng 'start : end' không cần thêm bất kì số hàng nào\nĐúng : 'A:N'\nSai  :    'A1:N1'\nNếu chỉ muốn trả về điểm cuối cùng chứa dữ liệu hãy truyền get_only_endpoint = True\n"""
+
+         try:
+
+               point : list[str] = rng.split(":")
+
+               if len(point) > 2:
+
+                  Helper.show_error(None,"Vui lòng truyền đúng định dạng 'start:end' ")
+
+               else:
+
+                     start_p  , end_p = point
+
+                     last_row: int = (self.sheet.range(f"A{self.sheet.cells.last_cell.row}").end("up").row)
+
+                     end_p+=str(last_row)
+
+                     if get_only_endpoint:
+
+                        return last_row
+
+                     return (start_p,end_p)
+
+         except Exception as e:
+
+            Helper.show_error(None,e)
+
+      def delete_row(self, rng_row: tuple[int, int]) -> None:
+
+            try:
+
+               from_row, to_row = rng_row
+
+               if(to_row <  from_row):return
+
+               self.sheet.range(f"{from_row}:{to_row}").delete()
+
+               return
+
+            except Exception as e:
+                     Helper.show_error(None,e)
+                  
+      def delete_to_last_row(self,start_index:int)->None:
+            try:
+               
+               last_row : int =  self.sheet.range("A" + str(self.sheet.cells.last_cell.row)).end("up").row
+               
+               if start_index >= last_row : return
+               
+               self.sheet.range(f"{start_index}:{last_row}").delete()
+               
+            except Exception as e:
+               
+               Helper.show_error(None,e)
+               
+      def range_copy(self,rng:str):
+
+         try:
+
+            self.sheet.range(rng).copy()
+
+         except Exception as e :
+
+               Helper.show_error(None,e)
+               
+
+      def format_col(self,fm:str,col_or_range:str|list[str]) -> None:
+
+         if fm == "@" or fm == "dd/mm/yyyy":
+
+               if isinstance(col_or_range,str):
+
+                  self.sheet.range(col_or_range).number_format = fm
+
+               if isinstance(col_or_range,list):
+
+                  for col in col_or_range:
+
+                     self.sheet.range(f"{col}:{col}").number_format = fm
+                     
+                     
+      def  copy_to_last_row(self,rng_to_range:str,index_start:int)->None:
+               from_rng ,to_rng = rng_to_range.split(":")
+               
+               last_row: int = (self.sheet.range(f"A{self.sheet.cells.last_cell.row}").end("up").row)
+               
+               if index_start >= last_row: return
+               
+               self.sheet.range(f"{from_rng}{index_start}:{to_rng}{last_row}").copy()
+      
+      def  close(self)->None:
+         self.wb.close()
+         
+               
+class WorkBookManager:
+   def __init__(self,path:str,on_screen:bool = True):
+      
+         self.path :str = path
+          
+         if not os.path.exists(path):
+            
+            raise Exception ("Đường dẫn không tồn tại !")
+            
+         else:
+            self.app : xw.App|None = None
+   
+            self.wb  : xw.Book|None = None
+            self.sheets  = None
+   
+            for app in xw.apps:
+   
+               for wb in app.books:
+   
+                  if wb.fullname == path:
+   
+                     self.app = app
+   
+                     self.wb  = wb
+                     
+                     self.sheets = wb.sheets
+                     
+                     self.app.display_alerts = False
+   
+            if  not self.app or not self.wb:
+   
+                  self.app = xw.App(visible=on_screen,add_book=False)
+   
+                  self.wb  = self.app.books.open(path,update_links=False)
+                  
+                  self.sheets = self.wb.sheets
+                  
+                  self.app.display_alerts = False
+
+
+   def get_sheet(self,sheet_name:str) -> WorkSheetsManager:
+
+      try:
+
+            return  WorkSheetsManager(sheet_name,self)
+
+      except Exception as e:
+
+            Helper.show_error(None,"Excel đang bận hoặc tên sheet không đúng !")
+
+   def refresh(self) -> None:
+
+      try:
+
+            self.wb.api.RefreshAll()
+
+      except Exception as e:
+
+            Helper.show_error(None,e)
+
+   def close(self)->None:
+
+         self.wb.close()
+         if self.app.books.count < 1:
+            self.app.quit()
+         
+   def create_empty_book(self) ->tuple[xw.App,xw.Book]:
+      
+         app : xw.App = xw.App(add_book=False,visible=False)
+         
+         wb  : xw.Book = app.books.add()
+         
+         wb.save(self.path)
+         
+         return app,wb
+      
+   def save_workbook(self)->None:
+         self.wb.save()
+      
+
+====================================================================================================
+FILE: utils\file_handler.py
+====================================================================================================
+import os 
+import shutil
+from utils.helper import Helper 
+class FileHelper:
+    def __init__(self):
+        pass
+        
+    @staticmethod
+    def create_folder(folder_path:str|list[str]):
+
+            
+        if folder_path:
+            
+            os.makedirs(os.path.dirname(folder_path),exist_ok=True) if not  os.path.isdir(folder_path) else os.makedirs(folder_path,exist_ok=True)
+            
+        else:
+            
+            print("Đường dẫn không hợp lệ")
+        
+    @staticmethod
+    def file_transfer(src:str,dest:str):
+        
+        try:
+            if os.path.exists(src):
+                
+                    shutil.copy(src,dest)
+            else:
+                Helper.show_error(None,f"Đường dẫn gốc không hợp lệ !{src}")
+       
+        except Exception as e:
+            
+            Helper.show_error(e.errno,"File đích chưa được tạo hãy kiểm tra lại !")
+            
+            os._exit(0)
+        
+    @staticmethod    
+    def remove_folder(path:str):
+        try:
+            
+            if path:
+                
+                shutil.rmtree(os.path.dirname(path)) if not os.path.isdir(path) else shutil.rmtree(path)
+            
+        except FileNotFoundError as e : 
+            
+            Helper.show_error(e.errno,"Không tìm thấy đường dẫn file cần xóa!")
+
+
+====================================================================================================
+FILE: utils\helper.py
+====================================================================================================
+import ctypes
+import traceback
+import sys
+try:
+        ctypes.windll.user32.SetProcessDpiAwarenessContext(ctypes.c_void_p(-4))
+except:
+        pass
+
+class Helper:
+        @staticmethod
+        def show_error(errno:int|None ,message:str):
+                
+                if errno!=None:
+                        
+                        ctypes.windll.user32.MessageBoxW(0,f"{message}".upper(),f"Mã lỗi : {errno}",0x10)
+                        
+                else:
+                        
+                        ctypes.windll.user32.MessageBoxW(0,f"{message}".upper(),f"Mã lỗi : Không xác định !",0x10)
+                        
+        def show_traceback_exception(except_type:any,value:str,tb:any):
+                
+                ctypes.windll.user32.MessageBoxW(0,"".join(traceback.format_exception(except_type,value,tb)),"Exception",0x10)
+                
+                sys.exit(1)
+
+
+
+====================================================================================================
+FILE: utils\static_variables.py
+====================================================================================================
+
+
+yaml_path : str = r"C:\Users\3601183\Documents\Python\new_tool_auto_report\config.yml"
+yaml_path_home : str =  r"C:\Users\fuongsensei\Documents\Python\new_tool_auto_report\config.yml"

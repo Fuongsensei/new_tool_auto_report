@@ -145,19 +145,19 @@ profile:
       number_format_string: "@"
       number_format_date: "dd/mm/yyyy"
       columns_string_format:
-      - "A"
-      - "H"
-      - "I"
-      - "L"
-      - "M"
-      - "O"
-      - "J"
+        - "A"
+        - "H"
+        - "I"
+        - "L"
+        - "M"
+        - "O"
+        - "J"
       columns_date_format:
-      - "B"
-      - "C"
+        - "B"
+        - "C"
       drop_columns:
-      - 97
-      - 93
+        - 97
+        - 93
     grn_16_numbers_config:
       sheet_name: "Label (16 So)"
       from_date: 2026-06-25
@@ -167,18 +167,18 @@ profile:
       number_format_string: "@"
       number_format_date: "dd/mm/yyyy"
       columns_string_format:
-      - "C"
-      - "F"
-      - "J"
-      - "H"
-      - "G"
-      - "M"
-      - "O"
-      - "R"
+        - "C"
+        - "F"
+        - "J"
+        - "H"
+        - "G"
+        - "M"
+        - "O"
+        - "R"
       columns_date_format:
-      - "U"
-      - "V"
-      - "W"
+        - "U"
+        - "V"
+        - "W"
       drop_columns:
-      - 22
+        - 22
 ...

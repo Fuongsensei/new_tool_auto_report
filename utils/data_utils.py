@@ -1,193 +1,142 @@
-from concurrent.futures import ThreadPoolExecutor,as_completed
-import os 
+from concurrent.futures import ThreadPoolExecutor, as_completed
+import os
 import io
 import msoffcrypto
-import threading 
+import threading
 import polars as pl
 from utils.file_handler import FileHelper
-from utils.helper import Helper
-import sys
+
+
 class DataIngestor:
-    def __init__(self,paths_map:dict[str,str]|None,raw_file=False):
-
-            self.raw_file = raw_file
-
-            if not self.raw_file:
-
-                self.paths_map : dict[str,str] = paths_map
-
-                self.paths_folder_locals : set[str] = set([os.path.dirname(v) for k,v in  paths_map.items()])
-
-                self.file_error:list[str] =[]
-
-
-    def load_data_raw_file(self,file_path:str):
+    def __init__(self, paths_map: dict[str, str] | None, raw_file=False):
+        self.raw_file = raw_file
 
         if not self.raw_file:
+            self.paths_map: dict[str, str] = paths_map
+            self.paths_folder_locals: set[str] = set(
+                [os.path.dirname(v) for k, v in paths_map.items()]
+            )
+            self.file_error: list[str] = []
 
-            Helper.show_error(None,"Chức năng không khả dụng")
+    def load_data_raw_file(self, file_path: str):
+        if not self.raw_file:
+            raise RuntimeError("Chức năng không khả dụng")
 
-            sys.exit(1)
+        return pl.read_excel(file_path, engine="calamine")
 
-        return pl.read_excel(file_path,engine="calamine")
-
-    
-    
-    
     def ingest_data(self) -> pl.DataFrame:
-
         if self.raw_file:
+            raise RuntimeError("Chức năng không khả dụng")
 
-            Helper.show_error(None,"Chức năng không khả dụng")
+        if len(self.paths_map) == 1:
+            s, d = list(self.paths_map.items())[0]
+            data_single: pl.DataFrame = self.load_single_file(s, d)
 
-            sys.exit(1)
+            if data_single is None:
+                raise FileNotFoundError(
+                    "Load single data failed! Có thể đường dẫn nguồn không tồn tại!"
+                )
 
-        if len(self.paths_map) == 1 :
-
-            s,d = list(self.paths_map.items())[0]
-
-            
-            data_single : pl.DataFrame = self.load_single_file(s,d)
-
-            if  data_single is None: 
-
-                Helper.show_error(None,"Load single data failed ! \nCó thể đường dẫn nguồn không tồn tại ! ")
-    
-                sys.exit(0)
-                
             FileHelper.remove_folder(d)
-
             return data_single
 
-        
-        data : pl.DataFrame = self.load_multiple_files()
+        data: pl.DataFrame = self.load_multiple_files()
 
         for i in self.paths_folder_locals:
-
             FileHelper.remove_folder(i)
 
         return data
 
-        
-    def load_single_file(self,src_p:str,dest_p:str) -> pl.DataFrame | None:
-
+    def load_single_file(self, src_p: str, dest_p: str) -> pl.DataFrame | None:
         if self.raw_file:
-
-            Helper.show_error(None,"Chức năng không khả dụng")
-
-            sys.exit(1)
+            raise RuntimeError("Chức năng không khả dụng")
 
         try:
-
             if os.path.exists(src_p):
-
                 FileHelper.create_folder(dest_p)
+                FileHelper.file_transfer(src_p, dest_p)
 
-                FileHelper.file_transfer(src_p,dest_p)
-
-                data:io.BytesIO = self._load_data_with_key(dest_p,"J@bil2022")
-
+                data: io.BytesIO = self._load_data_with_key(dest_p, "J@bil2022")
                 data.seek(0)
 
-                df:pl.DataFrame = pl.read_excel(data,infer_schema_length=0,has_header=False,engine="calamine")
+                df: pl.DataFrame = pl.read_excel(
+                    data,
+                    infer_schema_length=0,
+                    has_header=False,
+                    engine="calamine",
+                )
 
                 df = df.slice(1)
-
                 df = df.select(df.columns[:14])
+                df.columns = [
+                    "GRN",
+                    "MPN",
+                    "DC",
+                    "LOT (1T)",
+                    "Qty",
+                    "User/Time",
+                    "MPN SAP",
+                    "DC SAP",
+                    "LOT SAP (1T)",
+                    "MPN Verify",
+                    "DC Verify",
+                    "LOT Verify",
+                    "Stk Placement",
+                    "Qty Ver",
+                ]
 
-                df.columns  = [
-                                "GRN", "MPN", "DC", "LOT (1T)", "Qty", 
-                                "User/Time", "MPN SAP", "DC SAP", "LOT SAP (1T)", 
-                                "MPN Verify", "DC Verify", "LOT Verify", 
-                                "Stk Placement", "Qty Ver"]
-
-                
-                
-            
                 if df is not None and not df.is_empty():
-
                     return df
-                else:
-                    sys.exit(1)
-            else:
+                
 
+                raise RuntimeError(f"File không có data hợp lệ: {dest_p}")
+
+            else:
                 return None
 
-                    
         except Exception as e:
+            raise RuntimeError(f"Load single file thất bại: {src_p} -> {dest_p}") from e
 
-            Helper.show_error(e)
+    def load_multiple_files(self) -> pl.DataFrame:
+        if self.raw_file:
+            raise RuntimeError("Chức năng không khả dụng")
 
-            sys.exit(1)
+        data_list: list[pl.DataFrame] = []
 
-            
+        try:
+            with ThreadPoolExecutor(max_workers=10) as exe:
+                futures = [
+                    exe.submit(self.load_single_file, src, dest)
+                    for src, dest in self.paths_map.items()
+                ]
 
-    
-    def load_multiple_files(self) -> list[pl.DataFrame]:
+                for f in as_completed(futures):
+                    if f.result() is not None:
+                        data_list.append(f.result())
 
-            if self.raw_file :
+            if not len(data_list):
+                raise FileNotFoundError(
+                    "Vui lòng kiểm tra lại sự tồn tại của file nguồn hoặc file đích"
+                )
 
-                Helper.show_error(None,"Chức năng không khả dụng")
+            return pl.concat(data_list, rechunk=True, strict=True, parallel=True)
 
-                sys.exit(1)
+        except Exception as e:
+            raise RuntimeError("Load multiple files thất bại") from e
 
-            data_list : list[pl.DataFrame]=[]
+    def _load_data_with_key(self, path: str, p: str) -> io.BytesIO:
+        if self.raw_file:
+            raise RuntimeError("Chức năng không khả dụng")
 
-            try:
+        with open(path, "rb") as file:
+            office_file: msoffcrypto.OfficeFile = msoffcrypto.OfficeFile(file)
 
-                with ThreadPoolExecutor(max_workers=10) as exe :
+            if office_file.is_encrypted():
+                office_file.load_key(p)
+                decrypted: io.BytesIO = io.BytesIO()
+                office_file.decrypt(decrypted)
+                return decrypted
 
-                        futures = [exe.submit(self.load_single_file,src,dest) for src,dest in 
-                        self.paths_map.items()]
-                        
-                        for f in as_completed(futures):
-
-                                if f.result() is not None:
-
-                                    data_list.append(f.result())
-
-                if not len(data_list):
-
-                    Helper.show_error(None,"Vui lòng kiểm tra lại sự tồn tại của file nguồn hoặc file đích")
-
-                    sys.exit(1)
-                return pl.concat(data_list,rechunk=True,strict=True,parallel=True)
-
-            except Exception as e:
-
-                Helper.show_error(None,f"{e}")
-
-    
-
-    
-    
-    def _load_data_with_key(self,path:str, p:str) -> io.BytesIO:
-        
-                if self.raw_file:
-                    
-                    Helper.show_error(None,"Chức năng không khả dụng")
-                    
-                    sys.exit(1)
-                    
-                with open(path, 'rb') as file:
-                        
-                        office_file :msoffcrypto.OfficeFile = msoffcrypto.OfficeFile(file)
-                        
-                        if office_file.is_encrypted():
-                            
-                            office_file.load_key(p)
-                            
-                            decrypted : io.BytesIO = io.BytesIO()
-                            
-                            office_file.decrypt(decrypted)
-                            
-                            return decrypted
-                        
-                        else:
-                            
-                            file.seek(0)
-                            
-                            return io.BytesIO|(file.read())
-                        
-                        
-                        
+            else:
+                file.seek(0)
+                return io.BytesIO(file.read())
