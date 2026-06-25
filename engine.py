@@ -32,17 +32,20 @@ if __name__ == "__main__":
                 event_control.waiting_request_event()
                 command : str = event_control.read_memo().split(":")[1]
                 
-                app : DailyReportExportMachine = DailyReportExportMachine    (CombaineStepMachine,CombaineComponent)
+                app : DailyReportExportMachine = DailyReportExportMachine(CombaineStepMachine,CombaineComponent)
                 
                 if command == "run_app":
                     print("Dang chay....")
                     try:
                         app.run()
-                    except Exception as e:
-                        print(e)
-                    finally:
                         
+                    except Exception as e:
+                        
+                        print(e)
+                        
+                    finally:
                         event_control.set_respone_event()
+                        
                 else : print("Lenh khong hop le!")
                 #os.system("cls")
         

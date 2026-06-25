@@ -26,17 +26,31 @@ class SapConnector():
             try:
                 self.sap_path:str = r"C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe"
                 
-                self.engine : any = win32com.client.GetObject("SAPGUI").    GetScriptingEngine
-            try:
-                self.session = self.engine.Children(0).Children(0)
-            except com_error as e:
-                if e.hresult == -2147352567:
+                self.engine : any = win32com.client.GetObject("SAPGUI").GetScriptingEngine
+                
+                try:
                     
+                   self.session = self.engine.Children(0).Children(0)
+                   
+                except com_error as e:
+                    
+                   if e.hresult == -2147352567:
+                       
+                        self.connection = self.engine.OpenConnection("100| Jabil SAP - Commercial - PRD [Production]", True)
+                    
+                        self.session = self.connection.Children(0)
+                        
+                        
             except com_error as e:
+                
                 if e.hresult == -2147221020:
+                    
                     os.startfile(self.sap_path)
+                    
                     time.sleep(7)
+                    
                     self.engine : any = win32com.client.GetObject("SAPGUI").  GetScriptingEngine
+                    
                     self.connection = self.engine.OpenConnection("100| Jabil SAP - Commercial - PRD [Production]", True)
                     
                     self.session = self.connection.Children(0)
