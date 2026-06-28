@@ -161,19 +161,20 @@ class WorkBookManager:
                         self.app = app
                         self.wb = wb
                         self.sheets = wb.sheets
-                        try
+                        try:
                             self.app.display_alerts = False
                         except Exception as e:
-                            raise Exception("Set attr 'display alerts' failed" !)
+                            raise Exception("Set attr 'display alerts' failed !")
                         
             if not self.app or not self.wb:
                 self.app = xw.App(visible=on_screen, add_book=False)
                 self.wb = self.app.books.open(path, update_links=False)
                 self.sheets = self.wb.sheets
-                    try
+                
+                try:
                             self.app.display_alerts = False
-                    except Exception as e:
-                            raise Exception("Set attr 'display alerts' failed" !)
+                except Exception as e:
+                            raise Exception("Set attr 'display alerts' failed!")
 
 
     def get_sheet(self, sheet_name: str) -> WorkSheetsManager:

@@ -4,5 +4,5 @@ Write-Host "Pushsing..."
 
 git init
 git add .
-git commit -m "add try catch and raise , and DI Logger%"
+git commit -m "Build Exe"
 git push origin main

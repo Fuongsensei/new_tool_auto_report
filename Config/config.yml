@@ -1,14 +1,14 @@
 profile:
   daily_report_config:
-    run_sap: True
-    delete_old_day: True
+    run_sap: False
+    delete_old_day: False
     verify_config:
       sheet_name: "Verify data"
-      from_date: 2026-06-25
-      from_time: "19:00:00"
-      to_date: 2026-06-26
-      to_time: "07:00:00"
-      report_daily_path: C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV).xlsm
+      from_date: 2026-04-01
+      from_time: "00:00:00"
+      to_date: 2026-04-13
+      to_time: "00:00:00"
+      report_daily_path: C:\Users\fuongsensei\Downloads\Report Scan Verify Shiftly (RCV).xlsm
       sap_rcv:
         3601183:
           WD: 3601183
@@ -45,7 +45,7 @@ profile:
           SHIFT: VN80
           LOC: TBS
           STATUS: ON DUTY
-          FLAG: 2
+          FLAG: 0
         3210272:
           WD: 3210272
           NAME: BÙI CHÍ NGHĨA
@@ -126,7 +126,7 @@ profile:
           SHIFT: VN70
           LOC: TBS
           STATUS: ON DUTY
-          FLAG: 2
+          FLAG: 0
         3307814:
           WD: 3307814
           NAME: NGUYỄN THỊ KIỀU NƯƠNG
@@ -136,49 +136,58 @@ profile:
           LOC: TBS
           STATUS: ON DUTY
           FLAG: 0
+        3322289:
+          WD: 3322289
+          NAME: DAT 1 LIT
+          GENDER: MALE
+          ROLE: VERIFY
+          SHIFT: VN02
+          LOC: TMS
+          STATUS: ON DUTY
+          FLAG: 0
     grn_10_numbers_config:
       sheet_name: "GRN (10 so)"
-      from_date: 2026-06-25
-      to_date: 2026-06-26
+      from_date: 2026-04-01
+      to_date: 2026-04-13
       file_name: ""
       file_path: ""
       number_format_string: "@"
       number_format_date: "dd/mm/yyyy"
       columns_string_format:
-        - "A"
-        - "H"
-        - "I"
-        - "L"
-        - "M"
-        - "O"
-        - "J"
+      - "A"
+      - "H"
+      - "I"
+      - "L"
+      - "M"
+      - "O"
+      - "J"
       columns_date_format:
-        - "B"
-        - "C"
+      - "B"
+      - "C"
       drop_columns:
-        - 97
-        - 93
+      - 97
+      - 93
     grn_16_numbers_config:
       sheet_name: "Label (16 So)"
-      from_date: 2026-06-25
-      to_date: 2026-06-26
+      from_date: 2026-04-01
+      to_date: 2026-04-13
       file_name: ""
       file_path: ""
       number_format_string: "@"
       number_format_date: "dd/mm/yyyy"
       columns_string_format:
-        - "C"
-        - "F"
-        - "J"
-        - "H"
-        - "G"
-        - "M"
-        - "O"
-        - "R"
+      - "C"
+      - "F"
+      - "J"
+      - "H"
+      - "G"
+      - "M"
+      - "O"
+      - "R"
       columns_date_format:
-        - "U"
-        - "V"
-        - "W"
+      - "U"
+      - "V"
+      - "W"
       drop_columns:
-        - 22
+      - 22
 ...

@@ -21,14 +21,16 @@ class VerifyConfig(BaseModel):
     path_local_mapping: dict[str, str] = {}
     verify_list: list[int] = []
     _keyin_list: DataFrame | None = PrivateAttr(default=None)
+    _temp_keyin_list  :DataFrame | None = PrivateAttr(default=None)
     _interpolate_months: list[str] = []
 
     @model_validator(mode="after")
     def _initialize_filed(self):
-        self._interpolate_months = self._get_short_months_and_year()
-        self.verify_list = self._create_verify_list()
-        self.path_local_mapping = self._create_path_mapping()
-        self._keyin_list = DataFrame(self._create_keyin_list()).drop("FLAG")
+        self._interpolate_months : list[str] = self._get_short_months_and_year()
+        self.verify_list:list[int] = self._create_verify_list()
+        self.path_local_mapping : dict[str,str] = self._create_path_mapping()
+        self._temp_keyin_list :  list[dict] | None = self._create_keyin_list()
+        self._keyin_list :  list[dict] | None = DataFrame(self._temp_keyin_list).drop("FLAG") if self._temp_keyin_list != None else None
         return self
 
     def _get_short_months_and_year(self) -> list[str]:
@@ -72,7 +74,7 @@ class VerifyConfig(BaseModel):
 
         return t
 
-    def _create_keyin_list(self) -> list[dict]:
+    def _create_keyin_list(self) -> list[dict] | None:
         t: list[dict] = []
 
         for k, v in self.sap_rcv.items():
@@ -85,7 +87,7 @@ class VerifyConfig(BaseModel):
                 t.append(new_dict)
 
         if not len(t):
-            raise ValueError("Không thể khởi tạo bảng user keyin!")
+            return None
 
         return t
 

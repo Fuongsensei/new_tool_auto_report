@@ -42,7 +42,7 @@ class RunSapStep:
         def run(self)-> None:
             
             self.writer_sheet_user.delete_to_last_row(5)
-            
+            if not self.config.daily_report_config.verify_config._keyin_list: raise "Chưa chọn keyin làm sao mà chạy SAP ?"
             self.writer_sheet_user.write((self.config.daily_report_config.verify_config._keyin_list,"A4"))
             
             self.copy_user_sheet()
@@ -213,7 +213,7 @@ class CombaineStepMachine:
         self.process_data = None
         
         self.writer_excel = None
-9
+
     def combaine(self)-> None:
         if self.component.config.daily_report_config.run_sap:
                 self.run_sap = RunSapStep(self.component.config,self.component.sap,WorkBookManager)
