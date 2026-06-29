@@ -78,7 +78,9 @@ if __name__ == "__main__":
     except Exception as e:
         logger.exception(e,"IPC init failed!")
         sys.exit(1)
-
+    event_control.set_init_successed()
+    
+    
     while True:
         
         print("Dang cho lenh....")
@@ -97,8 +99,8 @@ if __name__ == "__main__":
             try:
                 app.run()
 
-            except Exception:
-                logger.exception("Run app failed")
+            except Exception as e :
+                logger.exception(e,"Run app failed")
 
             finally:
                 event_control.set_respone_event()

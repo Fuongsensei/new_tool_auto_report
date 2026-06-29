@@ -9,6 +9,7 @@ class CommunicationToCSharp:
         try:
             self.SRM_NAME: str = r"Local\python_connect_to_CSharp"
             self.REQ_EVENT_NAME: str = r"Local\request_to_python"
+            self.INIT_APP_SUCCESS : str = r"Local\init_python_success"
             self.RES_EVENT_NAME: str = r"Local\respone_to_Csharp"
             self.MUTEX_NAME: str = r"Local\Mutex_connect"
             self.BUF_SIZE: int = 4096
@@ -30,7 +31,13 @@ class CommunicationToCSharp:
                 False,
                 self.RES_EVENT_NAME,
             )
-
+            
+            self.init_event_success : int = win32event.OpenEvent(
+                win32event.EVENT_ALL_ACCESS,
+                False,
+                self.INIT_APP_SUCCESS,
+            )
+            
             self.muxtext_locker: int = win32event.OpenMutex(
                 win32event.SYNCHRONIZE,
                 False,
@@ -93,3 +100,10 @@ class CommunicationToCSharp:
 
         except Exception as e:
             raise RuntimeError("Set response event IPC thất bại") from e
+        
+        
+    def set_init_successed(self) -> None:
+        try:
+            win32event.SetEvent(self.init_event_success)
+        except Exception as e:
+            raise RuntimeError("Set init python event IPC thất bại") from e

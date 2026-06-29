@@ -42,7 +42,11 @@ class RunSapStep:
         def run(self)-> None:
             
             self.writer_sheet_user.delete_to_last_row(5)
-            if not self.config.daily_report_config.verify_config._keyin_list: raise "Chưa chọn keyin làm sao mà chạy SAP ?"
+            keyin_list = self.config.daily_report_config.verify_config._keyin_list
+            
+            if keyin_list is None or keyin_list.is_empty(): 
+                raise Exception("Chưa chọn keyin làm sao mà chạy SAP ?")
+
             self.writer_sheet_user.write((self.config.daily_report_config.verify_config._keyin_list,"A4"))
             
             self.copy_user_sheet()
