@@ -7,6 +7,7 @@ from utils.config_loader import GRN10Config, GRN16Config
 from utils.excel_manager import WorkBookManager, WorkSheetsManager
 import time
 import os
+import subprocess
 from pywintypes import com_error
 from datetime import timedelta
 from datetime import date, datetime
@@ -40,7 +41,8 @@ class SapConnector:
 
         except com_error as e:
             if e.hresult == -2147221020:
-                os.startfile(self.sap_path)
+                subprocess.Popen(["explorer.exe",self.sap_path])
+                #os.startfile(self.sap_path)
                 time.sleep(7)
                 self.engine: any = win32com.client.GetObject("SAPGUI").GetScriptingEngine
                 self.connection = self.engine.OpenConnection(
@@ -63,11 +65,7 @@ class GRN10Processor(GRNProcessor[GRN10Config]):
     def process(self):
         self.session.StartTransaction(self.context.tcode.upper())
         self.session.findById("wnd[0]/usr/ctxtSO_WERKS-LOW").Text = "VN01"
-        print(self.context.posting_date_start)
-        print(self.context.from_date)
         self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-LOW").Text = f"{self.context.posting_date_start}"
-        print(self.context.to_date)
-        print(self.context.posting_date_end)
         self.session.findById("wnd[0]/usr/ctxtSO_BUDAT-HIGH").Text = f"{self.context.posting_date_end}"
         self.session.findById("wnd[0]/usr/btn%_SO_MJAHR_%_APP_%-VALU_PUSH").press()
         self.session.findById("wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/txtRSCSEL_255-SLOW_I[1,0]").Text = self.context.year

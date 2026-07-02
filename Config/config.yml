@@ -4,9 +4,9 @@ profile:
     delete_old_day: True
     verify_config:
       sheet_name: "Verify data"
-      from_date: 2026-06-29
+      from_date: 2026-06-30
       from_time: "07:00:00"
-      to_date: 2026-06-29
+      to_date: 2026-06-30
       to_time: "20:00:00"
       report_daily_path: C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV).xlsm
       sap_rcv:
@@ -45,7 +45,7 @@ profile:
           SHIFT: VN80
           LOC: TBS
           STATUS: ON DUTY
-          FLAG: 0
+          FLAG: 2
         3210272:
           WD: 3210272
           NAME: BÙI CHÍ NGHĨA
@@ -126,7 +126,7 @@ profile:
           SHIFT: VN70
           LOC: TBS
           STATUS: ON DUTY
-          FLAG: 0
+          FLAG: 2
         3307814:
           WD: 3307814
           NAME: NGUYỄN THỊ KIỀU NƯƠNG
@@ -144,11 +144,11 @@ profile:
           SHIFT: VN02
           LOC: TBS
           STATUS: ON DUTY
-          FLAG: 2
+          FLAG: 0
     grn_10_numbers_config:
       sheet_name: "GRN (10 so)"
-      from_date: 2026-06-29
-      to_date: 2026-06-29
+      from_date: 2026-06-30
+      to_date: 2026-06-30
       file_name: ""
       file_path: ""
       number_format_string: "@"
@@ -169,8 +169,8 @@ profile:
       - 93
     grn_16_numbers_config:
       sheet_name: "Label (16 So)"
-      from_date: 2026-06-29
-      to_date: 2026-06-29
+      from_date: 2026-06-30
+      to_date: 2026-06-30
       file_name: ""
       file_path: ""
       number_format_string: "@"

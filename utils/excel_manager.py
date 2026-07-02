@@ -14,7 +14,7 @@ EXCEL_BUSY_ERRORS = (
 )
 
 
-def retry_excel_com(action, retries: int = 40, delay: float = 0.5):
+def retry_excel_com(action, retries: int = 30, delay: float = 0.5):
     last_error = None
 
     for attempt in range(1, retries + 1):
@@ -40,14 +40,14 @@ class WorkSheetsManager:
         self.sheet: xw.Sheet = retry_excel_com(
             lambda: self.wb.sheets[sheet_name],
             retries=20,
-            delay=0.5,
+            delay=1.5,
         )
 
     def write(self, place: tuple[DataFrame | Any, str]) -> None:
         data, rng = place
 
         try:
-            self.wb.enter_fast_mode()
+            
 
             def write_data():
                 if isinstance(data, DataFrame):
@@ -55,24 +55,23 @@ class WorkSheetsManager:
                 else:
                     self.sheet.range(rng).value = data
 
-            retry_excel_com(write_data, retries=40, delay=0.5)
-            self.wb.save_workbook()
+            retry_excel_com(write_data, retries=40, delay=1.5)
+            
 
         except Exception as e:
             raise RuntimeError(f"Ghi dữ liệu Excel thất bại tại vùng {rng}") from e
 
-        finally:
-            self.wb.restore_user_mode()
+        
 
     def delete_data(self, rng: str | tuple[str, str]) -> bool:
         try:
-            self.wb.enter_fast_mode()
+
 
             if isinstance(rng, str):
                 retry_excel_com(
                     lambda: self.sheet.range(rng).clear_contents(),
                     retries=30,
-                    delay=0.5,
+                    delay=1.5,
                 )
                 return True
 
@@ -81,7 +80,7 @@ class WorkSheetsManager:
                 retry_excel_com(
                     lambda: self.sheet.range(f"{s_p}:{e_p}").clear_contents(),
                     retries=30,
-                    delay=0.5,
+                    delay=1.5,
                 )
                 return True
 
@@ -90,8 +89,6 @@ class WorkSheetsManager:
         except Exception as e:
             raise RuntimeError(f"Xóa dữ liệu Excel thất bại tại vùng {rng}") from e
 
-        finally:
-            self.wb.restore_user_mode()
 
     def get_data_range(
         self,
@@ -111,7 +108,7 @@ class WorkSheetsManager:
                     f"A{self.sheet.cells.last_cell.row}"
                 ).end("up").row,
                 retries=30,
-                delay=0.5,
+                delay=1.5,
             )
 
             if get_only_endpoint:
@@ -125,7 +122,7 @@ class WorkSheetsManager:
 
     def delete_row(self, rng_row: tuple[int, int]) -> None:
         try:
-            self.wb.enter_fast_mode()
+  
 
             from_row, to_row = rng_row
 
@@ -135,25 +132,23 @@ class WorkSheetsManager:
             retry_excel_com(
                 lambda: self.sheet.range(f"{from_row}:{to_row}").delete(),
                 retries=30,
-                delay=0.5,
+                delay=1.5,
             )
 
         except Exception as e:
             raise RuntimeError(f"Xóa dòng Excel thất bại với range {rng_row}") from e
 
-        finally:
-            self.wb.restore_user_mode()
 
     def delete_to_last_row(self, start_index: int) -> None:
         try:
-            self.wb.enter_fast_mode()
+
 
             last_row: int = retry_excel_com(
                 lambda: self.sheet.range(
                     "A" + str(self.sheet.cells.last_cell.row)
                 ).end("up").row,
                 retries=30,
-                delay=0.5,
+                delay=1.5,
             )
 
             if start_index >= last_row:
@@ -162,34 +157,34 @@ class WorkSheetsManager:
             retry_excel_com(
                 lambda: self.sheet.range(f"{start_index}:{last_row}").delete(),
                 retries=30,
-                delay=0.5,
+                delay=1.5,
             )
 
         except Exception as e:
             raise RuntimeError(f"Xóa từ dòng {start_index} tới dòng cuối thất bại") from e
 
-        finally:
-            self.wb.restore_user_mode()
 
     def range_copy(self, rng: str) -> None:
-        try:
-            self.wb.enter_fast_mode()
+        """
+        Copy range vào clipboard.
 
+        Không đụng Calculation.
+        Không đụng DisplayAlerts.
+        Không restore gì sau copy để giữ clipboard/copy mode.
+        """
+        try:
             retry_excel_com(
                 lambda: self.sheet.range(rng).copy(),
                 retries=30,
-                delay=0.5,
+                delay=1.5,
             )
 
         except Exception as e:
             raise RuntimeError(f"Copy range Excel thất bại tại vùng {rng}") from e
 
-        finally:
-            self.wb.restore_user_mode()
-
     def format_col(self, fm: str, col_or_range: str | list[str]) -> None:
         try:
-            self.wb.enter_fast_mode()
+
 
             if fm not in ("@", "dd/mm/yyyy"):
                 return
@@ -202,7 +197,7 @@ class WorkSheetsManager:
                         fm,
                     ),
                     retries=30,
-                    delay=0.5,
+                    delay=1.5,
                 )
                 return
 
@@ -215,7 +210,7 @@ class WorkSheetsManager:
                             fm,
                         ),
                         retries=30,
-                        delay=0.5,
+                        delay=1.5,
                     )
                 return
 
@@ -224,13 +219,16 @@ class WorkSheetsManager:
         except Exception as e:
             raise RuntimeError(f"Format column Excel thất bại với {col_or_range}") from e
 
-        finally:
-            self.wb.restore_user_mode()
 
     def copy_to_last_row(self, rng_to_range: str, index_start: int) -> None:
-        try:
-            self.wb.enter_fast_mode()
+        """
+        Copy range từ index_start tới last_row vào clipboard.
 
+        Không đụng Calculation.
+        Không đụng DisplayAlerts.
+        Không restore sau copy để giữ clipboard/copy mode.
+        """
+        try:
             from_rng, to_rng = rng_to_range.split(":")
 
             last_row: int = retry_excel_com(
@@ -238,27 +236,24 @@ class WorkSheetsManager:
                     f"A{self.sheet.cells.last_cell.row}"
                 ).end("up").row,
                 retries=30,
-                delay=0.5,
+                delay=1.5,
             )
 
             if index_start >= last_row:
                 return
 
+            copy_range = f"{from_rng}{index_start}:{to_rng}{last_row}"
+
             retry_excel_com(
-                lambda: self.sheet.range(
-                    f"{from_rng}{index_start}:{to_rng}{last_row}"
-                ).copy(),
+                lambda: self.sheet.range(copy_range).copy(),
                 retries=30,
-                delay=0.5,
+                delay=1.5,
             )
 
         except Exception as e:
             raise RuntimeError(
                 f"Copy tới dòng cuối thất bại với range {rng_to_range}"
             ) from e
-
-        finally:
-            self.wb.restore_user_mode()
 
     def close(self) -> None:
         self.wb.close()
@@ -275,22 +270,21 @@ class WorkBookManager:
         self.wb: xw.Book | None = None
         self.sheets = None
 
+        # Tìm workbook đang mở sẵn
         for app in xw.apps:
             for wb in app.books:
                 try:
                     wb_fullname = retry_excel_com(
                         lambda w=wb: w.fullname,
                         retries=10,
-                        delay=0.5,
+                        delay=1.5,
                     )
 
                     if os.path.normcase(wb_fullname) == os.path.normcase(path):
                         self.app = app
                         self.wb = wb
                         self.sheets = wb.sheets
-
-                        # Đảm bảo Excel không bị kẹt trạng thái cũ
-                        self.restore_user_mode()
+                        self.suppress_alerts()
                         break
 
                 except Exception:
@@ -299,90 +293,67 @@ class WorkBookManager:
             if self.app and self.wb:
                 break
 
+        # Nếu chưa mở thì mở workbook mới
         if not self.app or not self.wb:
             self.app = xw.App(visible=on_screen, add_book=False)
 
             self.wb = retry_excel_com(
                 lambda: self.app.books.open(path, update_links=False),
                 retries=40,
-                delay=0.5,
+                delay=1.5,
             )
 
             self.sheets = self.wb.sheets
+            self.suppress_alerts()
 
-            # Mở xong thì để Excel ở trạng thái user nhìn ổn
-            self.restore_user_mode()
-
-    def enter_fast_mode(self) -> None:
+    def suppress_alerts(self) -> None:
         """
-        Chế độ thao tác nhanh.
-        Chỉ bật trong lúc automation đang chạy.
+        Tắt DisplayAlerts suốt vòng đời workbook manager.
+        Không restore khi close theo đúng ý định hiện tại.
         """
         if not self.app:
             return
 
         try:
-            retry_excel_com(
-                lambda: setattr(self.app, "screen_updating", False),
-                retries=20,
-                delay=0.5,
-            )
-
             retry_excel_com(
                 lambda: setattr(self.app, "display_alerts", False),
                 retries=20,
-                delay=0.5,
+                delay=1.5,
             )
-
-            retry_excel_com(
-                lambda: setattr(self.app, "calculation", "manual"),
-                retries=20,
-                delay=0.5,
-            )
-
-            retry_excel_com(
-                lambda: setattr(self.app, "enable_events", False),
-                retries=20,
-                delay=0.5,
-            )
-
         except Exception as e:
-            raise RuntimeError("Bật Excel fast mode thất bại") from e
+            raise RuntimeError("Tắt Excel DisplayAlerts thất bại") from e
 
-    def restore_user_mode(self) -> None:
+    def manual_calculation(self) -> None:
         """
-        Restore Excel về trạng thái bình thường để UX không bị lỗi giao diện.
+        Set Calculation manual cho batch ghi/xóa/format lớn.
+        Không dùng cho copy.
         """
         if not self.app:
             return
 
         try:
             retry_excel_com(
-                lambda: setattr(self.app, "screen_updating", True),
+                lambda: setattr(self.app, "calculation", "manual"),
                 retries=20,
-                delay=0.5,
+                delay=1.5,
             )
+        except Exception as e:
+            raise RuntimeError("Set Excel Calculation manual thất bại") from e
 
-            retry_excel_com(
-                lambda: setattr(self.app, "display_alerts", True),
-                retries=20,
-                delay=0.5,
-            )
+    def automatic_calculation(self) -> None:
+        """
+        Set Calculation automatic sau batch ghi/xóa/format và trước close.
+        """
+        if not self.app:
+            return
 
+        try:
             retry_excel_com(
                 lambda: setattr(self.app, "calculation", "automatic"),
                 retries=20,
-                delay=0.5,
+                delay=1.5,
             )
-
-            retry_excel_com(
-                lambda: setattr(self.app, "enable_events", True),
-                retries=20,
-                delay=0.5,
-            )
-
         except Exception:
-            # Không raise ở restore để tránh che lỗi chính
             pass
 
     def get_sheet(self, sheet_name: str) -> WorkSheetsManager:
@@ -395,31 +366,49 @@ class WorkBookManager:
             ) from e
 
     def refresh(self) -> None:
+        """
+        Refresh PivotTable3 trong sheet Summary.
+        """
         try:
-            self.enter_fast_mode()
-
+            def _refresh_pivot_only():
+                app = self.wb.app
+                app.api.DisplayAlerts = True
+                app.api.Calculation = -4105  # xlCalculationAutomatic
+    
+                sheet_summary = self.wb.sheets["Summary"]
+                sheet_summary.activate()
+    
+                raw_sheet = sheet_summary.api._inner
+    
+                raw_sheet.PivotTables("PivotTable3").RefreshTable()
+                raw_sheet.Rows("13:50").RowHeight = 17
+                
+    
             retry_excel_com(
-                lambda: self.wb.api.RefreshAll(),
+                _refresh_pivot_only,
                 retries=40,
-                delay=0.5,
+                delay=1.5,
             )
-
+    
         except Exception as e:
-            raise RuntimeError("Refresh workbook thất bại") from e
+            raise RuntimeError(
+                f"Refresh PivotTable3 thất bại: {type(e).__name__} - {e}"
+            ) from e
+        
 
-        finally:
-            self.restore_user_mode()
 
+
+
+
+    
     def close(self) -> None:
         try:
-            # Quan trọng: restore trước khi close để Excel không bị tật UI
-            self.restore_user_mode()
 
             if self.wb:
                 retry_excel_com(
                     lambda: self.wb.close(),
                     retries=20,
-                    delay=0.5,
+                    delay=1.5,
                 )
 
             if self.app:
@@ -427,7 +416,7 @@ class WorkBookManager:
                     books_count = retry_excel_com(
                         lambda: self.app.books.count,
                         retries=10,
-                        delay=0.5,
+                        delay=1.5,
                     )
                 except Exception:
                     books_count = 1
@@ -436,7 +425,7 @@ class WorkBookManager:
                     retry_excel_com(
                         lambda: self.app.quit(),
                         retries=20,
-                        delay=0.5,
+                        delay=1.5,
                     )
 
         except Exception as e:
@@ -450,7 +439,7 @@ class WorkBookManager:
             retry_excel_com(
                 lambda: wb.api.SaveAs(self.path),
                 retries=40,
-                delay=0.5,
+                delay=1.5,
             )
 
             return app, wb
@@ -460,14 +449,20 @@ class WorkBookManager:
 
     def save_workbook(self) -> None:
         """
-        Dùng COM API Save trực tiếp để tránh xlwings wrapper tự đụng display_alerts.
+        Save trực tiếp qua COM API.
+        Không dùng wb.save() để tránh xlwings wrapper tự đụng DisplayAlerts.
         """
         try:
             retry_excel_com(
                 lambda: self.wb.api.Save(),
                 retries=60,
-                delay=0.5,
+                delay=1.5,
             )
 
         except Exception as e:
             raise RuntimeError("Save workbook thất bại") from e
+        
+    def active_sheet(self,sheet_name:str):
+        sheet  = self.wb.sheets[sheet_name]
+        sheet.api.Activate()
+        sheet.range("A19").select()

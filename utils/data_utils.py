@@ -67,6 +67,9 @@ class DataIngestor:
                 )
 
                 df = df.slice(1)
+
+                df = df.filter(~pl.all_horizontal(pl.all().is_null()))
+
                 df = df.select(df.columns[:14])
                 df.columns = [
                     "GRN",

@@ -76,7 +76,6 @@ class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
 class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
     def Process(self, data_raw: pl.DataFrame, grn_data: pl.DataFrame, delete_old_day: bool) -> pl.DataFrame:
         drop_col: list[str] = [data_raw.columns[i] for i in self.config.drop_columns]
-        grn_data = grn_data.to_series(0)
         check_na_col = data_raw.columns[5]
 
         lz_df: pl.LazyFrame = data_raw.lazy()
@@ -84,5 +83,7 @@ class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
 
         if not delete_old_day:
             return lz_df.collect()
-
+        
+        grn_data = grn_data.to_series(0)
+        
         return lz_df.filter(pl.col(check_na_col).str.slice(0, 10).is_in(grn_data)).collect()

@@ -73,6 +73,7 @@ class RunSapStep:
             
             self.writer_grn16_data.close()
             
+            self.writer_daily_report.save_workbook()
             self.writer_daily_report.close()
             
 
@@ -132,6 +133,8 @@ class WriteExcelStep:
             
             self.writer_sheet_grn_16  = None
             
+            self.writer_daily_report  = None
+            
             
             
             
@@ -166,16 +169,24 @@ class WriteExcelStep:
     
                     self.writer_sheet_grn_16.write((self.grn16_data_processed,"A2"))
             
-            
+            self.writer_daily_report.save_workbook()
             self.writer_daily_report.close()
             
             
-    def reopen_excel(self)-> None:
+    def reopen_excel(self) -> None:
+        self.writer_daily_report  = self.writer_cls(self.config_verify.report_daily_path, True)
         
-        _ = self.writer_cls(self.config_verify.report_daily_path,True)
-        _.refresh()
-        _.save_workbook()
-        
+        try:
+            self.writer_daily_report.automatic_calculation()
+            self.writer_daily_report.active_sheet("Summary")
+            
+            self.writer_daily_report.refresh()
+            
+        except Exception:
+            
+            pass
+
+
     
     def run(self)-> None:
         
@@ -184,7 +195,9 @@ class WriteExcelStep:
         self.veriy_data_processed = self.process_step.verify_data_process 
 
         self.writer_daily_report =  self.writer_cls(self.config_verify.report_daily_path,False)
-
+        
+        self.writer_daily_report.manual_calculation()
+        
         self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config_verify.sheet_name)  
 
 
@@ -200,7 +213,6 @@ class WriteExcelStep:
             
             
         self.write()
-        
         self.reopen_excel()
 
             

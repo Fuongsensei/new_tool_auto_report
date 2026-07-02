@@ -4,5 +4,5 @@ Write-Host "Pushsing..."
 
 git init
 git add .
-git commit -m "chay thu nghiem tren moi truong thuc te"
+git commit -m "Run Done On Real Enviroment and Already Big Update "
 git push origin main

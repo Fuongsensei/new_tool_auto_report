@@ -12,6 +12,7 @@ class CommunicationToCSharp:
             self.INIT_APP_SUCCESS : str = r"Local\init_python_success"
             self.RES_EVENT_NAME: str = r"Local\respone_to_Csharp"
             self.MUTEX_NAME: str = r"Local\Mutex_connect"
+
             self.BUF_SIZE: int = 4096
 
             self.shared_memo: mmap.mmap = mmap.mmap(
@@ -43,6 +44,7 @@ class CommunicationToCSharp:
                 False,
                 self.MUTEX_NAME,
             )
+            
 
         except Exception as e:
             raise RuntimeError("Khởi tạo IPC kết nối C# thất bại") from e

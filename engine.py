@@ -101,9 +101,11 @@ if __name__ == "__main__":
 
             except Exception as e :
                 logger.exception(e,"Run app failed")
+                app.combaine_step_machine.writer_excel.writer_daily_report.close()
 
             finally:
                 event_control.set_respone_event()
+                
 
         else:
             print("Lenh khong hop le!")
