@@ -6,11 +6,11 @@ import time
 from datetime import date, datetime
 from utils.config_loader import VerifyConfig, GRN10Config, GRN16Config
 
-T = TypeVar("T", bound=BaseModel)
+T = TypeVar("T")
 
 
 class DataProcessBase(Generic[T], ABC):
-    def __init__(self, config: T):
+    def __init__(self, config: T|None):
         self.config: T = config
 
     @abstractmethod
@@ -26,6 +26,8 @@ class DataProcessVerify(DataProcessBase[VerifyConfig]):
             cols = data_raw.columns
             boolean_cols: list[str] = [cols[i] for i in [9, 10, 11, 13]]
             cf = self.config
+            if not cf:
+                raise Exception("Xử lý data verify cấu hình không được None")
 
             perdicate_filter_date: pl.Expr = (
                 pl.col(cols[5])
@@ -55,6 +57,9 @@ class DataProcessVerify(DataProcessBase[VerifyConfig]):
 
 class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
     def Process(self, data_raw: pl.DataFrame, out_for_grn_16: pl.DataFrame, delete_old_day: bool) -> tuple[pl.DataFrame, pl.DataFrame|None]:
+        if not self.config:
+                raise Exception("Xử lý data verify cấu hình không được None")
+            
         drop_col: list[str] = [data_raw.columns[i] for i in self.config.drop_columns]
         lz_df: pl.LazyFrame = data_raw.lazy()
         lz_df = (
@@ -75,6 +80,8 @@ class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
 
 class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
     def Process(self, data_raw: pl.DataFrame, grn_data: pl.DataFrame, delete_old_day: bool) -> pl.DataFrame:
+        if not self.config:
+                raise Exception("Xử lý data verify cấu hình không được None")
         drop_col: list[str] = [data_raw.columns[i] for i in self.config.drop_columns]
         check_na_col = data_raw.columns[5]
 
@@ -87,3 +94,27 @@ class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
         grn_data = grn_data.to_series(0)
         
         return lz_df.filter(pl.col(check_na_col).str.slice(0, 10).is_in(grn_data)).collect()
+    
+    
+class DataVerifyProcessForReportView:
+        def Process(self,data_processed) -> pl.DataFrame:
+            self.data : pl.DataFrame = data_processed
+            self.total_labels : int = self.get_total_labels()
+            self.total_foreach_verify_sap: dict[int,int] = self.get_total_foreach_verify_sap()
+            
+        def get_total_labels(self)-> int:
+            return self.data.height
+            
+                    
+        def get_total_foreach_verify_sap(self) -> dict[int,int]:
+            return dict(self.data.with_columns(
+                pl.col("User/Time").
+                str.split("|").
+                list.get(0).
+                str.strip_chars().
+                cast(pl.Int64,strict=True).
+                alias("User")).
+                        group_by("User").
+                        len("Total").
+                        iter_rows())
+            

@@ -104,11 +104,18 @@ class ProcessDataStep:
             
             if self.flag_run_sap:
                     
-                    self.grn10_data_process  = self.core.data_process_grn10.Process(self.uls.grn10_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_10_numbers_config.file_path),self.out_grn16,self.config.daily_report_config.delete_old_day)
+                    self.grn10_data_process  = self.core.data_process_grn10.Process(
+                        self.uls.grn10_data_ingestor.load_data_raw_file(
+                            self.config.daily_report_config.grn_10_numbers_config.file_path),
+                            self.out_grn16,self.config.daily_report_config.delete_old_day)
                     
                     self.out_grn16 = self.grn10_data_process[1]
                     
-                    self.grn16_data_process  = self.core.data_process_grn16.Process(self.uls.grn16_data_ingestor.load_data_raw_file(self.config.daily_report_config.grn_16_numbers_config.file_path),self.out_grn16,self.config.daily_report_config.delete_old_day)
+                    self.grn16_data_process  = self.core.data_process_grn16.Process(
+                            self.uls.grn16_data_ingestor.load_data_raw_file(
+                            self.config.daily_report_config.grn_16_numbers_config.file_path),
+                        self.out_grn16,
+                        self.config.daily_report_config.delete_old_day)
             
             
 class WriteExcelStep:
