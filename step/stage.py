@@ -95,6 +95,12 @@ class ProcessDataStep:
             
             self.grn16_data_process  = None
             
+            self.cache_verify_data = None
+
+            self.cache_grn10_data = None 
+
+            self.cache_grn16_data = None
+
             self.out_grn16 = None
             
             
@@ -104,20 +110,35 @@ class ProcessDataStep:
             
             if self.flag_run_sap:
                     
-                    self.grn10_data_process  = self.core.data_process_grn10.Process(
+                    _ = self.core.data_process_grn10.Process(
                         self.uls.grn10_data_ingestor.load_data_raw_file(
                             self.config.daily_report_config.grn_10_numbers_config.file_path),
                             self.out_grn16,self.config.daily_report_config.delete_old_day)
-                    
-                    self.out_grn16 = self.grn10_data_process[1]
+
+                    self.grn10_data_process = _[0]
+
+                    self.out_grn16 = _[1]
                     
                     self.grn16_data_process  = self.core.data_process_grn16.Process(
                             self.uls.grn16_data_ingestor.load_data_raw_file(
                             self.config.daily_report_config.grn_16_numbers_config.file_path),
                         self.out_grn16,
                         self.config.daily_report_config.delete_old_day)
-            
-            
+                        
+            self.cache_verify_data = self.verify_data_process
+
+            self.cache_grn10_data  = self.grn10_data_process
+
+            self.cache_grn16_data  = self.grn16_data_process
+
+        def check_data(self)-> bool:
+            fields_data = self.__dict__
+            for k,v in fields_data.items():
+                  if k.endswith("process"):
+                        if v is None or v.is_empty() :return False
+            return True
+
+
 class WriteExcelStep:
     def __init__(self,process_step:ProcessDataStep,writer_cls:type[WorkBookManager] = WorkBookManager,config:ConfigComponent=ConfigComponent):
         
@@ -171,7 +192,7 @@ class WriteExcelStep:
     
                     self.writer_sheet_grn_16.delete_to_last_row(2)
                 
-    
+                    print(self.grn10_data_processed)
                     self.writer_sheet_grn_10.write((self.grn10_data_processed,"A2"))
     
                     self.writer_sheet_grn_16.write((self.grn16_data_processed,"A2"))
@@ -197,7 +218,7 @@ class WriteExcelStep:
     
     def run(self)-> None:
         
-        self.process_step.run()
+        
         
         self.veriy_data_processed = self.process_step.verify_data_process 
 
@@ -214,7 +235,7 @@ class WriteExcelStep:
                         
             self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config_grn16.sheet_name)
     
-            self.grn10_data_processed = self.process_step.grn10_data_process[0]
+            self.grn10_data_processed = self.process_step.grn10_data_process
             
             self.grn16_data_processed = self.process_step.grn16_data_process
             

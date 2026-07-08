@@ -4,7 +4,7 @@ import struct
 import win32con
 
 
-class CommunicationToCSharp:
+class CommunicationToCSharpByCommand:
     def __init__(self):
         try:
             self.SRM_NAME: str = r"Local\python_connect_to_CSharp"
@@ -14,7 +14,7 @@ class CommunicationToCSharp:
             self.MUTEX_NAME: str = r"Local\Mutex_connect"
 
             self.BUF_SIZE: int = 4096
-
+            
             self.shared_memo: mmap.mmap = mmap.mmap(
                 -1,
                 self.BUF_SIZE,

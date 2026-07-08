@@ -14,7 +14,7 @@ class DataProcessBase(Generic[T], ABC):
         self.config: T = config
 
     @abstractmethod
-    def Process(self, data_raw: pl.DataFrame) -> pl.DataFrame:
+    def Process(self, data_raw: pl.DataFrame) -> pl.DataFrame|None:
         pass
 
 
@@ -69,7 +69,7 @@ class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
                 pl.lit("=VLOOKUP(@CN:CN,'Vendor Subcontrac'!A:B,2,0)").alias("Network")
             )
         )
-
+        
         if not delete_old_day:
             return lz_df.collect(),None
 
@@ -96,11 +96,19 @@ class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
         return lz_df.filter(pl.col(check_na_col).str.slice(0, 10).is_in(grn_data)).collect()
     
     
-class DataVerifyProcessForReportView:
-        def Process(self,data_processed) -> pl.DataFrame:
+class DataVerifyProcessForReportView(DataProcessBase):
+        
+        def __init__(self):
+            super().__init__(None)
+
+            self.total_labels : int 
+
+            self.total_foreach_verify_sap: dict[int,int] 
+
+        def Process(self,data_processed) -> None:
             self.data : pl.DataFrame = data_processed
-            self.total_labels : int = self.get_total_labels()
-            self.total_foreach_verify_sap: dict[int,int] = self.get_total_foreach_verify_sap()
+            self.total_labels = self.get_total_labels()
+            self.total_foreach_verify_sap = self.get_total_foreach_verify_sap()
             
         def get_total_labels(self)-> int:
             return self.data.height

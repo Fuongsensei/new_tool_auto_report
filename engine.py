@@ -1,12 +1,13 @@
 import sys
 import traceback
 from step.stage import CombaineStepMachine, CombaineComponent
-from communication.ipc import CommunicationToCSharp
+from communication.ipc import CommunicationToCSharpByCommand
+from cache_dataframe.cache_class import CacheDataframeForReportDashboard
 from getpass import getuser
 import os
 import traceback
 from datetime import datetime, date
-
+from core.data_processor import DataVerifyProcessForReportView
 
 if getattr(sys, "frozen", False):
     if sys.stdout is None:
@@ -60,21 +61,40 @@ class DailyReportExportMachine:
         self,
         combaine_step_machine_cls: type[CombaineStepMachine] = CombaineStepMachine,
         combaine_component_cls: type[CombaineComponent] = CombaineComponent,
+        cache : type[CacheDataframeForReportDashboard] = CacheDataframeForReportDashboard,
+
     ):
         self.combaine_step_machine: CombaineStepMachine = combaine_step_machine_cls(combaine_component_cls)
+
         self.combaine_step_machine.combaine()
+
+        self.cache = CacheDataframeForReportDashboard(self.combaine_step_machine.process_data)
+ 
 
     def run(self) -> None:
         if self.combaine_step_machine.run_sap:
+            
             self.combaine_step_machine.run_sap.run()
 
+        self.combaine_step_machine.process_data.run()
+      
+        if  not self.combaine_step_machine.process_data.check_data(): raise Exception("Process data chưa chạy, dữ liệu chưa được xử lý !")
+
         self.combaine_step_machine.writer_excel.run()
+        
+        self.cache._get_field_from_process_step()
+
+        process : DataVerifyProcessForReportView = DataVerifyProcessForReportView()
+        process.Process(self.cache.cache_verify_data)
+        print(process.total_foreach_verify_sap)
+        print(process.total_labels)
+        
 
 
 if __name__ == "__main__":
     logger = FileLogger(open_after_write=True)
     try:
-        event_control: CommunicationToCSharp = CommunicationToCSharp()
+        event_control: CommunicationToCSharpByCommand = CommunicationToCSharpByCommand()
     except Exception as e:
         logger.exception(e,"IPC init failed!")
         sys.exit(1)
