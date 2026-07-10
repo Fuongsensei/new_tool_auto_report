@@ -50,6 +50,7 @@ class RunSapStep:
             self.writer_sheet_user.write((self.config.daily_report_config.verify_config._keyin_list,"A4"))
             
             self.copy_user_sheet()
+            time.sleep(2)
             
             self.grn10_processor.process()
             
@@ -197,18 +198,22 @@ class WriteExcelStep:
     
                     self.writer_sheet_grn_16.write((self.grn16_data_processed,"A2"))
             
+            self.writer_daily_report.automatic_calculation()
+
+
+
+            
             self.writer_daily_report.save_workbook()
             self.writer_daily_report.close()
             
             
     def reopen_excel(self) -> None:
-        self.writer_daily_report  = self.writer_cls(self.config_verify.report_daily_path, True)
         
         try:
-            self.writer_daily_report.automatic_calculation()
-            self.writer_daily_report.active_sheet("Summary")
             
+            self.writer_daily_report  = self.writer_cls(self.config_verify.report_daily_path, True)
             self.writer_daily_report.refresh()
+            self.writer_daily_report.save_workbook()
             
         except Exception:
             

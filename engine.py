@@ -7,7 +7,7 @@ from getpass import getuser
 import os
 import traceback
 from datetime import datetime, date
-from core.data_processor import DataVerifyProcessForReportView
+from core.data_processor import DataVerifyProcessForReportDashboard
 
 if getattr(sys, "frozen", False):
     if sys.stdout is None:
@@ -78,16 +78,17 @@ class DailyReportExportMachine:
 
         self.combaine_step_machine.process_data.run()
       
-        if  not self.combaine_step_machine.process_data.check_data(): raise Exception("Process data chưa chạy, dữ liệu chưa được xử lý !")
-
+         
         self.combaine_step_machine.writer_excel.run()
         
+        
         self.cache._get_field_from_process_step()
-
-        process : DataVerifyProcessForReportView = DataVerifyProcessForReportView()
-        process.Process(self.cache.cache_verify_data)
-        print(process.total_foreach_verify_sap)
-        print(process.total_labels)
+        
+        process : DataVerifyProcessForReportDashboard = DataVerifyProcessForReportDashboard(self.cache.cache_verify_data)
+        
+        if process.record is None:
+            print("Không có dữ liệu")
+            return
         
 
 

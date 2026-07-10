@@ -4,11 +4,11 @@ profile:
     delete_old_day: True
     verify_config:
       sheet_name: "Verify data"
-      from_date: 2026-07-08
+      from_date: 2026-07-10
       from_time: "19:00:00"
-      to_date: 2026-07-09
+      to_date: 2026-07-11
       to_time: "07:00:00"
-      report_daily_path: C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV) (1) 6.xlsm
+      report_daily_path: C:\Users\3601183\Downloads\Report Scan Verify Shiftly (RCV) (1).xlsm
       sap_rcv:
         3601183:
           WD: 3601183
@@ -135,7 +135,7 @@ profile:
           SHIFT: VN70
           LOC: TBS
           STATUS: ON DUTY
-          FLAG: 2
+          FLAG: 0
         1216105:
           WD: 1216105
           NAME: PHẠM THỤY THANH TRÚC
@@ -145,10 +145,28 @@ profile:
           LOC: TBS
           STATUS: ON DUTY
           FLAG: 0
+        3322285:
+          WD: 3322285
+          NAME: NGUYỄN THỊ THANH TÂM
+          GENDER: MALE
+          ROLE: DATA ENTRY
+          SHIFT: VN68
+          LOC: TMS
+          STATUS: ON DUTY
+          FLAG: 2
+        3225303:
+          WD: 3225303
+          NAME: LÊ CAO THÙY LINH
+          GENDER: FEMALE
+          ROLE: VERIFY
+          SHIFT: VN69
+          LOC: TBS
+          STATUS: ON DUTY
+          FLAG: 0
     grn_10_numbers_config:
       sheet_name: "GRN (10 so)"
-      from_date: 2026-07-08
-      to_date: 2026-07-09
+      from_date: 2026-07-10
+      to_date: 2026-07-11
       file_name: ""
       file_path: ""
       number_format_string: "@"
@@ -169,8 +187,8 @@ profile:
       - 93
     grn_16_numbers_config:
       sheet_name: "Label (16 So)"
-      from_date: 2026-07-08
-      to_date: 2026-07-09
+      from_date: 2026-07-10
+      to_date: 2026-07-11
       file_name: ""
       file_path: ""
       number_format_string: "@"

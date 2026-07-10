@@ -69,8 +69,7 @@ class VerifyConfig(BaseModel):
                 t.append(k)
 
         if not len(t):
-            print(len(t))
-            raise ValueError("Phải chọn ít nhất 1 SAP")
+           return None
 
         return t
 
@@ -100,6 +99,8 @@ class VerifyConfig(BaseModel):
         base_network: str = self.base_report_file
         base_local: str = self.local_path
 
+        if not self.verify_list : return None
+        
         for s in self.verify_list:
             temp: str = f"GR Verification {s}.xlsx"
 

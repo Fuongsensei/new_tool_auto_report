@@ -13,13 +13,33 @@ class DataProcessBase(Generic[T], ABC):
     def __init__(self, config: T|None):
         self.config: T = config
 
+
     @abstractmethod
     def Process(self, data_raw: pl.DataFrame) -> pl.DataFrame|None:
+        pass
+    
+    def check_valid(self,data_raw:pl.DataFrame) -> bool:
+        if data_raw is None or data_raw.is_empty():return False
+        return True
+
+class DataProcessForReportDashboardBase:
+    def __init__(self,data_processed:pl.DataFrame):
+           self.data = data_processed
+      
+
+    def get_record(self) -> tuple|None:
+        if self.data is None or self.data.is_empty():return None
+        return  self.get_record_after_validate()
+
+    @abstractmethod 
+    def get_record_after_validate(self)->tuple:
         pass
 
 
 class DataProcessVerify(DataProcessBase[VerifyConfig]):
-    def Process(self, data_raw: pl.DataFrame) -> pl.DataFrame:
+    
+    def Process(self, data_raw: pl.DataFrame) -> pl.DataFrame | None:
+        if not super().check_valid(data_raw):return None
         """Nhận một raw dataFrame và trả về dataFrame sau khi đã xử lý"""
         try:
             lf: pl.LazyFrame = data_raw.lazy()
@@ -56,7 +76,9 @@ class DataProcessVerify(DataProcessBase[VerifyConfig]):
 
 
 class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
+
     def Process(self, data_raw: pl.DataFrame, out_for_grn_16: pl.DataFrame, delete_old_day: bool) -> tuple[pl.DataFrame, pl.DataFrame|None]:
+        if not super().check_valid(data_raw):return None
         if not self.config:
                 raise Exception("Xử lý data verify cấu hình không được None")
             
@@ -79,7 +101,9 @@ class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
 
 
 class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
-    def Process(self, data_raw: pl.DataFrame, grn_data: pl.DataFrame, delete_old_day: bool) -> pl.DataFrame:
+    
+    def Process(self, data_raw: pl.DataFrame, grn_data: pl.DataFrame, delete_old_day: bool) -> pl.DataFrame|None:
+        if not super().check_valid(data_raw):return None
         if not self.config:
                 raise Exception("Xử lý data verify cấu hình không được None")
         drop_col: list[str] = [data_raw.columns[i] for i in self.config.drop_columns]
@@ -96,25 +120,22 @@ class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
         return lz_df.filter(pl.col(check_na_col).str.slice(0, 10).is_in(grn_data)).collect()
     
     
-class DataVerifyProcessForReportView(DataProcessBase):
+class DataVerifyProcessForReportDashboard(DataProcessForReportDashboardBase):
         
-        def __init__(self):
-            super().__init__(None)
-
+        def __init__(self,data_processed:pl.DataFrame):
+            super().__init__(data_processed)
+            self.record : tuple = self.get_record()
             self.total_labels : int 
 
             self.total_foreach_verify_sap: dict[int,int] 
 
-        def Process(self,data_processed) -> None:
-            self.data : pl.DataFrame = data_processed
-            self.total_labels = self.get_total_labels()
-            self.total_foreach_verify_sap = self.get_total_foreach_verify_sap()
+        
             
-        def get_total_labels(self)-> int:
+        def _get_total_labels(self)-> int:
             return self.data.height
             
                     
-        def get_total_foreach_verify_sap(self) -> dict[int,int]:
+        def _get_total_foreach_verify_sap(self) -> dict[int,int]:
             return dict(self.data.with_columns(
                 pl.col("User/Time").
                 str.split("|").
@@ -125,4 +146,39 @@ class DataVerifyProcessForReportView(DataProcessBase):
                         group_by("User").
                         len("Total").
                         iter_rows())
+        
+
+
+        def get_record_after_validate(self) -> tuple:
+            return(self._get_total_labels(),self._get_total_foreach_verify_sap())
+
+class DataGrn10ProcessForReportDashboard(DataProcessForReportDashboardBase):
+      def __init__(self, data_processed):
+           super().__init__(data_processed)
+           self.record = self.get_record()
+           
+           self.total_receipt :int = self.record[0]
+           
+           self.total_receipt_foreach_keyin_sap:dict[int,int] = self.record[1]
+ 
+      
             
+      def _get_total_receipt(self)-> int:
+            return self.data.height
+            
+                    
+      def _get_total_foreach_keyin_sap(self) -> dict[int,int]:
+            return dict(self.data.with_columns(
+                pl.col("User").
+                alias("User")).
+                        group_by("User").
+                        len("Total").
+                        iter_rows())
+
+
+
+      def get_record_after_validate(self) ->tuple:
+          return(self._get_total_receipt(),self._get_total_foreach_keyin_sap())
+           
+
+           

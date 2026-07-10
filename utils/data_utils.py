@@ -9,14 +9,18 @@ from utils.file_handler import FileHelper
 
 class DataIngestor:
     def __init__(self, paths_map: dict[str, str] | None, raw_file=False):
-        self.raw_file = raw_file
+        self.raw_file :bool = raw_file
+        
 
         if not self.raw_file:
+
             self.paths_map: dict[str, str] = paths_map
-            self.paths_folder_locals: set[str] = set(
-                [os.path.dirname(v) for k, v in paths_map.items()]
-            )
-            self.file_error: list[str] = []
+
+            if  paths_map:
+                self.paths_folder_locals: set[str] = set(
+                    [os.path.dirname(v) for k, v in paths_map.items()]
+                )
+                self.file_error: list[str] = []
 
     def load_data_raw_file(self, file_path: str):
         if not self.raw_file:
@@ -27,7 +31,9 @@ class DataIngestor:
     def ingest_data(self) -> pl.DataFrame:
         if self.raw_file:
             raise RuntimeError("Chức năng không khả dụng")
-
+        
+        if not self.paths_map : return None
+        
         if len(self.paths_map) == 1:
             s, d = list(self.paths_map.items())[0]
             data_single: pl.DataFrame = self.load_single_file(s, d)
@@ -39,7 +45,9 @@ class DataIngestor:
 
             FileHelper.remove_folder(d)
             return data_single
-
+                      
+        elif self.paths_map == 0 : return None
+        
         data: pl.DataFrame = self.load_multiple_files()
 
         for i in self.paths_folder_locals:

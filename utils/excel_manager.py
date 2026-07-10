@@ -387,8 +387,10 @@ class WorkBookManager:
             retry_excel_com(
                 _refresh_pivot_only,
                 retries=40,
-                delay=1.5,
+                delay=4,
             )
+
+
     
         except Exception as e:
             raise RuntimeError(
