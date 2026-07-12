@@ -382,12 +382,17 @@ class WorkBookManager:
     
                 raw_sheet.PivotTables("PivotTable3").RefreshTable()
                 raw_sheet.Rows("13:50").RowHeight = 17
+                raw_sheet.Range("A19").Select()
+                
+                app.api.CalculateUntilAsyncQueriesDone()
+                app.api.CalculateFull()
+
                 
     
             retry_excel_com(
                 _refresh_pivot_only,
                 retries=40,
-                delay=4,
+                delay=0.5,
             )
 
 

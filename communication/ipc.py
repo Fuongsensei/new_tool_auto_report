@@ -2,7 +2,7 @@ import mmap
 import win32event
 import struct
 import win32con
-
+from core.data_processor import ReportDashboardData
 
 class CommunicationToCSharpByCommand:
     def __init__(self):
@@ -109,3 +109,34 @@ class CommunicationToCSharpByCommand:
             win32event.SetEvent(self.init_event_success)
         except Exception as e:
             raise RuntimeError("Set init python event IPC thất bại") from e
+        
+        
+        
+class CommunicationToReportDashboard:
+      def __init__(self):
+          self.report_data = ReportDashboardData()
+          
+          self.SRM_NAME : str = r"Local\data_for_dashboard"
+          self.BUF_SIZE : int = 4096
+          self.REQ_EVENT_NAME : str = r"Local\request_to_engine"
+          self.RES_EVENT_NAME : str = r"Local\respone_to_dashboard"
+          
+          self.shared_memo : mmap = mmap.mmap(-1,self.BUF_SIZE,tagname=self.SRM_NAME)
+          
+          
+          self.req_event  :  win32event = win32event.OpenEvent(
+              win32event.EVENT_ALL_ACCESS,
+              0,
+              self.REQ_EVENT_NAME
+          )
+          
+          
+          self.res_event : win32event = win32event.OpenEvent(
+              win32event.EVENT_ALL_ACCESS,
+              0,
+              self.RES_EVENT_NAME
+          )
+          
+          self.length_verify_data_info : int 
+          
+          

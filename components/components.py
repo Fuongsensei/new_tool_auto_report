@@ -16,15 +16,15 @@ class ConfigComponent:
         self.grn16_config: GRN16Config = self.profile.daily_report_config.grn_16_numbers_config
 
 
-class SapProcessComponent:
-    def __init__(self, config: ConfigComponent):
-        if not config.daily_report_config.run_sap:
-            return
+# class SapProcessComponent:
+#     def __init__(self, config: ConfigComponent):
+#         if not config.daily_report_config.run_sap:
+#             return
 
-        self.sap: SapConnector = SapConnector()
-        self.session = self.sap.session
-        self.sap_grn10: GRN10Processor = GRN10Processor(config.grn10_config, self.session)
-        self.sap_grn16: GRN16Processor = GRN16Processor(config.grn16_config, self.session)
+#         self.sap: SapConnector = SapConnector()
+#         self.session = self.sap.session
+#         self.sap_grn10: GRN10Processor = GRN10Processor(config.grn10_config, self.session)
+#         self.sap_grn16: GRN16Processor = GRN16Processor(config.grn16_config, self.session)
 
 
 class UtilsComponent:
@@ -51,8 +51,8 @@ class CombaineComponent:
     def combaine(self) -> None:
         self.config = ConfigComponent()
 
-        if self.config.daily_report_config.run_sap:
-            self.sap = SapProcessComponent(self.config)
+        # if self.config.daily_report_config.run_sap:
+        #     self.sap = SapProcessComponent(self.config)
 
         self.uls = UtilsComponent(self.config)
         self.core = CoreComponent(self.config)

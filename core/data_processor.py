@@ -1,6 +1,7 @@
 import polars as pl
 from typing import Generic, TypeVar
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
 from pydantic import BaseModel, model_validator, field_validator, PrivateAttr
 import time
 from datetime import date, datetime
@@ -83,6 +84,8 @@ class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
                 raise Exception("Xử lý data verify cấu hình không được None")
             
         drop_col: list[str] = [data_raw.columns[i] for i in self.config.drop_columns]
+        grn_col : str = data_raw.columns[0]
+        date_col: str = data_raw.columns[2]
         lz_df: pl.LazyFrame = data_raw.lazy()
         lz_df = (
             lz_df
@@ -95,8 +98,8 @@ class DataProcessGrn10Number(DataProcessBase[GRN10Config]):
         if not delete_old_day:
             return lz_df.collect(),None
 
-        lz_df = lz_df.filter(pl.col(lz_df.columns[2]) == pl.col(lz_df.columns[2]).max())
-        out_for_grn_16 = lz_df.select(pl.col(lz_df.columns[0])).collect()
+        lz_df = lz_df.filter(pl.col(date_col) == pl.col(date_col).max())
+        out_for_grn_16 = lz_df.select(grn_col).collect()
         return lz_df.collect(), out_for_grn_16
 
 
@@ -125,9 +128,9 @@ class DataVerifyProcessForReportDashboard(DataProcessForReportDashboardBase):
         def __init__(self,data_processed:pl.DataFrame):
             super().__init__(data_processed)
             self.record : tuple = self.get_record()
-            self.total_labels : int 
+            self.total_labels : int  = self.record[0]
 
-            self.total_foreach_verify_sap: dict[int,int] 
+            self.total_foreach_verify_sap: dict[str,int]  = self.record[1]
 
         
             
@@ -159,7 +162,7 @@ class DataGrn10ProcessForReportDashboard(DataProcessForReportDashboardBase):
            
            self.total_receipt :int = self.record[0]
            
-           self.total_receipt_foreach_keyin_sap:dict[int,int] = self.record[1]
+           self.total_receipt_foreach_keyin_sap:dict[str,int] = self.record[1]
  
       
             
@@ -169,7 +172,7 @@ class DataGrn10ProcessForReportDashboard(DataProcessForReportDashboardBase):
                     
       def _get_total_foreach_keyin_sap(self) -> dict[int,int]:
             return dict(self.data.with_columns(
-                pl.col("User").
+                pl.col("User Name").
                 alias("User")).
                         group_by("User").
                         len("Total").
@@ -179,6 +182,13 @@ class DataGrn10ProcessForReportDashboard(DataProcessForReportDashboardBase):
 
       def get_record_after_validate(self) ->tuple:
           return(self._get_total_receipt(),self._get_total_foreach_keyin_sap())
-           
+
+class ReportDashboardData:
+      def __init__(self):
+            
+        self.verify: DataVerifyProcessForReportDashboard  = DataVerifyProcessForReportDashboard()
+        self.grn10: DataGrn10ProcessForReportDashboard    = DataGrn10ProcessForReportDashboard()
+
+      
 
            

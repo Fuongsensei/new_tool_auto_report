@@ -138,7 +138,7 @@ class GRN10Config(BaseModel):
         self.entered_date_start = (self.from_date - dt.timedelta(3)).strftime("%m/%d/%Y")
         self.entered_date_end = self.posting_date_end
         self.file_name = f"EXPORT_GRN10_{self.from_date}"
-        self.file_path = rf"C:\Temp\{self.file_name}.xlsx"
+        self.file_path = rf"C:\Temp\{self.file_name}.xlsx" if getpass.getuser() != "fuongsensei" else rf"E:\Temp\{self.file_name}.xlsx"
         return self
 
 
@@ -162,7 +162,7 @@ class GRN16Config(BaseModel):
         self.entered_date_start = (self.from_date - dt.timedelta(3)).strftime("%m/%d/%Y")
         self.entered_date_end = self.to_date.strftime("%m/%d/%Y")
         self.file_name = f"EXPORT_GRN16_{self.from_date}"
-        self.file_path = rf"C:\Temp\{self.file_name}.xlsx"
+        self.file_path = rf"C:\Temp\{self.file_name}.xlsx" if getpass.getuser() != "fuongsensei" else rf"E:\Temp\{self.file_name}.xlsx"
         return self
 
 

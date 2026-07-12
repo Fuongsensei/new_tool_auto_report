@@ -1,13 +1,13 @@
 import sys
 import traceback
 from step.stage import CombaineStepMachine, CombaineComponent
-from communication.ipc import CommunicationToCSharpByCommand
+from communication.ipc_command import CommunicationToCSharpByCommand
 from cache_dataframe.cache_class import CacheDataframeForReportDashboard
 from getpass import getuser
 import os
 import traceback
 from datetime import datetime, date
-from core.data_processor import DataVerifyProcessForReportDashboard
+from core.data_processor import DataVerifyProcessForReportDashboard,DataGrn10ProcessForReportDashboard
 
 if getattr(sys, "frozen", False):
     if sys.stdout is None:
@@ -73,8 +73,9 @@ class DailyReportExportMachine:
 
     def run(self) -> None:
         if self.combaine_step_machine.run_sap:
+            pass
             
-            self.combaine_step_machine.run_sap.run()
+            #self.combaine_step_machine.run_sap.run()
 
         self.combaine_step_machine.process_data.run()
       
@@ -84,12 +85,15 @@ class DailyReportExportMachine:
         
         self.cache._get_field_from_process_step()
         
-        process : DataVerifyProcessForReportDashboard = DataVerifyProcessForReportDashboard(self.cache.cache_verify_data)
-        
-        if process.record is None:
+        verify_dashboard: DataVerifyProcessForReportDashboard = DataVerifyProcessForReportDashboard(self.cache.cache_verify_data)
+        keyin_dashboard : DataGrn10ProcessForReportDashboard  = DataGrn10ProcessForReportDashboard(self.cache.cache_grn10_data)
+        if verify_dashboard.record is None:
             print("Không có dữ liệu")
             return
-        
+        print(verify_dashboard.total_foreach_verify_sap)
+        print(verify_dashboard.total_labels)
+        print(keyin_dashboard.total_receipt_foreach_keyin_sap)
+        print(keyin_dashboard.total_receipt)
 
 
 if __name__ == "__main__":
