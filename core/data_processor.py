@@ -6,6 +6,7 @@ from pydantic import BaseModel, model_validator, field_validator, PrivateAttr
 import time
 from datetime import date, datetime
 from utils.config_loader import VerifyConfig, GRN10Config, GRN16Config
+from converter.converter import ConverterDataForReportDashboard
 
 T = TypeVar("T")
 
@@ -22,19 +23,6 @@ class DataProcessBase(Generic[T], ABC):
     def check_valid(self,data_raw:pl.DataFrame) -> bool:
         if data_raw is None or data_raw.is_empty():return False
         return True
-
-class DataProcessForReportDashboardBase:
-    def __init__(self,data_processed:pl.DataFrame):
-           self.data = data_processed
-      
-
-    def get_record(self) -> tuple|None:
-        if self.data is None or self.data.is_empty():return None
-        return  self.get_record_after_validate()
-
-    @abstractmethod 
-    def get_record_after_validate(self)->tuple:
-        pass
 
 
 class DataProcessVerify(DataProcessBase[VerifyConfig]):
@@ -123,23 +111,11 @@ class DataProcessGrn16Number(DataProcessBase[GRN16Config]):
         return lz_df.filter(pl.col(check_na_col).str.slice(0, 10).is_in(grn_data)).collect()
     
     
-class DataVerifyProcessForReportDashboard(DataProcessForReportDashboardBase):
+class DataVerifyProcessForReportDashboard(DataProcessBase):
+    def Process(self,data:pl.DataFrame):
+        if not super().check_valid():return None
         
-        def __init__(self,data_processed:pl.DataFrame):
-            super().__init__(data_processed)
-            self.record : tuple = self.get_record()
-            self.total_labels : int  = self.record[0]
-
-            self.total_foreach_verify_sap: dict[str,int]  = self.record[1]
-
-        
-            
-        def _get_total_labels(self)-> int:
-            return self.data.height
-            
-                    
-        def _get_total_foreach_verify_sap(self) -> dict[int,int]:
-            return dict(self.data.with_columns(
+        verify_data_map :dict[int,int] = dict(data.with_columns(
                 pl.col("User/Time").
                 str.split("|").
                 list.get(0).
@@ -150,45 +126,17 @@ class DataVerifyProcessForReportDashboard(DataProcessForReportDashboardBase):
                         len("Total").
                         iter_rows())
         
-
-
-        def get_record_after_validate(self) -> tuple:
-            return(self._get_total_labels(),self._get_total_foreach_verify_sap())
-
-class DataGrn10ProcessForReportDashboard(DataProcessForReportDashboardBase):
-      def __init__(self, data_processed):
-           super().__init__(data_processed)
-           self.record = self.get_record()
-           
-           self.total_receipt :int = self.record[0]
-           
-           self.total_receipt_foreach_keyin_sap:dict[str,int] = self.record[1]
- 
-      
+        return (data.height,verify_data_map)
+class DataReceiptsProcessForReportDashboard(DataProcessBase):
+    def Process(self,data:pl.DataFrame):
+        if not super().check_valid(): return None
+        
+    
+            receipt_data_map :dict[int,int] = dict(data.with_columns(
+                    pl.col("User Name").
+                    alias("User")).
+                            group_by("User").
+                            len("Total").
+                            iter_rows())
             
-      def _get_total_receipt(self)-> int:
-            return self.data.height
-            
-                    
-      def _get_total_foreach_keyin_sap(self) -> dict[int,int]:
-            return dict(self.data.with_columns(
-                pl.col("User Name").
-                alias("User")).
-                        group_by("User").
-                        len("Total").
-                        iter_rows())
-
-
-
-      def get_record_after_validate(self) ->tuple:
-          return(self._get_total_receipt(),self._get_total_foreach_keyin_sap())
-
-class ReportDashboardData:
-      def __init__(self):
-            
-        self.verify: DataVerifyProcessForReportDashboard  = DataVerifyProcessForReportDashboard()
-        self.grn10: DataGrn10ProcessForReportDashboard    = DataGrn10ProcessForReportDashboard()
-
-      
-
-           
+        return (data.height,receipt_data_map)

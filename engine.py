@@ -85,16 +85,6 @@ class DailyReportExportMachine:
         
         self.cache._get_field_from_process_step()
         
-        verify_dashboard: DataVerifyProcessForReportDashboard = DataVerifyProcessForReportDashboard(self.cache.cache_verify_data)
-        keyin_dashboard : DataGrn10ProcessForReportDashboard  = DataGrn10ProcessForReportDashboard(self.cache.cache_grn10_data)
-        if verify_dashboard.record is None:
-            print("Không có dữ liệu")
-            return
-        print(verify_dashboard.total_foreach_verify_sap)
-        print(verify_dashboard.total_labels)
-        print(keyin_dashboard.total_receipt_foreach_keyin_sap)
-        print(keyin_dashboard.total_receipt)
-
 
 if __name__ == "__main__":
     logger = FileLogger(open_after_write=True)

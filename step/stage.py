@@ -1,81 +1,83 @@
-from components.components import CoreComponent,ConfigComponent,UtilsComponent,CombaineComponent#,SapProcessComponent
+from components.components import CoreComponent,ConfigComponent,UtilsComponent,CombaineComponent,SapProcessComponent
 from utils.excel_manager import WorkBookManager ,WorkSheetsManager
 import time
 from polars import DataFrame
+from converter.converter import ConverterDataForReportDashboard
+from cache_dataframe.cache_class import CacheDataframeForReportDashboard
 
-# class RunSapStep:
-#         def __init__(self, config:ConfigComponent,sap:SapProcessComponent,writer_cls:type[WorkBookManager] = WorkBookManager):
+class RunSapStep:
+        def __init__(self, config:ConfigComponent,sap:SapProcessComponent,writer_cls:type[WorkBookManager] = WorkBookManager):
             
-#                 if not sap : return None
-#                 self.writer_cls = writer_cls
+                if not sap : return None
+                self.writer_cls = writer_cls
                 
-#                 self.session = sap.session
+                self.session = sap.session
 
-#                 self.grn10_processor = sap.sap_grn10
+                self.grn10_processor = sap.sap_grn10
 
-#                 self.grn16_processor = sap.sap_grn16
+                self.grn16_processor = sap.sap_grn16
 
-#                 self.config  = config 
+                self.config  = config 
 
-#                 self.path_report : str = self.config.daily_report_config.verify_config.report_daily_path
+                self.path_report : str = self.config.daily_report_config.verify_config.report_daily_path
                 
-#                 self.writer_daily_report =  self.writer_cls(self.path_report,False)
+                self.writer_daily_report =  self.writer_cls(self.path_report,False)
                 
-#                 self.writer_sheet_user = self.writer_daily_report.get_sheet("User")
+                self.writer_sheet_user = self.writer_daily_report.get_sheet("User")
                 
-#                 self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config.daily_report_config.verify_config.sheet_name)
-                
-                
-#                 self.writer_sheet_grn_10  = self.writer_daily_report.get_sheet(self.config.daily_report_config.grn_10_numbers_config.sheet_name)
+                self.writer_sheet_verify  = self.writer_daily_report.get_sheet(self.config.daily_report_config.verify_config.sheet_name)
                 
                 
-#                 self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config.daily_report_config.grn_16_numbers_config.sheet_name)
+                self.writer_sheet_grn_10  = self.writer_daily_report.get_sheet(self.config.daily_report_config.grn_10_numbers_config.sheet_name)
+                
+                
+                self.writer_sheet_grn_16  = self.writer_daily_report.get_sheet(self.config.daily_report_config.grn_16_numbers_config.sheet_name)
                 
 
             
         
             
-#         def copy_user_sheet(self)-> None:
-#             self.writer_sheet_user.copy_to_last_row("A:A",3)
+        def copy_user_sheet(self)-> None:
+            self.writer_sheet_user.copy_to_last_row("A:A",3)
             
                 
-#         def run(self)-> None:
+        def run(self)-> None:
             
-#             self.writer_sheet_user.delete_to_last_row(5)
-#             keyin_list = self.config.daily_report_config.verify_config._keyin_list
+            self.writer_sheet_user.delete_to_last_row(5)
+            keyin_list = self.config.daily_report_config.verify_config._keyin_list
             
-#             if keyin_list is None or keyin_list.is_empty(): 
-#                 raise Exception("Chưa chọn keyin làm sao mà chạy SAP ?")
+            if keyin_list is None or keyin_list.is_empty(): 
+                raise Exception("Chưa chọn keyin làm sao mà chạy SAP ?")
 
-#             self.writer_sheet_user.write((self.config.daily_report_config.verify_config._keyin_list,"A4"))
+            self.writer_sheet_user.write((self.config.daily_report_config.verify_config._keyin_list,"A4"))
             
-#             self.copy_user_sheet()
-#             time.sleep(2)
+            self.copy_user_sheet()
+            time.sleep(2)
             
-#             self.grn10_processor.process()
+            self.grn10_processor.process()
             
-#             time.sleep(3)
-            
-            
-#             self.writer_grn10_data = self.writer_cls(self.config.daily_report_config.grn_10_numbers_config.file_path).get_sheet("Data")
-            
-#             self.writer_grn10_data.copy_to_last_row("A:A",2)
-            
-#             self.grn16_processor.process()
-            
-#             time.sleep(3)
+            time.sleep(3)
             
             
-#             self.writer_grn16_data = self.writer_cls(self.config.daily_report_config.grn_16_numbers_config.file_path).get_sheet("Data")
+            self.writer_grn10_data = self.writer_cls(self.config.daily_report_config.grn_10_numbers_config.file_path).get_sheet("Data")
+            
+            self.writer_grn10_data.copy_to_last_row("A:A",2)
+            
+            self.grn16_processor.process()
+            
+            time.sleep(3)
             
             
-#             self.writer_grn10_data.close()
+            self.writer_grn16_data = self.writer_cls(self.config.daily_report_config.grn_16_numbers_config.file_path).get_sheet("Data")
             
             
-#             self.writer_grn16_data.close()
+            self.writer_grn10_data.close()
             
-#             self.writer_daily_report.save_workbook()
-#             self.writer_daily_report.close()
+            
+            self.writer_grn16_data.close()
+            
+            self.writer_daily_report.save_workbook()
+            self.writer_daily_report.close()
             
 
             
@@ -243,8 +245,17 @@ class WriteExcelStep:
         self.write()
         self.reopen_excel()
 
-            
 
+class ProcessForDashboardStep:
+    def __init__(self,data:ProcessDataStep,core_component:CoreComponent) -> None:
+        self.data = data
+        self.core = core_component
+        self.total_verify_row :int | None = None
+        self.verify_data_dashboard : dict[int,int]  | None = None
+        self.receipts_data_dashboard :dict[int,int] | None = None
+        
+    def run(self):
+        
 class CombaineStepMachine:
     def  __init__(self,combaine_component_machine:type[CombaineComponent]=CombaineComponent):
         
@@ -260,7 +271,7 @@ class CombaineStepMachine:
 
     def combaine(self)-> None:
         if self.component.config.daily_report_config.run_sap:
-                pass#self.run_sap = RunSapStep(self.component.config,self.component.sap,WorkBookManager)
+                self.run_sap = RunSapStep(self.component.config,self.component.sap,WorkBookManager)
         
         self.process_data = ProcessDataStep(self.component.core,self.component.uls,self.component.config)
         

@@ -80,13 +80,16 @@ class GRN10Processor(GRNProcessor[GRN10Config]):
         self.session.findById("wnd[1]/tbar[0]/btn[8]").press()
         self.session.findById("wnd[0]/usr/ctxtP_LAY01").Text = "/QUANTITY"
         self.session.findById("wnd[0]/tbar[1]/btn[8]").press()
-        self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectedRows = "0"
-        self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").contextMenu()
-        self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectContextMenuItem("&XXL")
-        self.session.findById("wnd[1]/usr/ssubSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME").Text = self.context.file_name
-        self.session.findById("wnd[1]/tbar[0]/btn[20]").press()
-        self.session.findById("wnd[1]/tbar[0]/btn[11]").press()
-
+        try:
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectedRows = "0"
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").contextMenu()
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectContextMenuItem("&XXL")
+            self.session.findById("wnd[1]/usr/ssubSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME").Text = self.context.file_name
+            self.session.findById("wnd[1]/tbar[0]/btn[20]").press()
+            self.session.findById("wnd[1]/tbar[0]/btn[11]").press()
+            
+        except Exception as e:
+                raise Exception("Chưa có dữ liệu keyin") from e
 
 class GRN16Processor(GRNProcessor[GRN16Config]):
     def process(self):
