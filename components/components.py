@@ -39,6 +39,7 @@ class CoreComponent:
         self.data_process_verify: DataProcessBase = DataProcessVerify(config_component.verify_config)
         self.data_process_grn10: DataProcessBase = DataProcessGrn10Number(config_component.grn10_config)
         self.data_process_grn16: DataProcessBase = DataProcessGrn16Number(config_component.grn16_config)
+        
         self.cache_verify_process : DataProcessBase = DataVerifyProcessForReportDashboard(None)
         
         self.cache_receipt_process : DataProcessBase = DataReceiptsProcessForReportDashboard(None)

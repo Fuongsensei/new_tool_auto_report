@@ -248,13 +248,29 @@ class WriteExcelStep:
 
 class ProcessForDashboardStep:
     def __init__(self,data:ProcessDataStep,core_component:CoreComponent) -> None:
-        self.data = data
-        self.core = core_component
+        self.data :ProcessDataStep = data
+        self.core :CoreComponent = core_component
         self.total_verify_row :int | None = None
+        self.total_receipts_row:int| None = None 
         self.verify_data_dashboard : dict[int,int]  | None = None
         self.receipts_data_dashboard :dict[int,int] | None = None
         
     def run(self):
+        
+        verify :tuple[int,dict[int,int]] = self.core.cache_verify_process(self.data.verify_data_process)
+        
+        receipts:tuple[int,dict[int,int]] = self.core.cache_receipt_process(self.data.grn10_data_process)
+        
+        self.total_verify_row = verify[0]
+        
+        self.verify_data_dashboard  = verify[1]
+        
+        self.total_receipts_row = receipts[0]
+        
+        self.receipts_data_dashboard = receipts[1]
+        
+class ConvertToChainStep:
+    def __init__(self,data:ProcessForDashboardStep) -> None:
         
 class CombaineStepMachine:
     def  __init__(self,combaine_component_machine:type[CombaineComponent]=CombaineComponent):
